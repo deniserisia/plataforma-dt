@@ -1,0 +1,99 @@
+.mat-toolbar-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color:  #b6bcbc;
+  }
+
+.button-menu{
+  vertical-align: middle;
+  color: #007bff;
+}
+
+.link-icon{
+    color: #007bff;
+}
+
+.heading-home{
+    padding: 1.75rem 1rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.mat-drawer-sidenav{
+    width: 200px;
+    background-color: #b6bcbc;
+    overflow-x: hidden;
+}
+
+.mat-drawer-footer{
+    display: flex;
+    background-color: #007bff;
+    padding: 0.75rem;
+    padding-left: 1rem;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    width: 200px;
+}
+
+.mat-drawer-content{
+    height: 100vh;
+}
+  
+/* CSS */
+.navbar {
+    min-height: 70px;
+    /* Altere a altura conforme desejado */
+}
+
+.custom-bg {
+    background-color: #b6bcbc;
+}
+
+.sb-nav-link-icon {
+    margin: 10px;
+    /* Adicione margem conforme desejado */
+}
+
+.icon-color {
+    color: #007bff;
+    /* Substitua #FF0000 pela cor desejada, por exemplo, vermelho. */
+}
+
+.cor {
+    color: black;
+    /* Defina a cor do texto como branca */
+    font-weight: 400;
+}
+
+/* Estilo para dispositivos móveis e tablets */
+@media (max-width: 991px) {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-brand {
+        order: 2;
+    }
+
+    .btn-link {
+        order: 1;
+    }
+
+    .nav-link {
+        order: 3;
+    }
+}
+
+@media (max-width: 371px) {
+    .navbar-brand img {
+        width: 190px;
+        height: auto;
+    }
+}
