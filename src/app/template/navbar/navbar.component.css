@@ -4,16 +4,104 @@
     left: 0;
     right: 0;
     z-index: 999;
-    background-color:  #b6bcbc;
+    background-color: #eef1f6;
+    padding: 30px;
+    font-family: 'Nunito Sans', sans-serif;
   }
 
 .button-menu{
   vertical-align: middle;
-  color: #007bff;
+  color: #0D356A;
 }
 
 .link-icon{
-    color: #007bff;
+    color: #0D356A;
+}
+.icon {
+    width: 20px; /* Ajuste conforme necessário */
+    height: 20px; /* Ajuste conforme necessário */
+    margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+}
+
+.logo {
+    width: 100px; /* Ajuste o valor conforme necessário para diminuir o tamanho */
+  
+}
+
+/* SIDEBAR CSS */
+
+.mat-list-item {
+    position: relative; /* Permite posicionar elementos filhos relativamente a este elemento */
+    padding: 5px;
+    margin-top: 15px;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.mat-list-item:before {
+    content: ""; /* Adiciona um elemento antes do conteúdo do .mat-list-item */
+    position: absolute; /* Posiciona o elemento absolutamente em relação ao .mat-list-item */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 3px; /* Largura da linha vertical */
+    background-color: #0D356A; /* Cor da linha vertical */
+    display: none; /* Inicialmente, a linha está oculta */
+    font-weight: bold;
+}
+
+.mat-list-item:hover:before {
+    display: block; /* Torna a linha vertical visível ao passar o mouse */
+    font-weight: bold;
+}
+
+.mat-list-item:hover {
+    background-color: #CDDAEF; /* Cor de destaque ao passar o mouse */
+    font-weight: bold;
+}
+
+.mat-list-item:hover .icon {
+    color: #0D356A;
+}
+
+.mat-list-item:hover span {
+    color: #0D356A;
+}
+
+/* Adaptações para dispositivos móveis */
+@media only screen and (max-width: 768px) {
+    .mat-list-item {
+        margin-top: 10px;
+        padding: 10px; /* Aumenta o espaço interno para melhor experiência em telas menores */
+        font-family: 'Nunito Sans', sans-serif;
+    }
+    
+    .mat-list-item:before {
+        content: ""; /* Adiciona um elemento antes do conteúdo do .mat-list-item */
+        position: absolute; /* Posiciona o elemento absolutamente em relação ao .mat-list-item */
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 3px; /* Largura da linha vertical */
+        background-color: #64B13F; /* Cor da linha vertical */
+        display: none; /* Inicialmente, a linha está oculta */
+    }
+
+    .mat-list-item:hover:before {
+        display: block; /* Torna a linha vertical visível ao passar o mouse */
+        font-weight: bold;
+    }
+
+    .mat-list-item:hover {
+        background-color: #F4FCF1; /* Cor de destaque ao passar o mouse */  
+    }
+
+    .mat-list-item:hover .icon {
+        color: #369722; /* Cor do texto ao passar o mouse */
+    }
+
+    .mat-list-item:hover span {
+        color: #369722; /* Cor do texto ao passar o mouse */
+    }
 }
 
 .heading-home{
@@ -25,13 +113,15 @@
 
 .mat-drawer-sidenav{
     width: 200px;
-    background-color: #b6bcbc;
+    background-color: #eef1f6;
     overflow-x: hidden;
+    margin-top: 15px;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 .mat-drawer-footer{
     display: flex;
-    background-color: #007bff;
+    background-color:  #CDDAEF;
     padding: 0.75rem;
     padding-left: 1rem;
     left: 0;
@@ -60,7 +150,7 @@
 }
 
 .icon-color {
-    color: #007bff;
+    color: #64B13F;
     /* Substitua #FF0000 pela cor desejada, por exemplo, vermelho. */
 }
 

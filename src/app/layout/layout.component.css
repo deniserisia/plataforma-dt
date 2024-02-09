@@ -1,0 +1,11 @@
+/* CSS */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f8f8; /* Cor de fundo do rodapé */
+    padding: 10px; /* Espaçamento interno */
+    text-align: center;
+    z-index: 999; /* Opcional: use z-index para controlar o empilhamento de elementos */
+}
+

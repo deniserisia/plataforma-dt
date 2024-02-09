@@ -1,0 +1,58 @@
+.container {
+    max-width: 1300px;
+    margin: 30px auto;
+    padding: 10px;
+}
+h1 {
+    margin: 0; /* Remove a margem padrão do h1 */
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 30px;
+}
+
+.card .icon {
+    width: 30px; /* Ajuste conforme necessário */
+    height: 30px; /* Ajuste conforme necessário */
+    margin-top: 18px;
+    margin-left: 20px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .card {
+    flex: 1;
+    max-width: 300px;
+    background-color: #E4F9DF;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+
+  h2,
+  p {
+    margin: 0;
+    color: #333;
+    font-size: 20px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+}

@@ -11,10 +11,12 @@ import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations:
+   [
+    NavbarComponent
+  ],
   imports: [
     CommonModule,
-    TemplateRoutingModule,
     RouterModule,
     MatToolbarModule,
     MatIconModule,

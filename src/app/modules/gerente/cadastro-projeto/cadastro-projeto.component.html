@@ -1,1 +1,113 @@
-<p>cadastro-projeto works!</p>
+<div class="container pt-5">
+    <h1 class="mt-4"> // Projetos</h1>
+
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">{{ projeto.id ? 'Edição do Projeto' : 'Cadastro de Projeto' }}</li>
+    </ol>
+
+    <div class="container">
+        <form #projetoForm="ngForm" (ngSubmit)="onSubmit()">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-success" role="alert" *ngIf="success == true">
+                        Projeto salvo/atualizado com sucesso!
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                        {{ erro }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="projeto.id">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>ID:</label>
+                        <input type="text" [ngModel]="projeto.id" name="id" class="form-control" disabled="true" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Data Cadastro:</label>
+                        <input type="text" class="form-control" name="diaDoCadastro" [ngModel]="projeto.diaDoCadastro"
+                            disabled="true" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Nome do Projeto: </label>
+                        <input type="text" class="form-control" [(ngModel)]="projeto.nomeDoProjeto"
+                            name="NomeDoProjeto" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Descrição do Projeto: </label>
+                        <input type="text" class="form-control" [(ngModel)]="projeto.descricao" name="Descrição" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Setor de Atuação: </label>
+                        <input type="text" class="form-control" [(ngModel)]="projeto.setor" name="Setor" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Empresa: </label>
+                        <input type="text" class="form-control" [(ngModel)]="projeto.empresa" name="Empresa" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Nome do Líder do Projeto: </label>
+                        <input type="text" class="form-control" [(ngModel)]="projeto.nomeDoLiderDoProjeto"
+                            name="Nome do lider" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Data de Início do Projeto: </label>
+                        <input type="text" class="form-control" [(ngModel)]="projeto.dataDeInicioDoProjeto"
+                            name="Data De Inicio Do Projeto" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Status do Projeto: </label>
+                        <div class="input-group">
+                            <select class="form-control" [(ngModel)]="projeto.statusProjeto" name="statusProjeto">
+                                <option *ngFor="let key of getEnumKeys(statusProjeto)" [value]="key">{{ key }}</option>
+                            </select>
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fas fa-caret-down"></i> <!-- Ícone de seta para baixo -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-primary ml-1 mr-2" (click)="voltarParaListagem()">
+                        <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+                    </button>
+
+                    <button type="submit" class="btn btn-success mr-2" *ngIf="!projeto.id">
+                        <i class="fa fa-save"></i> Salvar
+                    </button>
+
+                    <button type="submit" class="btn btn-info" *ngIf="projeto.id">
+                        <i class="fa fa-sync-alt"></i> Atualizar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

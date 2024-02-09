@@ -7,10 +7,13 @@
         <img src="assets/imagens/Logo5.png" alt="" class="d-inline-block align-text-top">
     </a>
 
+  
     <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false"
         aria-controls="collapseLayouts">
         <div class="sb-nav-link-icon">
-            <a class="cor btn" routerLink="/"> Sair <i class="fas fa-sign-out-alt icon-color"></i></a>
+            <a class="cor btn" routerLink="/"> Sair 
+                <img src="assets/icones/Log-out.svg" alt="Ícone de Sair" class="icon">
+            </a>
         </div>
     </a>
 </mat-toolbar>
@@ -18,49 +21,36 @@
 <mat-drawer-container>
     <mat-drawer #sidenav [mode]="getSidenavMode()" [opened]="isSidenavOpen()" class="mat-drawer-sidenav">
         <mat-nav-list class="pt-5">
+           
+            
             <div class="heading-home">Home</div>
-            <a mat-list-item routerLink="/home/inicio">
-                <i class="fas fa-home link-icon"></i>
+            <a mat-list-item routerLink="/admin/inicio-admin-master">
+                <img src="assets/icones/home.svg" alt="Ícone de Início" class="icon">
                 <span class="ml-2">Início</span>
             </a>
-            <a mat-list-item routerLink="/home/dashboard">
-                <i class="fas fa-tachometer-alt link-icon"></i>
+            <a mat-list-item routerLink="/admin/empresas-de-engenharia">
+                <img src="assets/icones/settings.svg" alt="Ícone de Empresa de Engenharia" class="icon">
                 <span class="ml-2">Dashboard</span>
             </a>
-
+            
             <div class="heading-home">Serviços</div>
-            <a mat-list-item routerLink="/servicos/projeto">
-                <i class="fas fa-folder link-icon"></i>
+            <a mat-list-item routerLink="/gerente/cadastro-projeto">
+                <img src="assets/icones/users.svg" alt="Ícone de Usuários" class="icon">
                 <span class="ml-2">Projetos</span>
+            </a>         
+            <a mat-list-item routerLink="/admin/inspecoes">
+                <img src="assets/icones/clipboard.svg" alt="Ícone de Inspeções" class="icon">
+                <span class="ml-2">Dívidas Técnicas</span>
             </a>
-            <a mat-list-item routerLink="/servicos/divida-tecnica">
-                <i class="fas fa-vote-yea link-icon"></i>
-                <span class="ml-2">Dívida Técnica</span>
-            </a>
-            <a mat-list-item routerLink="/servicos/relatorios-projetos">
-                <i class="fas fa-file-alt link-icon"></i>
+            <a mat-list-item routerLink="/admin/parques">
+                <img src="assets/icones/clipboard.svg" alt="Ícone de Inspeções" class="icon">
                 <span class="ml-2">Relatórios</span>
-            </a>
-
-            <div class="heading-home">Configurações</div>
-            <a mat-list-item routerLink="/configuracoes/meu-perfil">
-                <i class="fas fa-user-edit link-icon"></i>
-                <span class="ml-2">Meu Perfil</span>
-            </a>
-            <a mat-list-item routerLink="/servicos/fale-conosco">
-                <i class="fas fa-user-friends link-icon"></i>
-                <span class="ml-2">Fale Conosco</span>
-            </a>
-            <div class="heading-home">Sistema</div>
-            <a mat-list-item>
-                <i class="fas fa-tools link-icon"></i>
-                <span class="ml-2"> Versão 1.0</span>
             </a>
 
             <div class="mat-drawer-footer" mat-list-item>
                 <div class="small">
-                    <i class="fas fa-user"></i>
-                    <span class="ml-2" style="font-weight:500; margin: 0 auto;">Usuário Logado: </span>
+                    <img src="assets/icones/user.svg" alt="Ícone do Usuário" class="icon">
+                    <span class="ml-2" style="font-weight:500;  font-weight: bold; margin: 0 auto;">Usuário Logado: </span>
                 </div>
             </div>
 

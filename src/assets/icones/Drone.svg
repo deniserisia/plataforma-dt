@@ -1,0 +1,13 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Drone">
+<path id="Vector 5" d="M9 9V14.4286M9 9H15.1071M9 9L7.5 7M9 14.4286H15.1071M9 14.4286L7.5 17M15.1071 14.4286V9M15.1071 14.4286L16.5 17M15.1071 9L16.5 7" stroke="#464646" stroke-width="1.35714"/>
+<path id="Ellipse 3" d="M9.78571 5.39286C9.78571 3.51903 8.26668 2 6.39286 2C4.51903 2 3 3.51903 3 5.39286C3 7.26668 4.51903 8.78571 6.39286 8.78571" stroke="#464646" stroke-width="1.35714" stroke-linecap="round"/>
+<path id="Ellipse 4" d="M17.6071 8.78571C19.481 8.78571 21 7.26668 21 5.39286C21 3.51903 19.481 2 17.6071 2C15.7333 2 14.2143 3.51903 14.2143 5.39286" stroke="#464646" stroke-width="1.35714" stroke-linecap="round"/>
+<path id="Ellipse 5" d="M14.2143 18.6071C14.2143 20.481 15.7333 22 17.6071 22C19.481 22 21 20.481 21 18.6071C21 16.7333 19.481 15.2143 17.6071 15.2143" stroke="#464646" stroke-width="1.35714" stroke-linecap="round"/>
+<path id="Ellipse 6" d="M9.78571 18.6071C9.78571 20.481 8.26668 22 6.39286 22C4.51903 22 3 20.481 3 18.6071C3 16.7333 4.51903 15.2143 6.39286 15.2143" stroke="#464646" stroke-width="1.35714" stroke-linecap="round"/>
+<circle id="Ellipse 7" cx="16.9289" cy="6.07144" r="1.35714" fill="#464646"/>
+<circle id="Ellipse 8" cx="16.9289" cy="17.9286" r="1.35714" fill="#464646"/>
+<circle id="Ellipse 9" cx="7.0715" cy="17.9286" r="1.35714" fill="#464646"/>
+<circle id="Ellipse 10" cx="7.0715" cy="6.07144" r="1.35714" fill="#464646"/>
+</g>
+</svg>
