@@ -9,6 +9,13 @@ import { AdminModule } from './modules/admin/admin.module';
 import { GerenteModule } from './modules/gerente/gerente.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TemplateModule } from './template/template.module';
+import { FormsModule } from '@angular/forms';
+import { DividaTecnicaService } from './service/divida-tecnica.service';
+import { ProjetoService } from './service/projeto.service';
+import { AuthService } from './service/auth.service';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from './service/token.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -20,11 +27,22 @@ import { TemplateModule } from './template/template.module';
     BrowserModule,
     AppRoutingModule,
     TemplateModule,
+    HttpClientModule,
+    FormsModule,
     AdminModule,
     GerenteModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    DividaTecnicaService,
+    ProjetoService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

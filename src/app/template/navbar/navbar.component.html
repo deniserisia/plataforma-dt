@@ -4,7 +4,7 @@
     </button>
 
     <a class="navbar-brand mx-auto">
-        <img src="assets/imagens/Logo5.png" alt="" class="d-inline-block align-text-top">
+        <img  routerLink="/gerente/inicio" src="assets/imagens/Logo5.png" alt="" class="d-inline-block align-text-top">
     </a>
 
   
@@ -24,26 +24,26 @@
            
             
             <div class="heading-home">Home</div>
-            <a mat-list-item routerLink="/admin/inicio-admin-master">
+            <a mat-list-item routerLink="/gerente/inicio">
                 <img src="assets/icones/home.svg" alt="Ícone de Início" class="icon">
                 <span class="ml-2">Início</span>
             </a>
-            <a mat-list-item routerLink="/admin/empresas-de-engenharia">
-                <img src="assets/icones/settings.svg" alt="Ícone de Empresa de Engenharia" class="icon">
+            <a mat-list-item routerLink="/gerente/dashboard">
+                <img src="assets/icones/grid.svg" alt="Ícone de Empresa de Engenharia" class="icon">
                 <span class="ml-2">Dashboard</span>
             </a>
             
             <div class="heading-home">Serviços</div>
             <a mat-list-item routerLink="/gerente/cadastro-projeto">
-                <img src="assets/icones/users.svg" alt="Ícone de Usuários" class="icon">
+                <img src="assets/icones/doc.svg" alt="Ícone de Usuários" class="icon">
                 <span class="ml-2">Projetos</span>
             </a>         
-            <a mat-list-item routerLink="/admin/inspecoes">
+            <a mat-list-item routerLink="/gerente/cadastro-divida-tecnica">
                 <img src="assets/icones/clipboard.svg" alt="Ícone de Inspeções" class="icon">
                 <span class="ml-2">Dívidas Técnicas</span>
             </a>
             <a mat-list-item routerLink="/admin/parques">
-                <img src="assets/icones/clipboard.svg" alt="Ícone de Inspeções" class="icon">
+                <img src="assets/icones/check-square.svg" alt="Ícone de Inspeções" class="icon">
                 <span class="ml-2">Relatórios</span>
             </a>
 

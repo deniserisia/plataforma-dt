@@ -1,1 +1,112 @@
-<p>cadastro-dt works!</p>
+<div class="container pt-5">
+    <h1 class="mt-4"> Dívida Técnica</h1>
+  
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">{{ dividaTecnica.id ? 'Edição de DT' : 'Cadastro de DT' }}</li>
+    </ol>
+  
+  
+    <div class="container">
+      <form #dividasForm="ngForm" (ngSubmit)="onSubmit()">
+  
+        <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-success" role="alert" *ngIf="success == true">
+              Dívida Tecnica salvo/atualizado com sucesso!
+            </div>
+            <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+              {{ erro }}
+            </div>
+          </div>
+        </div>
+  
+        <div class="row" *ngIf="dividaTecnica.id">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>ID:</label>
+              <input type="text" [ngModel]="dividaTecnica.id" name="id" class="form-control" disabled="true" />
+            </div>
+          </div>
+  
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Data Cadastro:</label>
+              <input type="text" class="form-control" name="diaDoCadastro" [ngModel]="dividaTecnica.diaDoCadastro"
+                disabled="true" />
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Nome da Dívida Técnica: </label>
+              <input type="text" class="form-control" [(ngModel)]="dividaTecnica.nomeDaDividaTecnica"
+                name="nomeDaDividaTecnica" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Descrição da DT: </label>
+              <input type="text" class="form-control" [(ngModel)]="dividaTecnica.descricaoDaDT" name="Descrição" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Projeto: </label>
+              <input type="text" class="form-control" [(ngModel)]="dividaTecnica.projeto" name="projeto" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Status do Pagamento: </label>
+              <div class="input-group">
+                <select class="form-control" [(ngModel)]="dividaTecnica.statusDoPagamento" name="statusDoPagamento">
+                  <option *ngFor="let key of getEnumKeys(statusPagamentoEnum)" [value]="key">{{ key }}</option>
+                </select>
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i class="fas fa-caret-down"></i> <!-- Ícone de seta para baixo -->
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Status da Fase de Gerenciamento da DT: </label>
+              <div class="input-group">
+                <select class="form-control" [(ngModel)]="dividaTecnica.statusDaFaseDeGerenciamento"
+                  name="statusDaFaseDeGerenciamentoDT">
+                  <option *ngFor="let key of getEnumKeys(statusFaseEnum)" [value]="key">{{ key }}</option>
+                </select>
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i class="fas fa-caret-down"></i> <!-- Ícone de seta para baixo -->
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="row">
+          <div class="col-md-3">
+            <button type="button" class="btn btn-primary ml-1 mr-2" (click)="voltarParaListagem()">
+              <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+            </button>
+  
+            <button type="submit" class="btn btn-success mr-2" *ngIf="!dividaTecnica.id">
+              <i class="fa fa-save"></i> Salvar
+            </button>
+  
+            <button type="submit" class="btn btn-info" *ngIf="dividaTecnica.id">
+              <i class="fa fa-sync-alt"></i> Atualizar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

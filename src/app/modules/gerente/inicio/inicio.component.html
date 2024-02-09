@@ -1,35 +1,169 @@
 <div class="container pt-5">
-    <h1 class="mt-4"> Home</h1>
+    <h1 class="mt-4">  Início</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Consulta e Listagem de Projetos e Dívidas Técnicas</li>
+    </ol>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+                    {{ mensagemSucesso }}
+                </div>
+
+                <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+                    {{ mensagemErro }}
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+
+        <!-- Tabela de Consultar/Buscar -->
+        <div class="container-buscar">
+            <form #consultaForm="ngForm" (submit)="consultarProjeto()">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="inputNome">Nome do Projeto:</label>
+                        <input type="text" [(ngModel)]="nomeDoProjeto" name="nomeDoProjeto" class="form-control"
+                            id="inputNome">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputEmpresa">Nome da Empresa:</label>
+                        <input type="text" [(ngModel)]="empresa" name="empresa" class="form-control" id="inputEmpresa">
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <!-- Adicionamos a classe "text-center" para centralizar o conteúdo -->
+                        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
+                            <!-- Adicionamos o estilo "margin-top" -->
+                            <i class="fa fa-search"></i> Consultar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- TABELA DE CRUD -->
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Projeto</th>
+                        <th>Setor</th>
+                        <th>Status do Projeto</th>
+                        <th>Ações</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ projetos.id }}</td>
+                        <td>{{ projetos.nomeDoProjeto }}</td>
+                        <td>{{ projetos.setor }}</td>
+                        <td>{{ projetos.statusProjeto }}</td>
+                        <td>
+                            <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-projeto/{{ projetos.nomeDoProjeto }}">
+                                <img src="assets/icones/eye.svg" alt="Ícone de Ver" class="icon">
+                                Ver detalhes {{ projetos.nomeDoProjeto }}
+                            </button>
+
+                            <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-projeto/{{ projetos.nomeDoProjeto }}">
+                                <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
+                                Editar {{ projetos.nomeDoProjeto }}
+                            </button>
+                            
+                            <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecao(projeto)" data-toggle="modal" data-target="#modalDelecao">
+                                <img src="assets/icones/delete.svg" alt="Ícone de Deletar" class="icon">
+                                Deletar {{ projetos.nomeDoProjeto }}
+                            </button>             
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <!-- TABELA DE CRUD -->
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Projeto</th>
+                        <th>Nome da DT</th>
+                        <th>Status do Pagamento </th>
+                        <th>Status da Fase de Gerenciamento </th>
+                        <th>Ações</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ dividasTecnicas.id }}</td>
+                        <td>{{ dividasTecnicas.nomeDaDividaTecnica }}</td>
+                        <td>{{ dividasTecnicas.statusDoPagamento }}</td>
+                        <td>{{ dividasTecnicas.statusDaFaseDeGerenciamento }}</td>
+                        <td>
+                            <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-divida-tecnica/{{ dividasTecnicas.nomeDaDividaTecnica }}">
+                                <img src="assets/icones/eye.svg" alt="Ícone de Ver" class="icon">
+                                Ver detalhes {{ dividasTecnicas.nomeDaDividaTecnica }}
+                            </button>
+
+                            <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-divida-tecnica/{{ dividasTecnicas.nomeDaDividaTecnica }}">
+                                <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
+                                Editar {{ dividasTecnicas.nomeDaDividaTecnica }}
+                            </button>
+                            
+                            <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecao(dividasTecnicas)" data-toggle="modal" data-target="#modalDelecao">
+                                <img src="assets/icones/delete.svg" alt="Ícone de Deletar" class="icon">
+                                Deletar {{ dividasTecnicas.nomeDaDividaTecnica }}
+                            </button>             
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="modalDelecao" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Confirmação</h4>
+                    </div>
+    
+                    <div class="modal-body" *ngIf="projetoSelecionado">
+                        Confirma a deleção do Projto {{ projetoSelecionado.nomeDoProjeto }}?
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button class="btn btn-success" (click)="deletarProjeto()" data-dismiss="modal">Confirmar</button>
+                        <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div id="modalDelecao" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Confirmação</h4>
+                    </div>
+    
+                    <div class="modal-body" *ngIf="dividaSelecionada">
+                        Confirma a deleção do Dívida {{ dividaSelecionada.nomeDaDividaTecnica }}?
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button class="btn btn-success" (click)="deletarDT()" data-dismiss="modal">Confirmar</button>
+                        <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 </div>
-
-<div class="card-container">
-    <!-- Row 1 -->
-    <div class="card">
-      <img src="assets/icones/clipboard.svg" alt="Ícone de Inspeções" class="icon">
-      <div class="card-content">
-        <h2>Projetos </h2>
-      </div>
-    </div>
-
-    <div class="card">
-        <img src="assets/icones/users.svg" alt="Ícone de Usuários" class="icon">
-      <div class="card-content">
-        <h2>Dívidas Técnicas</h2>
-      </div>
-    </div>
-
-    <div class="card">
-        <img src="assets/icones/Windfarm.svg" alt="Ícone de Parques" class="icon">
-      <div class="card-content">
-        <h2>Parques</h2>
-        
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="assets/icones/Wind.svg" alt="Ícone de Turbinas" class="icon">
-      <div class="card-content">
-        <h2>Turbinas</h2>
-      </div>
-    </div>
-  </div>

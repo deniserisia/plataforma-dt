@@ -10,11 +10,16 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [InicioComponent, DashboardComponent, CadastroDtComponent, CadastroProjetoComponent],
+  declarations: [
+    InicioComponent, DashboardComponent, CadastroDtComponent, CadastroProjetoComponent
+  ],
   imports: [
     CommonModule,
     GerenteRoutingModule,
     FormsModule
+  ],
+  exports:[
+    InicioComponent, DashboardComponent, CadastroDtComponent, CadastroProjetoComponent
   ]
 })
 export class GerenteModule { }

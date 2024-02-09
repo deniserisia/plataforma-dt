@@ -1,0 +1,11 @@
+.container {
+    max-width: 1300px;
+    margin: 30px auto;
+    padding: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+}
+h1 {
+    margin: 0; /* Remove a margem padrão do h1 */
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 30px;
+}
