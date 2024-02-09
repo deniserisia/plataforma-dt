@@ -3,23 +3,6 @@
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Consulta e Listagem de Projetos e Dívidas Técnicas</li>
     </ol>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
-                    {{ mensagemSucesso }}
-                </div>
-
-                <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
-                    {{ mensagemErro }}
-                </div>
-            </div>
-        </div>
-        <br />
-    </div>
-
         <!-- Tabela de Consultar/Buscar -->
         <div class="container-buscar">
             <form #consultaForm="ngForm" (submit)="consultarProjeto()">
@@ -44,6 +27,23 @@
             </form>
         </div>
 
+        
+    <div class="container-mensagens">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+                    {{ mensagemSucesso }}
+                </div>
+
+                <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+                    {{ mensagemErro }}
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+
         <!-- TABELA DE CRUD -->
         <div class="table-responsive">
             <table class="table">
@@ -58,25 +58,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{{ projetos.id }}</td>
-                        <td>{{ projetos.nomeDoProjeto }}</td>
-                        <td>{{ projetos.setor }}</td>
-                        <td>{{ projetos.statusProjeto }}</td>
+                    <tr *ngFor="let projeto of projetos">
+                        <td>{{ projeto.id }}</td>
+                        <td>{{ projeto.nomeDoProjeto }}</td>
+                        <td>{{ projeto.setor }}</td>
+                        <td>{{ projeto.statusProjeto }}</td>
                         <td>
-                            <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-projeto/{{ projetos.nomeDoProjeto }}">
+                            <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-projeto/{{ projeto.nomeDoProjeto }}">
                                 <img src="assets/icones/eye.svg" alt="Ícone de Ver" class="icon">
-                                Ver detalhes {{ projetos.nomeDoProjeto }}
+                                Ver detalhes {{ projeto.nomeDoProjeto }}
                             </button>
 
-                            <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-projeto/{{ projetos.nomeDoProjeto }}">
+                            <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-projeto/{{ projeto.nomeDoProjeto }}">
                                 <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
-                                Editar {{ projetos.nomeDoProjeto }}
+                                Editar {{ projeto.nomeDoProjeto }}
                             </button>
                             
                             <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecao(projeto)" data-toggle="modal" data-target="#modalDelecao">
                                 <img src="assets/icones/delete.svg" alt="Ícone de Deletar" class="icon">
-                                Deletar {{ projetos.nomeDoProjeto }}
+                                Deletar {{ projeto.nomeDoProjeto }}
                             </button>             
                         </td>
                     </tr>
@@ -100,25 +100,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{{ dividasTecnicas.id }}</td>
-                        <td>{{ dividasTecnicas.nomeDaDividaTecnica }}</td>
-                        <td>{{ dividasTecnicas.statusDoPagamento }}</td>
-                        <td>{{ dividasTecnicas.statusDaFaseDeGerenciamento }}</td>
+                    <tr  *ngFor="let dividasTecnica of dividasTecnicas">
+                        <td>{{ dividasTecnica.id }}</td>
+                        <td>{{ dividasTecnica.nomeDaDividaTecnica }}</td>
+                        <td>{{ dividasTecnica.statusDoPagamento }}</td>
+                        <td>{{ dividasTecnica.statusDaFaseDeGerenciamento }}</td>
                         <td>
-                            <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-divida-tecnica/{{ dividasTecnicas.nomeDaDividaTecnica }}">
+                            <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-divida-tecnica/{{ dividasTecnica.nomeDaDividaTecnica }}">
                                 <img src="assets/icones/eye.svg" alt="Ícone de Ver" class="icon">
-                                Ver detalhes {{ dividasTecnicas.nomeDaDividaTecnica }}
+                                Ver detalhes {{ dividasTecnica.nomeDaDividaTecnica }}
                             </button>
 
-                            <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-divida-tecnica/{{ dividasTecnicas.nomeDaDividaTecnica }}">
+                            <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-divida-tecnica/{{ dividasTecnica.nomeDaDividaTecnica }}">
                                 <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
-                                Editar {{ dividasTecnicas.nomeDaDividaTecnica }}
+                                Editar {{ dividasTecnica.nomeDaDividaTecnica }}
                             </button>
                             
-                            <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecao(dividasTecnicas)" data-toggle="modal" data-target="#modalDelecao">
+                            <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecao(dividasTecnica)" data-toggle="modal" data-target="#modalDelecao">
                                 <img src="assets/icones/delete.svg" alt="Ícone de Deletar" class="icon">
-                                Deletar {{ dividasTecnicas.nomeDaDividaTecnica }}
+                                Deletar {{ dividasTecnica.nomeDaDividaTecnica }}
                             </button>             
                         </td>
                     </tr>

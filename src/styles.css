@@ -9686,6 +9686,7 @@ button.bg-dark:focus {
 
 .text-center {
   text-align: center !important;
+  margin-top: 15px;
 }
 
 @media (min-width: 576px) {
