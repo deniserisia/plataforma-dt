@@ -27,19 +27,27 @@ export class CadastroProjetoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let params : Observable<Params> = this.activatedRoute.params
-    params.subscribe( urlParams => {
+    let params: Observable<Params> = this.activatedRoute.params;
+    params.subscribe(urlParams => {
         this.id = urlParams['id'];
-        if(this.id){
-          this.service
-            .getProjetoById(this.id)
-            .subscribe( 
-              response => this.projeto = response ,
-              errorResponse => this.projeto = new Projeto()
-            )
+        console.log('ID do Projeto:', this.id);  // Adicione este log para verificar se o ID está sendo recuperado corretamente
+        if (this.id) {
+            this.service
+                .getProjetoById(this.id)
+                .subscribe(
+                    response => {
+                        this.projeto = response;
+                        console.log('Projeto obtido:', this.projeto);  // Adicione este log para verificar se o projeto está sendo recuperado corretamente
+                    },
+                    errorResponse => {
+                        this.projeto = new Projeto();
+                        console.error('Erro ao obter o Projeto:', errorResponse);
+                    }
+                );
         }
-    })
-  }
+    });
+}
+
 
   voltarParaListagem(){
     this.router.navigate(['/gerente/inicio'])

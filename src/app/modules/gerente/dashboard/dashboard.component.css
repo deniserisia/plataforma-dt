@@ -3,6 +3,9 @@
     margin: 30px auto;
     padding: 10px;
 }
+.container-painel .mt-4{
+    margin-left: 28px;
+}
 h1 {
     margin: 0; /* Remove a margem padrão do h1 */
     font-family: 'Nunito Sans', sans-serif;
