@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjetoService } from 'src/app/service/projeto.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  
+  numeroDeProjetos: number = 0;
+
+  constructor(
+  private projetoService: ProjetoService
+  ) { }
 
   ngOnInit(): void {
+    // Chame seu serviço para obter o número de projetos do usuário
+    this.projetoService.obterNumeroDeProjetos().subscribe(
+      (numero: number) => {
+        this.numeroDeProjetos = numero;
+      },
+      (erro) => {
+        console.error('Erro ao obter o número de projetos:', erro);
+      }
+    );
   }
-
 }

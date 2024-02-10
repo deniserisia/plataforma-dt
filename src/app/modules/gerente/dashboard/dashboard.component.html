@@ -1,36 +1,33 @@
 <div class="container pt-5">
-    <h1 class="mt-4"> Dashboard</h1>
+    <h1 class="mt-4"> Painel de controle</h1>
 </div>
 
 <div class="card-container">
     <!-- Row 1 -->
     <div class="card">
-      <img src="assets/icones/clipboard.svg" alt="Ícone de Inspeções" class="icon">
+        <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
+        <div class="card-content">
+         
+          <p>Você possui {{ numeroDeProjetos }} projeto(s) cadastrados.</p>
+        </div>
+      </div>      
+
+    <div class="card">
+        <img src="assets/icones/clipboard.svg" alt="Ícone de Usuários" class="icon">
       <div class="card-content">
-        <h2>Projetos </h2>
+        <p>Você possui {{ numeroDeProjetos }} Dívida(s) Ténica(s) cadastrados.</p>
       </div>
     </div>
 
     <div class="card">
-        <img src="assets/icones/users.svg" alt="Ícone de Usuários" class="icon">
+        <img src="assets/icones/check-square.svg" alt="Ícone de Usuários" class="icon">
       <div class="card-content">
-        <h2>Dívidas Técnicas</h2>
-      </div>
-    </div>
-
-    <div class="card">
-        <img src="assets/icones/Windfarm.svg" alt="Ícone de Parques" class="icon">
-      <div class="card-content">
-        <h2>Parques</h2>
-        
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="assets/icones/Wind.svg" alt="Ícone de Turbinas" class="icon">
-      <div class="card-content">
-        <h2>Turbinas</h2>
+        <p>Você possui {{ numeroDeProjetos }} Relatório(s) cadastrados.</p>
       </div>
     </div>
   </div>
+
+<div class="container-painel">
+    <h1 class="mt-4"> Indicadores</h1>
+</div>
 

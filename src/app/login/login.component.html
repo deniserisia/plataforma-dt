@@ -7,9 +7,9 @@
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header">
-                                    <h3 class="text-center font-weight-light my-4">
-                                        {{ cadastrando ? 'Cadastro de Novo Usuário' : 'Entrar' }}
-                                    </h3>
+                                    <div class="text-center">
+                                        <img  src="assets/imagens/Logo5.png" alt="" class="d-inline-block align-text-top" style="margin-top: 10px; margin-bottom: 10px;">
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="alert alert-success" *ngIf="mensagemSucesso">
@@ -39,7 +39,7 @@
   
                                         <div class="form-group align-items-center justify-content-between mt-4 mb-0">
                                             <button type="submit" class="btn btn-primary" *ngIf="!cadastrando">
-                                                Enviar
+                                                Entrar
                                             </button>
   
                                             <button type="button" class="btn btn-success" 

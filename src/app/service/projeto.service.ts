@@ -30,6 +30,10 @@ export class ProjetoService {
     return this.http.get<any>(`${this.apiURL}/${id}`);
   }
 
+  obterNumeroDeProjetos(): Observable<number> {
+    return this.http.get<number>(`${this.apiURL}/count`);
+  }
+
   deletar(projeto: Projeto) : Observable<any> {
     return this.http.delete<any>(`${this.apiURL}/${projeto.id}`);
   }
