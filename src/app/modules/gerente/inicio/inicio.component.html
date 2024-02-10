@@ -64,19 +64,19 @@
                         <td>{{ projeto.setor }}</td>
                         <td>{{ projeto.statusProjeto }}</td>
                         <td>
-                            <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-projeto/{{ projeto.nomeDoProjeto }}">
+                            <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-projeto/{{ projeto.id }}">
                                 <img src="assets/icones/eye.svg" alt="Ícone de Ver" class="icon">
-                                Ver detalhes {{ projeto.nomeDoProjeto }}
+                                Ver detalhes 
                             </button>
 
-                            <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-projeto/{{ projeto.nomeDoProjeto }}">
+                            <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-projeto/{{ projeto.id }}">
                                 <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
-                                Editar {{ projeto.nomeDoProjeto }}
+                                Editar 
                             </button>
                             
                             <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecao(projeto)" data-toggle="modal" data-target="#modalDelecao">
                                 <img src="assets/icones/delete.svg" alt="Ícone de Deletar" class="icon">
-                                Deletar {{ projeto.nomeDoProjeto }}
+                                Deletar 
                             </button>             
                         </td>
                     </tr>
@@ -134,7 +134,7 @@
                     </div>
     
                     <div class="modal-body" *ngIf="projetoSelecionado">
-                        Confirma a deleção do Projto {{ projetoSelecionado.nomeDoProjeto }}?
+                        Confirma a deleção do Projto {{ projetoSelecionado.id }}?
                     </div>
     
                     <div class="modal-footer">

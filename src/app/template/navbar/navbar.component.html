@@ -8,7 +8,7 @@
     </a>
 
   
-    <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false"
+    <a class="nav-link collapsed"  (click)="logout();" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false"
         aria-controls="collapseLayouts">
         <div class="sb-nav-link-icon">
             <a class="cor btn" routerLink="/"> Sair 
@@ -51,6 +51,7 @@
                 <div class="small">
                     <img src="assets/icones/user.svg" alt="Ícone do Usuário" class="icon">
                     <span class="ml-2" style="font-weight:500;  font-weight: bold; margin: 0 auto;">Usuário Logado: </span>
+                    {{ usuarioLogado }}
                 </div>
             </div>
 

@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class DividaTecnicaService {
 
  
-  apiURL: string = environment.apiURLBase + '/gerente/cadastro-divida-tecnica';
+  apiURL: string = environment.apiURLBase + '/gerente';
 
   constructor( private http: HttpClient ) {}
 

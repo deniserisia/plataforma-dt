@@ -10,7 +10,7 @@ import { projetoBusca } from '../modules/gerente/cadastro-projeto/projetoBusca';
 })
 export class ProjetoService {
 
-  apiURL: string = environment.apiURLBase + '/gerente/cadastro-projeto';
+  apiURL: string = environment.apiURLBase + '/gerente';
 
   constructor( private http: HttpClient ) {}
 
