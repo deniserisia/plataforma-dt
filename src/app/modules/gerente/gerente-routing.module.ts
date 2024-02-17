@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CadastroDtComponent } from './cadastro-dt/cadastro-dt.component';
 import { CadastroProjetoComponent } from './cadastro-projeto/cadastro-projeto.component';
 import { AuthGuard } from 'src/app/service/auth.guard';
+import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,8 @@ const routes: Routes = [
     {path:'cadastro-divida-tecnica/:id', component: CadastroDtComponent},
     {path:'cadastro-projeto', component: CadastroProjetoComponent},
     {path:'cadastro-projeto/:id', component: CadastroProjetoComponent},
+    {path:'meu-perfil-de-usuario', component: MeuPerfilComponent},
+    {path:'meu-perfil-de-usuario/:id', component: MeuPerfilComponent},
     { path: '', redirectTo : '/gerente/inicio', pathMatch: 'full' }
   ]}
 ];

@@ -1,13 +1,13 @@
 import { Projeto } from "../cadastro-projeto/projeto";
-import { StatusDaFaseDeGerenciamentoDT } from "./statusDaFaseDeGerenciamentoDT";
-import { StatusDoPagamentoDT } from "./statusDoPagamentoDT";
+import { statusDaFaseDeGerenciamentoDT } from './statusDaFaseDeGerenciamentoDT';
+import { statusDoPagamentoDT } from './statusDoPagamentoDT';
 
 export class DividaTecnica {
     id: string;
     nomeDaDividaTecnica: string;
     descricaoDaDT: string;
-    statusDoPagamento: StatusDoPagamentoDT; // Usando o enum StatusDoPagamentoDT
-    statusDaFaseDeGerenciamento: StatusDaFaseDeGerenciamentoDT; // Usando o enum SatusDaFaseDeGerenciamentoDT
+    statusDaFaseDeGerenciamentoDT: statusDaFaseDeGerenciamentoDT;
+    statusDoPagamentoDT: statusDoPagamentoDT;
     diaDoCadastro: string; // Deve ser formatado como string de data
     projeto: Projeto; // Relação muitos para um com Projeto
   }

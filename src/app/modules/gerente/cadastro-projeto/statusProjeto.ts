@@ -1,7 +1,7 @@
 export enum StatusProjeto {
-    EmAndamento = 'Em Andamento',
-    Concluido = 'Concluído',
-    Pendente = 'Pendente',
-    Cancelado = 'Cancelado',
+    EM_ANDAMENTO = 'EM_ANDAMENTO',
+    FINALIZADO =  'FINALIZADO',
+    EM_TESTE = 'EM_TESTE',
+    FASE_INICIAL = 'FASE_INICIAL'
 }
   

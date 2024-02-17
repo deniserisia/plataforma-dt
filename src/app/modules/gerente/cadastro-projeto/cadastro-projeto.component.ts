@@ -12,11 +12,12 @@ import { ProjetoService } from 'src/app/service/projeto.service';
 })
 export class CadastroProjetoComponent implements OnInit {
 
-  projeto!: Projeto;
+  projeto: Projeto;
   success: boolean = false;
-  errors!: String[];
+  errors: String[];
   id!: number;
-  statusProjeto = StatusProjeto;
+
+  statusProjetos = Object.values(StatusProjeto);
 
   constructor( 
       private service: ProjetoService,

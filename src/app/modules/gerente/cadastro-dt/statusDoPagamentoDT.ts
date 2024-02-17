@@ -1,5 +1,6 @@
-export enum StatusDoPagamentoDT {
-    Pendente = 'Pendente',
-    Pago = 'Pago',
-    Atrasado = 'Atrasado',
+export enum statusDoPagamentoDT {
+    EM_ATRASO = 'EM_ATRASO',
+    PAGAMENTO_PARCIAL = 'PAGAMENTO_PARCIAL',
+    PAGAMENTO_TOTAL = 'PAGAMENTO_TOTAL',
+    EM_ANDAMENTO = 'EM_ANDAMENTO'
 }

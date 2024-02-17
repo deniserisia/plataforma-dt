@@ -1,6 +1,7 @@
-export enum StatusDaFaseDeGerenciamentoDT {
-    Planejamento = 'Planejamento',
-    Execucao = 'Execução',
-    Concluido = 'Concluído',
-    Cancelado = 'Cancelado',
-  }
+export enum statusDaFaseDeGerenciamentoDT {
+  IDENTIFICACAO = 'IDENTIFICACAO',
+  MENSURACAO = 'MENSURACAO',
+  PRIORIZACAO = 'PRIORIZACAO',
+  REEMBOLSO = 'REEMBOLSO',
+  MONITORAMENTO = 'MONITORAMENTO'
+}
