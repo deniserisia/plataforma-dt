@@ -30,6 +30,11 @@ export class InicioComponent implements OnInit {
 
  exibirModalProjeto: boolean = false;
  exibirModalDT: boolean = false;
+
+  // Propriedades de configuração de paginação
+  page = 1;
+  pageSize = 4;
+
  
 
  constructor(

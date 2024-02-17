@@ -15,6 +15,7 @@ import { ProjetoService } from './service/projeto.service';
 import { AuthService } from './service/auth.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './service/token.interceptor';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { TokenInterceptor } from './service/token.interceptor';
     FormsModule,
     AdminModule,
     GerenteModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule,
   ],
   providers: [
     DividaTecnicaService,
