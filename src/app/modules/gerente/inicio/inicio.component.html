@@ -99,7 +99,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let projeto of projetos">
+                    <tr *ngFor="let projeto of projetos | paginate: { itemsPerPage: pageSize, currentPage: page } ">
                      
                         <td>{{ projeto.nomeDoProjeto }}</td>
                         <td>{{ projeto.setor }}</td>
@@ -123,6 +123,7 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </div>
 
 
@@ -141,7 +142,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr  *ngFor="let dt of dividasTecnicas">
+                    <tr  *ngFor="let dt of dividasTecnicas  | paginate: { itemsPerPage: pageSize, currentPage: page } ">
                         <td>{{ dt.nomeDoProjeto }}</td>
                         <td>{{ dt.nomeDaDividaTecnica }}</td>
                         <td>{{ dt.statusDoPagamentoDT }}</td>
@@ -165,6 +166,7 @@
                     </tr>
                 </tbody>
             </table>
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </div>
         
         

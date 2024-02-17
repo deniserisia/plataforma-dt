@@ -8,6 +8,7 @@ import { CadastroDtComponent } from './cadastro-dt/cadastro-dt.component';
 import { CadastroProjetoComponent } from './cadastro-projeto/cadastro-projeto.component';
 import { FormsModule } from '@angular/forms';
 import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
   imports: [
     CommonModule,
     GerenteRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   exports:[
     InicioComponent, DashboardComponent, CadastroDtComponent, CadastroProjetoComponent
