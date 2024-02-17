@@ -71,11 +71,12 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Status do Projeto: </label>
-                        <input type="text" class="form-control" [(ngModel)]="projeto.statusProjeto"
-                            name="Data De Inicio Do Projeto" />
+                      <label>Status do Projeto:</label>
+                      <select class="form-control" [(ngModel)]="projeto.statusProjeto" name="statusProjeto">
+                        <option *ngFor="let status of statusProjetos" [value]="status">{{ status }}</option>
+                      </select>
                     </div>
-                </div>
+                  </div>
             </div>
 
             <div class="row">

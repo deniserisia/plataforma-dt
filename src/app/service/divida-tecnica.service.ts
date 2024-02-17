@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class DividaTecnicaService {
 
  
-  apiURL: string = environment.apiURLBase + '/gerente';
+  apiURL: string = environment.apiURLBase + '/gerente/divida-tecnica';
 
   constructor( private http: HttpClient ) {}
 
@@ -28,6 +28,10 @@ export class DividaTecnicaService {
   
   getDividaTecnicaById(id: number) : Observable<DividaTecnica> {
     return this.http.get<any>(`${this.apiURL}/${id}`);
+  }
+
+  obterNumeroDeDT(): Observable<number> {
+    return this.http.get<number>(`${this.apiURL}/count`);
   }
 
   deletar(dividaTecnica: DividaTecnica) : Observable<any> {

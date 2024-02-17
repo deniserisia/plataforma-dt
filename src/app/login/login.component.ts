@@ -12,6 +12,9 @@ export class LoginComponent {
 
   username!: string;
   password!: string;
+  email!: string;
+  nomeDaEmpresa!: string;
+  setorDaEmpresa!: string;
   cadastrando!: boolean;
   mensagemSucesso!: string;
   errors!: String[];
@@ -21,18 +24,26 @@ export class LoginComponent {
     private authService: AuthService
   ) { }
 
-  onSubmit(){
-    this.authService
-          .tentarLogar(this.username, this.password)
-          .subscribe(response => {
-            const access_token = JSON.stringify(response);
-            localStorage.setItem('access_token', access_token)
-            this.router.navigate(['/gerente/inicio'])
-          }, errorResponse => {
-            this.errors = ['Usuário e/ou senha incorreto(s).']
-          })
+  // ...
 
-  }
+onSubmit() {
+  this.authService.tentarLogar(this.username, this.password).subscribe(
+    (response: any) => {
+      const access_token = JSON.stringify(response);
+      localStorage.setItem('access_token', access_token);
+      
+      // Obtenha o ID do usuário e armazene localmente
+      const userId = this.authService.getUserIdFromToken();
+      localStorage.setItem('user_id', userId || '');
+
+      this.router.navigate(['/gerente/inicio']);
+    },
+    errorResponse => {
+      this.errors = ['Usuário e/ou senha incorreto(s).'];
+    }
+  );
+}
+
 
   preparaCadastrar(event: { preventDefault: () => void; }){
     event.preventDefault();

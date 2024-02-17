@@ -34,7 +34,31 @@
                                             <input type="password" name="password"
                                                 [(ngModel)]="password"
                                                 class="form-control py-4"
-                                                placeholder="Digite sua Senha" />
+                                                placeholder="Digite sua senha" />
+                                        </div>
+
+                                        <div class="form-group" *ngIf="cadastrando">
+                                            <label class="small mb-1">E-mail</label>
+                                            <input type="email" name="email"
+                                                [(ngModel)]="email"
+                                                class="form-control py-4"
+                                                placeholder="Digite seu e-mail" />
+                                        </div>
+
+                                        <div class="form-group" *ngIf="cadastrando">
+                                            <label class="small mb-1">Nome da Empresa</label>
+                                            <input type="nomeDaEmpresa" name="nomeDaEmpresa"
+                                                [(ngModel)]="nomeDaEmpresa"
+                                                class="form-control py-4"
+                                                placeholder="Digite o nome de sua empresa" />
+                                        </div>
+
+                                        <div class="form-group" *ngIf="cadastrando">
+                                            <label class="small mb-1">Setor de Atuação</label>
+                                            <input type="setorDaEmpresa" name="setorDaEmpresa"
+                                                [(ngModel)]="setorDaEmpresa"
+                                                class="form-control py-4"
+                                                placeholder="Digite o setor de atuação de sua empresa" />
                                         </div>
   
                                         <div class="form-group align-items-center justify-content-between mt-4 mb-0">

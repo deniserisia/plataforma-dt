@@ -44,6 +44,23 @@ export class AuthService {
     return null;
   }
 
+  getUserIdFromToken(): string | null {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split('.')[1]));
+      return decodedToken.sub; // Isso assume que o ID do usuário está no campo 'sub' do token
+    }
+    return null;
+  }
+
+  salvarUsuarioAutenticado(usuario: Usuario) {
+    const token = this.obterToken();
+    if (token) {
+      const userId = this.getUserIdFromToken();
+      localStorage.setItem('userId', userId);
+    }
+  }
+
   isAuthenticated() : boolean {
     const token = this.obterToken();
     if(token){

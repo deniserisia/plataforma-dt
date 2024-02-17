@@ -7,11 +7,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CadastroDtComponent } from './cadastro-dt/cadastro-dt.component';
 import { CadastroProjetoComponent } from './cadastro-projeto/cadastro-projeto.component';
 import { FormsModule } from '@angular/forms';
+import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
 
 
 @NgModule({
   declarations: [
-    InicioComponent, DashboardComponent, CadastroDtComponent, CadastroProjetoComponent
+    InicioComponent, DashboardComponent, CadastroDtComponent, CadastroProjetoComponent, MeuPerfilComponent
   ],
   imports: [
     CommonModule,

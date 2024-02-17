@@ -51,13 +51,34 @@
               <input type="text" class="form-control" [(ngModel)]="dividaTecnica.descricaoDaDT" name="Descrição" />
             </div>
           </div>
+
           <div class="col-md-6">
             <div class="form-group">
-              <label>Projeto: </label>
-              <input type="text" class="form-control" [(ngModel)]="dividaTecnica.projeto" name="projeto" />
+                <label>Projeto:</label>
+                <select class="form-control" [(ngModel)]="dividaTecnica.projeto" name="projeto">
+                    <option *ngFor="let projeto of projetos" [value]="projeto">{{ projeto.nomeDoProjeto }}</option>
+                </select>
             </div>
+        </div>        
+
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>Status do Pagamento: </label>
+                <select class="form-control" [(ngModel)]="dividaTecnica.statusDoPagamentoDT" name="statusDoPagamento">
+                    <option *ngFor="let status of statusDoPagamentoValues" [value]="status">{{ status }}</option>
+                </select>
+            </div>
+        </div>
+  
+        <div class="col-md-6">
+          <div class="form-group">
+              <label>Status da Fase de Gerenciamento </label>
+              <select class="form-control" [(ngModel)]="dividaTecnica.statusDaFaseDeGerenciamentoDT"  name="statusDaFaseDeGerenciamento">
+                  <option *ngFor="let sta of statusDaFaseDeGerenciamento" [value]="sta">{{ sta }}</option>
+              </select>
           </div>
-        
+        </div>
+                
   
         </div>
   
