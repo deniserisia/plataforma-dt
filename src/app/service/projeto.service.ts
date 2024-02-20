@@ -6,6 +6,7 @@ import { Projeto } from '../modules/gerente/cadastro-projeto/projeto';
 import { projetoBusca } from '../modules/gerente/cadastro-projeto/projetoBusca';
 import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
+import { ContagemPorMes } from '../modules/gerente/dashboard/contagemPorMes';
 
 
 @Injectable({
@@ -41,6 +42,11 @@ export class ProjetoService {
 
   obterNumeroDeProjetos(): Observable<number> {
     return this.http.get<number>(`${this.apiURL}/count`);
+  }
+
+  obterContagemProjetosPorMes(): Observable<ContagemPorMes[]> {
+    // Certifique-se de que o backend tenha um endpoint correspondente para isso
+    return this.http.get<ContagemPorMes[]>(`${this.apiURL}/contagem-projetos-por-mes`);
   }
 
   deletar(projeto: Projeto) : Observable<any> {

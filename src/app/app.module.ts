@@ -16,13 +16,14 @@ import { AuthService } from './service/auth.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './service/token.interceptor';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     GerenteModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
+    ChartsModule
   ],
   providers: [
     DividaTecnicaService,

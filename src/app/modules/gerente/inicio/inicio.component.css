@@ -257,6 +257,8 @@ h1 {
 .table-responsive{
     font-family: 'Nunito Sans', sans-serif;
     margin-top: 20px;
+    border: 2px solid #d9d9d9;
+    border-radius: 5px;
 }
   
 .btn-custom-ver {

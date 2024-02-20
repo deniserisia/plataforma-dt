@@ -8,10 +8,10 @@
     </a>
 
   
-    <a class="nav-link collapsed"  (click)="logout();" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false"
+    <a class="nav-link collapsed" (click)="logout();" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false"
         aria-controls="collapseLayouts">
         <div class="sb-nav-link-icon">
-            <a class="cor btn" routerLink="/"> Sair 
+            <a class="cor btn" (click)="logout();"> Sair 
                 <img src="assets/icones/Log-out.svg" alt="Ícone de Sair" class="icon">
             </a>
         </div>
@@ -42,7 +42,7 @@
                 <img src="assets/icones/clipboard.svg" alt="Ícone de Inspeções" class="icon">
                 <span class="ml-2">Dívidas Técnicas</span>
             </a>
-            <a mat-list-item routerLink="/admin/parques">
+            <a mat-list-item routerLink="/gerente/emitir-relatorio">
                 <img src="assets/icones/check-square.svg" alt="Ícone de Inspeções" class="icon">
                 <span class="ml-2">Relatórios</span>
             </a>
