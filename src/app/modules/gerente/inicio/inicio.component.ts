@@ -28,12 +28,10 @@ export class InicioComponent implements OnInit {
  mensagemSucesso!: string;
  mensagemErro!: string;
 
- exibirModalProjeto: boolean = false;
- exibirModalDT: boolean = false;
 
   // Propriedades de configuração de paginação
   page = 1;
-  pageSize = 4;
+  pageSize = 5;
 
  
 
@@ -74,8 +72,6 @@ export class InicioComponent implements OnInit {
 
  preparaDelecao(projeto: Projeto) {
   this.projetoSelecionado = projeto;
-  this.exibirModalProjeto = true;
-  console.log("exibirModalProjeto:", this.exibirModalProjeto);
 }
 
 
@@ -83,18 +79,18 @@ export class InicioComponent implements OnInit {
    this.dividaSelecionada = dividasTecnicas;
  }
 
- deletarProjeto() {
+ deletarProjeto(){
   this.service
     .deletar(this.projetoSelecionado)
-    .subscribe(
+    .subscribe( 
       response => {
-        this.mensagemSucesso = 'Projeto deletado com sucesso!';
-        this.exibirModalProjeto = false;
+        this.mensagemSucesso = 'Projeto deletado com sucesso!'
         this.ngOnInit();
       },
-      erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'
-    );
+      erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'  
+    )
 }
+
 
  deletarDT(){
    this.serviceD

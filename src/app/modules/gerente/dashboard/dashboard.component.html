@@ -1,33 +1,40 @@
 <div class="container pt-5">
     <h1 class="mt-4"> Painel de controle</h1>
-</div>
 
-<div class="card-container">
-    <!-- Row 1 -->
-    <div class="card">
-        <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
-        <div class="card-content">
-         
-          <p>Você possui {{ numeroDeProjetos }} projeto(s) cadastrados.</p>
+    <div class="card-container">
+        <!-- Row 1 -->
+        <div class="card">
+            <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
+            <div class="card-content">
+            
+              <p>Você possui {{ numeroDeProjetos }} projeto(s) cadastrados.</p>
+            </div>
+          </div>      
+
+        <div class="card">
+            <img src="assets/icones/clipboard.svg" alt="Ícone de Usuários" class="icon">
+          <div class="card-content">
+            <p>Você possui {{ numeroDeDT }} Dívida(s) Ténica(s) cadastradas.</p>
+          </div>
         </div>
-      </div>      
 
-    <div class="card">
-        <img src="assets/icones/clipboard.svg" alt="Ícone de Usuários" class="icon">
-      <div class="card-content">
-        <p>Você possui {{ numeroDeDT }} Dívida(s) Ténica(s) cadastrados.</p>
-      </div>
+        <div class="card">
+            <img src="assets/icones/check-square.svg" alt="Ícone de Usuários" class="icon">
+          <div class="card-content">
+            <p>Você solicitou {{ numeroRelatorios }} Relatório(s).</p>
+          </div>
+        </div>
     </div>
 
-    <div class="card">
-        <img src="assets/icones/check-square.svg" alt="Ícone de Usuários" class="icon">
-      <div class="card-content">
-        <p>Você possui {{ numeroRelatorios }} Relatório(s) cadastrados.</p>
-      </div>
-    </div>
-  </div>
-
-<div class="container-painel">
     <h1 class="mt-4"> Indicadores</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="grafico-barra chart-container">
+            <canvas #barChart width="200" height="100"></canvas>
+          </div>
+        </div>
+      </div>
 </div>
 

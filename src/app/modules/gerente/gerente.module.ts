@@ -9,11 +9,12 @@ import { CadastroProjetoComponent } from './cadastro-projeto/cadastro-projeto.co
 import { FormsModule } from '@angular/forms';
 import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { RelatorioComponent } from './relatorio/relatorio.component';
 
 
 @NgModule({
   declarations: [
-    InicioComponent, DashboardComponent, CadastroDtComponent, CadastroProjetoComponent, MeuPerfilComponent
+    InicioComponent, DashboardComponent, CadastroDtComponent, CadastroProjetoComponent, MeuPerfilComponent, RelatorioComponent
   ],
   imports: [
     CommonModule,
