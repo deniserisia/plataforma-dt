@@ -10,3 +10,20 @@ h1 {
     font-size: 30px;
 }
 
+/* Adicione este estilo ao seu arquivo de estilos (por exemplo, styles.css) */
+
+.emitir-relatorio {
+    display: flex;
+    align-items: center; /* Centraliza o ícone verticalmente */
+}
+  
+.emitir-relatorio .icon {
+    margin-left: 5px; /* Adiciona um pequeno espaço entre o texto e o ícone */
+}
+
+.table-responsive {
+    font-family: 'Nunito Sans', sans-serif;
+    margin-top: 20px;
+    border: 2px solid #d9d9d9;
+    border-radius: 5px;
+}  

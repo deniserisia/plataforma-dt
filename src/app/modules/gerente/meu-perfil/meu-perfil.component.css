@@ -17,6 +17,7 @@ h1 {
     border-radius: 10px;
     overflow: hidden;
     margin-top: 70px;
+    height: 180px;
 }
 
 .profile-header {
@@ -36,3 +37,23 @@ h1 {
     align-items: center;
 }
 
+/* Adicione este estilo ao seu arquivo de estilos (por exemplo, meu-perfil.component.css) */
+
+.informacao-usuario {
+    margin-top: 20px;
+    margin: auto;
+    padding: 20px;
+   
+}
+  
+.informacao-usuario p {
+    margin: 10px 0;
+}
+  
+.informacao-usuario strong {
+    font-weight: bold;
+    color: #333;
+}
+  
+  /* Adapte as cores, tamanhos e outros estilos conforme necessário. */
+  
