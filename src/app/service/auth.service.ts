@@ -35,6 +35,11 @@ export class AuthService {
     localStorage.removeItem('access_token')
   }
 
+
+  obterUsuarioAutenticadoDoBackend(): Observable<Usuario> {
+  return this.http.get<Usuario>(`${this.apiURL}/perfil`);
+  }
+
   getUsuarioAutenticado(){
     const token = this.obterToken();
     if(token){
