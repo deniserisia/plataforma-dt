@@ -18,6 +18,7 @@ export class InicioComponent implements OnInit {
  nomeDoProjeto: string;
  empresa: string;
  listaDosProjetos!: projetoBusca[];
+ //listaDeDT!: dTBusca[];
  message!: string;
  userId: string; // Certifique-se de obter e definir este valor após o login
 
@@ -32,8 +33,6 @@ export class InicioComponent implements OnInit {
   // Propriedades de configuração de paginação
   page = 1;
   pageSize = 5;
-
- 
 
  constructor(
    private service: ProjetoService,
