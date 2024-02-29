@@ -36,7 +36,7 @@ onSubmit() {
       const userId = this.authService.getUserIdFromToken();
       localStorage.setItem('user_id', userId || '');
 
-      this.router.navigate(['/gerente/inicio']);
+      this.router.navigate(['/gerente/dashboard']);
     },
     errorResponse => {
       this.errors = ['Usuário e/ou senha incorreto(s).'];

@@ -40,11 +40,12 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label>Nome da Dívida Técnica: </label>
-              <input type="text" class="form-control" [(ngModel)]="dividaTecnica.nomeDaDividaTecnica"
-                name="nomeDaDividaTecnica" />
+                <label>Tipo de Dívida Técnica </label>
+                <select class="form-control" [(ngModel)]="dividaTecnica.tipoDeDividaTecnica" name="tipoDeDividaTecnica">
+                    <option *ngFor="let tipo of tipoDeDividaTecnicaValues" [value]="tipo">{{ tipo }}</option>
+                </select>
             </div>
-          </div>
+        </div>
           <div class="col-md-6">
             <div class="form-group">
               <label>Descrição da DT: </label>

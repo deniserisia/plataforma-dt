@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   chartTwo: any;
   pieChartRef: any;
 
+
   constructor(
     private projetoService: ProjetoService,
     private dividaTecnicaService: DividaTecnicaService
@@ -63,6 +64,19 @@ export class DashboardComponent implements OnInit {
         console.error('Erro ao obter a contagem de projetos por mês:', erro);
       }
     );
+    // servico de dt por tipo
+    this.dividaTecnicaService.obterContagemDividasPorTipo().subscribe(
+      (contagemPorTipo) => {
+        const labels = Object.keys(contagemPorTipo);
+        const data = Object.values(contagemPorTipo);
+
+        // Chamar a função para criar o gráfico de pizza com os dados atualizados
+        this.createPieChart(labels, data);
+      },
+      (erro) => {
+        console.error('Erro ao obter a contagem de dívidas por tipo:', erro);
+      }
+    );
   }
 
   createBarChart(labels: string[], data: number[]) {
@@ -95,6 +109,37 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+  // grafico pizza
+createPieChart(labels: string[], data: number[]) {
+  const ctx = this.pieChart.nativeElement.getContext('2d');
+
+  this.pieChartRef = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          data: data,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+          ],
+        },
+      ],
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Total de Dívidas Técnicas Cadastradas por tipo',
+      },
+    },
+  });
+}
+
 
   
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from 'src/app/layout/layout.component';
-import { InicioComponent } from './inicio/inicio.component';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CadastroDtComponent } from './cadastro-dt/cadastro-dt.component';
 import { CadastroProjetoComponent } from './cadastro-projeto/cadastro-projeto.component';
@@ -14,7 +14,6 @@ import { PageDtComponent } from './page-dt/page-dt.component';
 
 const routes: Routes = [
   {path:'gerente', component: LayoutComponent,  canActivate: [AuthGuard], children:[
-    {path:'inicio', component: InicioComponent},
     {path:'dashboard', component: DashboardComponent},
     {path:'projetos', component: PageProjetoComponent},
     {path:'dividas-tecnicas', component:PageDtComponent},

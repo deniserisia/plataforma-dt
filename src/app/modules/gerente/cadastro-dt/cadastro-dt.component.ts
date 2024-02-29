@@ -9,6 +9,7 @@ import { DividaTecnicaService } from 'src/app/service/divida-tecnica.service';
 import { statusDaFaseDeGerenciamentoDT } from './statusDaFaseDeGerenciamentoDT';
 import { Projeto } from '../cadastro-projeto/projeto';
 import { ProjetoService } from 'src/app/service/projeto.service';
+import { tipoDeDividaTecnica } from './tipoDeDividaTecnica';
 
 @Component({
   selector: 'app-cadastro-dt',
@@ -23,6 +24,7 @@ export class CadastroDtComponent implements OnInit {
   id: number;
   statusDoPagamentoValues = Object.values(statusDoPagamentoDT);
   statusDaFaseDeGerenciamento = Object.values(statusDaFaseDeGerenciamentoDT);
+  tipoDeDividaTecnicaValues = Object.values(tipoDeDividaTecnica);
   projetos: Projeto[] = [];  // Lista de projetos
 
   constructor( 
@@ -41,7 +43,7 @@ export class CadastroDtComponent implements OnInit {
   }
 
   voltarParaListagem(){
-     this.router.navigate(['/gerente/inicio'])
+     this.router.navigate(['/gerente/dividas-tecnicas'])
   }
 
   onSubmit() {
