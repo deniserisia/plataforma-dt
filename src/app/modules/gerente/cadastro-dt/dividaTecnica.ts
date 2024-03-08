@@ -7,6 +7,8 @@ export class DividaTecnica {
     id!: string;
     nomeDaDividaTecnica!: string;
     descricaoDaDT!: string;
+    causaDaDT!: string;
+    esfocoDoPagammento!: string;
     tipoDeDividaTecnica!: tipoDeDividaTecnica;
     statusDaFaseDeGerenciamentoDT!: statusDaFaseDeGerenciamentoDT;
     statusDoPagamentoDT!: statusDoPagamentoDT;

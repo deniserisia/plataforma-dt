@@ -29,12 +29,13 @@ h1 {
 
   .card {
     flex: 1;
-    max-width: 300px;
+    max-width: 250px;
     background-color: #CDDAEF;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
+    height: 130px;
   }
 
   .card:hover {
@@ -44,7 +45,7 @@ h1 {
   .card img {
     width: 100%;
     height: auto;
-    border-radius: 8px 8px 0 0;
+   
   }
 
   .card-content {
@@ -55,7 +56,7 @@ h1 {
   p {
     margin: 0;
     color: #333;
-    font-size: 20px;
+    font-size: 15px;
     font-family: 'Nunito Sans', sans-serif;
     font-weight: bold;
 }
@@ -101,4 +102,11 @@ h1 {
     background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
     padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
     border-radius: 5px; /* Adiciona cantos arredondados */
+}  
+
+.grafico-linha.chart-container {
+  border: 5px solid #ddd; /* Adiciona uma borda com cor cinza */
+  background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
+  padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
+  border-radius: 5px; /* Adiciona cantos arredondados */
 }  

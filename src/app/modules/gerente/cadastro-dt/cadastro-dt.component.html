@@ -55,6 +55,13 @@
 
           <div class="col-md-6">
             <div class="form-group">
+              <label>Qual a possível causa que tenha levado ao surgimento dessa DT? </label>
+              <input type="text" class="form-control" [(ngModel)]="dividaTecnica.causaDaDT" name="Causa da DT" />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
                 <label>Projeto:</label>
                 <select class="form-control" [(ngModel)]="dividaTecnica.projeto" name="projeto">
                     <option *ngFor="let projeto of projetos" [value]="projeto">{{ projeto.nomeDoProjeto }}</option>
@@ -69,6 +76,7 @@
                     <option *ngFor="let status of statusDoPagamentoValues" [value]="status">{{ status }}</option>
                 </select>
             </div>
+
         </div>
   
         <div class="col-md-6">
@@ -77,6 +85,13 @@
               <select class="form-control" [(ngModel)]="dividaTecnica.statusDaFaseDeGerenciamentoDT"  name="statusDaFaseDeGerenciamento">
                   <option *ngFor="let sta of statusDaFaseDeGerenciamento" [value]="sta">{{ sta }}</option>
               </select>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Qual o esforço do pagamento dessa DT? </label>
+            <input type="text" class="form-control" [(ngModel)]="dividaTecnica.esfocoDoPagammento" name="Causa da DT" />
           </div>
         </div>
                 

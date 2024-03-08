@@ -4,22 +4,35 @@
     <div class="card-container">
         <!-- Row 1 -->
         <div class="card">
-            <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
+          <img src="assets/icones/folder-plus.svg" alt="Ícone de Usuários" class="icon">
             <div class="card-content">
-            
               <p>Você possui {{ numeroDeProjetos }} projeto(s) cadastrados.</p>
             </div>
           </div>      
 
         <div class="card">
-            <img src="assets/icones/clipboard.svg" alt="Ícone de Usuários" class="icon">
+          <img src="assets/icones/coin.svg" alt="Ícone de Inspeções" class="icon">
           <div class="card-content">
             <p>Você possui {{ numeroDeDT }} Dívida(s) Ténica(s) cadastradas.</p>
           </div>
         </div>
 
         <div class="card">
-            <img src="assets/icones/check-square.svg" alt="Ícone de Usuários" class="icon">
+          <img src="assets/icones/dev.svg" alt="Ícone de Usuários" class="icon">
+        <div class="card-content">
+          <p>Você possui {{ numeroDePessoas }} pessoas no time de desenvolvimento.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="assets/icones/clipboard.svg" alt="Ícone de Usuários" class="icon">
+      <div class="card-content">
+        <p>Você possui {{ numeroDeDT }} squads.</p>
+      </div>
+    </div>
+
+        <div class="card">
+          <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
           <div class="card-content">
             <p>Você emitiu {{ numeroRelatorios }} Relatório(s).</p>
           </div>
@@ -28,16 +41,22 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <div class="grafico-barra chart-container">
-            <canvas #barChart width="200" height="100"></canvas>
+          <div class="col-md-4">
+              <div class="grafico-barra chart-container">
+                  <canvas #barChart width="200" height="200"></canvas>
+              </div>
           </div>
-        </div>
-        <div class="col-md-6">
-          <div class="grafico-pizza chart-container">
-            <canvas #pieChart width="200" height="100"></canvas>
+          <div class="col-md-4">
+              <div class="grafico-pizza chart-container">
+                  <canvas #pieChart width="200" height="200"></canvas>
+              </div>
           </div>
-        </div>        
+          <div class="col-md-4">
+              <div class="grafico-linha chart-container">
+                <canvas #lineChart width="200" height="200"></canvas>
+              </div>
+          </div>
       </div>
-</div>
+  </div>
+  
 

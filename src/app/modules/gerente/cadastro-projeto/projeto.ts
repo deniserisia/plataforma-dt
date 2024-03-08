@@ -5,6 +5,7 @@ export class Projeto {
     descricao!: string;
     setor!: string;
     empresa!: string;
+    quantidadeDePessoasNoTimeDeDev: number;
     nomeDoLiderDoProjeto!: string;
     statusProjeto!: string ; // Pode ser um enum em TypeScript, se necessário
     idUser!: string;
