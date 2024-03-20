@@ -13,17 +13,20 @@ import { TemplateRelatorioComponent } from './template-relatorio/template-relato
 import { PageProjetoComponent } from './page-projeto/page-projeto.component';
 import { PageDtComponent } from './page-dt/page-dt.component';
 import { ModalComponent } from './modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalProjetoComponent } from './modal-projeto/modal-projeto.component';
 
 
 @NgModule({
   declarations: [
-   DashboardComponent, CadastroDtComponent, CadastroProjetoComponent, MeuPerfilComponent, RelatorioComponent, TemplateRelatorioComponent, PageProjetoComponent, PageDtComponent, ModalComponent
+   DashboardComponent, CadastroDtComponent, CadastroProjetoComponent, MeuPerfilComponent, RelatorioComponent, TemplateRelatorioComponent, PageProjetoComponent, PageDtComponent, ModalComponent, ModalProjetoComponent
   ],
   imports: [
     CommonModule,
     GerenteRoutingModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatDialogModule
   ],
   exports:[
    DashboardComponent, CadastroDtComponent, CadastroProjetoComponent

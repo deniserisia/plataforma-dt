@@ -24,7 +24,8 @@ export class DividaTecnicaService {
   }
 
   getDividaTecnica() : Observable<DividaTecnica[]> {
-    return this.http.get<DividaTecnica[]>(this.apiURL);
+    const url = `${this.apiURL}/todas`; // Concatena "/todos" à URL base
+    return this.http.get<DividaTecnica[]>(url);
   }
   
   getDividaTecnicaById(id: number) : Observable<DividaTecnica> {

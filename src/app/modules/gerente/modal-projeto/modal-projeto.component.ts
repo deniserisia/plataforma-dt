@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { DividaTecnicaService } from 'src/app/service/divida-tecnica.service';
@@ -7,15 +7,16 @@ import { ProjetoService } from 'src/app/service/projeto.service';
 import { DividaTecnica } from '../cadastro-dt/dividaTecnica';
 import { Projeto } from '../cadastro-projeto/projeto';
 import { projetoBusca } from '../cadastro-projeto/projetoBusca';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
-  selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  selector: 'app-modal-projeto',
+  templateUrl: './modal-projeto.component.html',
+  styleUrls: ['./modal-projeto.component.css']
 })
-export class ModalComponent implements OnInit {
+export class ModalProjetoComponent implements OnInit {
 
-  @Input() dividaTecnicaSelecionada: DividaTecnica;
+  @Input() projetoSelecionado: Projeto;
 
   nomeDoProjeto: string;
  empresa: string;
@@ -27,7 +28,6 @@ export class ModalComponent implements OnInit {
  projetos: Projeto[] = [];
  dividasTecnicas: DividaTecnica[] = [];
  dividaSelecionada!: DividaTecnica;
- projetoSelecionado!: Projeto;
  mensagemSucesso!: string;
  mensagemErro!: string;
 
@@ -40,7 +40,7 @@ export class ModalComponent implements OnInit {
     private authService: AuthService,
     private dialog: MatDialog,
     private router: Router) {
-      this.dividaTecnicaSelecionada = data.dividaTecnicaSelecionada;
+      this.projetoSelecionado = data.projetoSelecionado;
     }
 
     
@@ -54,53 +54,46 @@ export class ModalComponent implements OnInit {
    }
 
   confirmarDelecao(): void {
-    this.serviceD
-    .deletar(this.dividaSelecionada)
-    .subscribe( 
-      response => {
-        this.mensagemSucesso = 'DT deletado com sucesso!'
-        this.ngOnInit();
-      },
-      erro => this.mensagemErro = 'Ocorreu um erro ao deletar o DT.'  
-    )
+    if (!this.projetoSelecionado) {
+      console.error("Projeto selecionado não está definido.");
+      return;
+    }
+  
+    this.service
+      .deletar(this.projetoSelecionado)
+      .subscribe( 
+        response => {
+          this.mensagemSucesso = 'Projeto deletado com sucesso!'
+          this.ngOnInit();
+        },
+        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'  
+      )
   }
+
+  deletarProjeto() {
+    if (!this.projetoSelecionado) {
+      console.error("Projeto selecionado não está definido.");
+      return;
+    }
+  
+    this.service
+      .deletar(this.projetoSelecionado)
+      .subscribe( 
+        response => {
+          this.mensagemSucesso = 'Projeto deletado com sucesso!'
+          this.ngOnInit();
+        },
+        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'  
+      )
+  }
+  preparaDelecao(projeto: Projeto) {
+    this.projetoSelecionado = projeto;
+  }
+
 
   cancelarDelecao(): void {
     this.dialogRef.close(false); // Fecha o modal sem confirmar a exclusão
   }
 
- preparaDelecao(projeto: Projeto) {
-  this.projetoSelecionado = projeto;
-}
-
-
- preparaDelecaoDT(dividasTecnicas: DividaTecnica){
-   this.dividaSelecionada = dividasTecnicas;
- }
-
- deletarProjeto(){
-  this.service
-    .deletar(this.projetoSelecionado)
-    .subscribe( 
-      response => {
-        this.mensagemSucesso = 'Projeto deletado com sucesso!'
-        this.ngOnInit();
-      },
-      erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'  
-    )
-}
-
-
- deletarDT(){
-   this.serviceD
-     .deletar(this.dividaSelecionada)
-     .subscribe( 
-       response => {
-         this.mensagemSucesso = 'DT deletado com sucesso!'
-         this.ngOnInit();
-       },
-       erro => this.mensagemErro = 'Ocorreu um erro ao deletar o DT.'  
-     )
- }
 
 }

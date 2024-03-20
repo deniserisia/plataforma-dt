@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageDtComponent } from './page-dt.component';
+import { ModalProjetoComponent } from './modal-projeto.component';
 
-describe('PageDtComponent', () => {
-  let component: PageDtComponent;
-  let fixture: ComponentFixture<PageDtComponent>;
+describe('ModalProjetoComponent', () => {
+  let component: ModalProjetoComponent;
+  let fixture: ComponentFixture<ModalProjetoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PageDtComponent ]
+      declarations: [ ModalProjetoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageDtComponent);
+    fixture = TestBed.createComponent(ModalProjetoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

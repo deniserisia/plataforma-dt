@@ -36,6 +36,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Projeto</th>
                         <th>Nome da DT</th>
                         <th>Status do Pagamento </th>
@@ -46,17 +47,18 @@
                 </thead>
                 <tbody>
                     <tr  *ngFor="let dt of dividasTecnicas  | paginate: { itemsPerPage: pageSize, currentPage: page } ">
+                        <td>{{ dt.id }}</td>
                         <td>{{ dt.nomeDoProjeto }}</td>
                         <td>{{ dt.nomeDaDividaTecnica }}</td>
                         <td>{{ dt.statusDoPagamentoDT }}</td>
                         <td>{{ dt.statusDaFaseDeGerenciamentoDT }}</td>
                         <td>
-                            <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-divida-tecnica/{{ dt.nomeDaDividaTecnica }}">
+                            <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-divida-tecnica/{{ dt.id }}">
                                 <img src="assets/icones/eye.svg" alt="Ícone de Ver" class="icon">
                                 Ver detalhes 
                             </button>
 
-                            <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-divida-tecnica/{{ dt.nomeDaDividaTecnica }}">
+                            <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-divida-tecnica/{{ dt.id }}">
                                 <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
                                 Editar 
                             </button>
@@ -84,7 +86,7 @@
                     </div>
     
                     <div class="modal-body" *ngIf="dividaSelecionada">
-                        Confirma a deleção do Dívida {{ dividaSelecionada.nomeDaDividaTecnica }}?
+                        Confirma a deleção do Dívida {{ dividaSelecionada.id }}?
                     </div>
     
                     <div class="modal-footer">
