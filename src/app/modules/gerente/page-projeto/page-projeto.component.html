@@ -77,6 +77,7 @@
 
         </div>
 
+
         
     <div class="container-mensagens">
         <div class="row">
@@ -125,10 +126,12 @@
                                 Editar 
                             </button>
                             
-                            <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecao(projeto)" data-toggle="modal" data-target="#modalDelecaoProjeto">
+                            <button class="btn btn-danger btn-custom-deletar" mat-raised-button (click)="openModal()" data-toggle="modal" >
                                 <img src="assets/icones/delete.svg" alt="Ícone de Deletar" class="icon">
                                 Deletar 
-                            </button>             
+                            </button>
+                            
+                                       
                         </td>
                     </tr>
                 </tbody>
@@ -138,29 +141,9 @@
             </div>
         </div>
 
-
-
-      
         
 
-    <div id="modalDelecaoProjeto" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Confirmação</h4>
-                </div>
 
-                <div class="modal-body" *ngIf="projetoSelecionado">
-                    Confirma a deleção do Projto {{ projetoSelecionado.id }}?
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-success" (click)="deletarProjeto()" data-dismiss="modal">Confirmar</button>
-                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-  </div>
         
 
 

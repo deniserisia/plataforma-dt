@@ -17,6 +17,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './service/token.interceptor';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ChartsModule } from 'ng2-charts';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { ChartsModule } from 'ng2-charts';
     GerenteModule,
     BrowserAnimationsModule,
     NgxPaginationModule,
-    ChartsModule
+    ChartsModule,
+    MatDialogModule
   ],
   providers: [
     DividaTecnicaService,

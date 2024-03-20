@@ -6,6 +6,12 @@ import { ProjetoService } from 'src/app/service/projeto.service';
 import { DividaTecnica } from '../cadastro-dt/dividaTecnica';
 import { Projeto } from '../cadastro-projeto/projeto';
 import { projetoBusca } from '../cadastro-projeto/projetoBusca';
+import * as $ from 'jquery';
+import 'bootstrap';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
+
+
 
 @Component({
   selector: 'app-page-projeto',
@@ -38,6 +44,7 @@ export class PageProjetoComponent implements OnInit {
    private service: ProjetoService,
    private serviceD: DividaTecnicaService,
    private authService: AuthService,
+   private dialog: MatDialog,
    private router: Router) {}
 
    
@@ -49,6 +56,16 @@ export class PageProjetoComponent implements OnInit {
       .getDividaTecnica()
       .subscribe( resposta => this.dividasTecnicas = resposta);
   }
+
+  openModal(): void {
+    const dialogRef = this.dialog.open(ModalComponent, {
+        data: { projeto: this.projetoSelecionado } // Passa o objeto projetoSelecionado para o modal
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        console.log(`Modal fechado. Resultado: ${result}`);
+    });
+}
 
 
  // Pesquisar sobre o projeto
@@ -67,6 +84,8 @@ export class PageProjetoComponent implements OnInit {
        }
      });
  }
+
+
 
 
  preparaDelecao(projeto: Projeto) {

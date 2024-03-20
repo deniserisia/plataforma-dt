@@ -4,6 +4,8 @@ import { DividaTecnicaService } from 'src/app/service/divida-tecnica.service';
 import { ProjetoService } from 'src/app/service/projeto.service';
 import { ContagemPorMes } from './contagemPorMes';
 import { ContagemPorMesNoAno } from '../cadastro-projeto/contagemPorMesNoAno ';
+import * as $ from 'jquery';
+
 
 
 @Component({
@@ -13,7 +15,10 @@ import { ContagemPorMesNoAno } from '../cadastro-projeto/contagemPorMesNoAno ';
 })
 export class DashboardComponent implements OnInit {
 
+  @ViewChild('resultadoModal') resultadoModal: any; // Referência ao seu modal
 
+  nomeDoProjeto: string; 
+  esforcoDoPagamento: number;
   numeroDeProjetos: number = 0;
   numeroDeDT: number = 0;
   numeroRelatorios: number = 0;
@@ -22,14 +27,16 @@ export class DashboardComponent implements OnInit {
   @ViewChild('barChart', {static: true}) barChart!: ElementRef;
   @ViewChild('barChartTwo', {static: true}) barChartTwo!: ElementRef;
   @ViewChild('pieChart', {static: true}) pieChart!: ElementRef;
-  
+  @ViewChild('pieChartTwo', {static: true}) pieChartTwo!: ElementRef;
   @ViewChild('lineChart') private lineChart: ElementRef;
+  @ViewChild('lineChartTwo', { static: true }) lineChartTwo: ElementRef;
+  
 
   chartOne: any;
- 
   chart: any;
   chartTwo: any;
   pieChartRef: any;
+
 
 
   constructor(
@@ -40,6 +47,21 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.obterContagemDividasTecnicasPorMesNoAno();
     this.obterContagemProjetosPorMesNoAno();
+
+    this.dividaTecnicaService.obterDadosEsforcoProjeto().subscribe(
+      (dados: any) => {
+        const projetos = dados.projetos;
+        const esforcos = dados.esforcos;
+
+        // Chame a função para criar o gráfico de linha com os dados obtidos
+        this.createLineChartTwo(projetos, esforcos);
+      },
+      (error) => {
+        console.error('Erro ao obter os dados dos esforços versus os projetos:', error);
+      }
+    );
+    
+
     // Chame seu serviço para obter o número de projetos do usuário
     this.projetoService.obterNumeroDeProjetos().subscribe(
       (numero: number) => {
@@ -83,6 +105,7 @@ export class DashboardComponent implements OnInit {
         console.error('Erro ao obter a contagem de projetos por mês:', erro);
       }
     );
+
     // servico de dt por tipo
     this.dividaTecnicaService.obterContagemDividasPorTipo().subscribe(
       (contagemPorTipo) => {
@@ -96,7 +119,82 @@ export class DashboardComponent implements OnInit {
         console.error('Erro ao obter a contagem de dívidas por tipo:', erro);
       }
     );
+
+      // servico de status da DT
+      this.dividaTecnicaService.obterStatusPagamento().subscribe(
+        (statusDaDT) => {
+          const labels = Object.keys(statusDaDT);
+          const data = Object.values(statusDaDT);
+  
+          // Chamar a função para criar o gráfico de pizza com os dados atualizados
+          this.createPieChartTwo(labels, data);
+        },
+        (erro) => {
+          console.error('Erro ao obter a contagem de dívidas por tipo:', erro);
+        }
+      );
   }
+
+  pesquisarEsforcoDoPagamentoPorProjeto() {
+    if (this.nomeDoProjeto) {
+      this.dividaTecnicaService.obterEsforcoDoPagamentoPorNomeDoProjeto(this.nomeDoProjeto).subscribe(
+        (esforco: any) => {
+          console.log('Esforço recebido:', esforco);
+          this.esforcoDoPagamento = esforco.esforcoDoPagamentoTotal;
+
+          // Abrir o modal
+          this.abrirModal();
+        },
+        (error) => {
+          console.error('Erro ao obter o esforço do pagamento por projeto:', error);
+        }
+      );
+    } else {
+      console.error('Nome do projeto não foi fornecido.');
+    }
+  }
+
+  // Método para abrir o modal
+  abrirModal() {
+    this.resultadoModal.nativeElement.showModal();
+  }
+
+  createLineChartTwo(projetos: string[], esforcos: number[]) {
+    const ctx = this.lineChartTwo.nativeElement.getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: projetos,
+        datasets: [{
+          label: 'Esforço por Projeto',
+          data: esforcos,
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0, 0, 255, 0.1)',
+          fill: true
+        }]
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            ticks: {
+              autoSkip: false, // Impede que os rótulos sejam cortados
+              maxRotation: 90, // Rotaciona os rótulos para melhorar a legibilidade
+              minRotation: 90 // Rotaciona os rótulos para melhorar a legibilidade
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }        
+      }
+    });
+  }
+  
+  
+  
+
 
   obterContagemProjetosPorMesNoAno() {
     const ano = new Date().getFullYear();
@@ -181,12 +279,11 @@ export class DashboardComponent implements OnInit {
   }
 
 
-
-  // grafico pizza
+// grafico pizza
 createPieChart(labels: string[], data: number[]) {
   const ctx = this.pieChart.nativeElement.getContext('2d');
 
-  this.pieChartRef = new Chart(ctx, {
+  this.chart = new Chart(ctx, {
     type: 'pie',
     data: {
       labels: labels,
@@ -206,7 +303,35 @@ createPieChart(labels: string[], data: number[]) {
     options: {
       title: {
         display: true,
-        text: 'Total de Dívidas Técnicas Cadastradas por tipo',
+        text: 'Total de Dívidas Técnicas Cadastradas',
+      },
+    },
+  });
+}
+
+createPieChartTwo(labels: string[], data: number[]) {
+  const ctx = this.pieChartTwo.nativeElement.getContext('2d');
+  this.chartTwo = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          data: data,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+          ],
+        },
+      ],
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Panorama do Status do Pagamento',
       },
     },
   });

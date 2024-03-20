@@ -10,6 +10,7 @@ import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
 import { RelatorioComponent } from './relatorio/relatorio.component';
 import { PageProjetoComponent } from './page-projeto/page-projeto.component';
 import { PageDtComponent } from './page-dt/page-dt.component';
+import { TemplateRelatorioComponent } from './template-relatorio/template-relatorio.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
     {path:'cadastro-projeto', component: CadastroProjetoComponent},
     {path:'cadastro-projeto/:id', component: CadastroProjetoComponent},
     {path:'emitir-relatorio', component: RelatorioComponent},
+    {path:'teste', component:TemplateRelatorioComponent},
     {path:'meu-perfil-de-usuario', component: MeuPerfilComponent},
     {path:'meu-perfil-de-usuario/:id', component: MeuPerfilComponent},
     { path: '', redirectTo : '/gerente/inicio', pathMatch: 'full' }

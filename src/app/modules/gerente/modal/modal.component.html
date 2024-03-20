@@ -1,0 +1,18 @@
+
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Confirmação</h4>
+            </div>
+
+            <div class="modal-body" *ngIf="projetoSelecionado">
+                Confirma a deleção do Projto {{ projetoSelecionado.id }}?
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-success" (click)="deletarProjeto()" data-dismiss="modal">Confirmar</button>
+                <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>

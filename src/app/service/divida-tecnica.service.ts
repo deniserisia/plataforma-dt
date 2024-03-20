@@ -43,8 +43,21 @@ export class DividaTecnicaService {
     return this.http.get<Map<string, number>>(`${this.apiURL}/contagem-dividas-tecnicas-por-mes-no-ano?ano=${ano}`);
   }
 
+  obterStatusPagamento(): Observable<{ [key: string]: number }> {
+    return this.http.get<{ [key: string]: number }>(`${this.apiURL}/status-pagamento`);
+  }
+
+ 
+  obterEsforcoDoPagamentoPorNomeDoProjeto(nomeDoProjeto: string): Observable<number> {
+    return this.http.get<number>(`${this.apiURL}/esforco-do-pagamento-por-projeto?nomeDoProjeto=${nomeDoProjeto}`);
+  }
+
   obterContagemDividasPorTipo(): Observable<{ [key: string]: number }> {
     return this.http.get<{ [key: string]: number }>(`${this.apiURL}/contagem-por-tipo`);
+  }
+
+  obterDadosEsforcoProjeto(): Observable<{ projetos: string[], esforcos: number[] }> {
+    return this.http.get<{ projetos: string[], esforcos: number[] }>(`${this.apiURL}/dados-esforco-projeto`);
   }
 
   deletar(dividaTecnica: DividaTecnica) : Observable<any> {

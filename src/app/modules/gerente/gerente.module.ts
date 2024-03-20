@@ -12,11 +12,12 @@ import { RelatorioComponent } from './relatorio/relatorio.component';
 import { TemplateRelatorioComponent } from './template-relatorio/template-relatorio.component';
 import { PageProjetoComponent } from './page-projeto/page-projeto.component';
 import { PageDtComponent } from './page-dt/page-dt.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
   declarations: [
-   DashboardComponent, CadastroDtComponent, CadastroProjetoComponent, MeuPerfilComponent, RelatorioComponent, TemplateRelatorioComponent, PageProjetoComponent, PageDtComponent
+   DashboardComponent, CadastroDtComponent, CadastroProjetoComponent, MeuPerfilComponent, RelatorioComponent, TemplateRelatorioComponent, PageProjetoComponent, PageDtComponent, ModalComponent
   ],
   imports: [
     CommonModule,

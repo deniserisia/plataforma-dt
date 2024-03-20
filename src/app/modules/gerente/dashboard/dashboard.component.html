@@ -1,62 +1,114 @@
 <div class="container pt-5">
     <h1 class="mt-4"> Painel de controle</h1>
 
-    <div class="card-container">
-        <!-- Row 1 -->
-        <div class="card">
-          <img src="assets/icones/folder-plus.svg" alt="Ícone de Usuários" class="icon">
+    
+    <div class="container">
+      <div class="row">
+      <div class="col-md-4">
+        <div class="grafico-pizza chart-container">
+          <canvas #lineChartTwo width="200" height="100"></canvas>
+        </div>
+      </div>
+
+        <div class="col-md-4">
+          <div class="grafico-pizza chart-container">
+              <canvas #pieChartTwo width="200" height="100"></canvas>
+          </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="grafico-pizza chart-container">
+            <canvas #pieChart width="200" height="100"></canvas>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="container-esforco">
+      <!-- Card 1: Campo de busca -->
+      <div class="busca-card">
+        <label for="nomeDoProjeto">Previsão de Resultado do Pagamento da DT:</label>
+        <input type="text" id="nomeDoProjeto" placeholder="Digite o nome do projeto" [(ngModel)]="nomeDoProjeto" name="nomeDoProjeto">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resultadoModal">Pesquisar</button>
+
+      </div>
+    
+      <!-- Cartões lado a lado na horizontal -->
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="assets/icones/folder-plus.svg" alt="Ícone de Usuários" class="icon">
             <div class="card-content">
               <p>Você possui {{ numeroDeProjetos }} projeto(s) cadastrados.</p>
             </div>
-          </div>      
-
-        <div class="card">
-          <img src="assets/icones/coin.svg" alt="Ícone de Inspeções" class="icon">
-          <div class="card-content">
-            <p>Você possui {{ numeroDeDT }} Dívida(s) Ténica(s) cadastradas.</p>
           </div>
         </div>
-
-        <div class="card">
-          <img src="assets/icones/dev.svg" alt="Ícone de Usuários" class="icon">
-        <div class="card-content">
-          <p>Você possui {{ numeroDePessoas }} pessoas no time de desenvolvimento.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="assets/icones/clipboard.svg" alt="Ícone de Usuários" class="icon">
-      <div class="card-content">
-        <p>Você possui {{ numeroDeDT }} squads.</p>
-      </div>
-    </div>
-
-        <div class="card">
-          <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
-          <div class="card-content">
-            <p>Você emitiu {{ numeroRelatorios }} Relatório(s).</p>
+    
+        <div class="col-md-4">
+          <div class="card">
+            <img src="assets/icones/coin.svg" alt="Ícone de Inspeções" class="icon">
+            <div class="card-content">
+              <p>Você possui {{ numeroDeDT }} Dívida(s) Técnica(s) cadastradas.</p>
+            </div>
           </div>
         </div>
+    
+        <div class="col-md-4">
+          <div class="card">
+            <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
+            <div class="card-content">
+              <p>Você emitiu {{ numeroRelatorios }} Relatório(s).</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    
+    
 
     <div class="container">
       <div class="row">
           <div class="col-md-4">
               <div class="grafico-barra chart-container">
-                  <canvas #barChart width="200" height="200"></canvas>
+                  <canvas #barChart width="200" height="100"></canvas>
               </div>
           </div>
+          <div class="col-md-4">
+            <div class="grafico-linha chart-container">
+              <canvas #lineChart width="200" height="100"></canvas>
+            </div>
+        </div>
           <div class="col-md-4">
               <div class="grafico-pizza chart-container">
-                  <canvas #pieChart width="200" height="200"></canvas>
-              </div>
-          </div>
-          <div class="col-md-4">
-              <div class="grafico-linha chart-container">
-                <canvas #lineChart width="200" height="200"></canvas>
+                  <canvas #pieChart width="200" height="100"></canvas>
               </div>
           </div>
       </div>
   </div>
+
+
+
+       <!-- Pop-up para mostrar o resultado -->
+       <div class="modal fade" #resultadoModal tabindex="-1" role="dialog" aria-labelledby="resultadoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="resultadoModalLabel">Resultado da Pesquisa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div *ngIf="esforcoDoPagamento !== undefined">
+                <p>O esforço do pagamento total para o projeto {{ nomeDoProjeto }} é de {{ esforcoDoPagamento }} horas.</p>
+              </div>
+              <div *ngIf="esforcoDoPagamento === undefined">
+                <p>Nenhum resultado encontrado para o projeto {{ nomeDoProjeto }}.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
   
 

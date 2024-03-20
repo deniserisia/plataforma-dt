@@ -1,0 +1,28 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .section {
+    margin-bottom: 40px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #f2f2f2;
+  }
+  
+  #projetoStatusChart {
+    width: 100%;
+  }
+  

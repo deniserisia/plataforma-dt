@@ -110,3 +110,42 @@ h1 {
   padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
   border-radius: 5px; /* Adiciona cantos arredondados */
 }  
+
+
+
+.container-esforco {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: calc(100% - 100px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 8px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
