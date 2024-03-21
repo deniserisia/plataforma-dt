@@ -116,11 +116,6 @@
                         <td>{{ projeto.empresa }}</td>
                         <td>{{ projeto.statusProjeto }}</td>
                         <td>
-                            <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-projeto/{{ projeto.id }}">
-                                <img src="assets/icones/eye.svg" alt="Ícone de Ver" class="icon">
-                                Ver detalhes 
-                            </button>
-
                             <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-projeto/{{ projeto.id }}">
                                 <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
                                 Editar 
@@ -129,9 +124,7 @@
                             <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecao(projeto)" data-toggle="modal" data-target="#modalDelecaoProjeto">
                                 <img src="assets/icones/delete.svg" alt="Ícone de Deletar" class="icon">
                                 Deletar 
-                              </button>
-                              
-                                       
+                              </button>           
                         </td>
                     </tr>
                 </tbody>
@@ -150,12 +143,12 @@
                     </div>
     
                     <div class="modal-body" *ngIf="projetoSelecionado">
-                        Confirma a deleção do Projto {{ projetoSelecionado.id }}?
+                        Deseja realmente excluir o projeto {{ projetoSelecionado.nomeDoProjeto }}?
                     </div>
     
                     <div class="modal-footer">
                         <button class="btn btn-success" (click)="deletarProjeto()" data-dismiss="modal">Confirmar</button>
-                        <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>

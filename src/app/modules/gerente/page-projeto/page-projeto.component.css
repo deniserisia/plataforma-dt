@@ -277,11 +277,11 @@ h1 {
     border: none;
 }
 .btn-custom-deletar {
-    background-color: #fefefe;
-    color: #CC3939;
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight: bold;
-   
+  background-color: #fefefe;
+  color: #CC3939;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: bold;
+  border: none;
 }
 .btn {
     margin-right: 10px; /* Adapte conforme necessário */
@@ -292,4 +292,19 @@ h1 {
     overflow: hidden; /* Clearfix */
     padding: 10px;
     margin-top: 10px;
+}
+
+.modal-backdrop.fade.show{
+  background-color: #b14444 !important;
+
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #b14444 !important;
 }

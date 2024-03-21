@@ -73,9 +73,6 @@ export class PageProjetoComponent implements OnInit {
        if( this.listaDosProjetos.length <= 0 ){
          this.message = "Nenhum Registro encontrado.";
          console.log("no meio");
-       }else{
-         this.message = "nada";
-         console.log("nada");
        }
      });
  }
