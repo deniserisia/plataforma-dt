@@ -1,118 +1,120 @@
-<div class="container pt-5">
+
+  <div class="container pt-5">
     <h1 class="mt-4"> Dívida Técnica</h1>
-  
+
     <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item active">{{ dividaTecnica.id ? 'Edição de DT' : 'Cadastro de DT' }}</li>
+        <li class="breadcrumb-item active">{{ dividaTecnica.id ? 'Edição de DT' : 'Cadastro de DT' }}</li>
     </ol>
-  
-  
-    <div class="container">
+
+
+  <div class="container">
       <form #dividasForm="ngForm" (ngSubmit)="onSubmit()">
-  
-        <div class="row">
-          <div class="col-md-12">
-            <div class="alert alert-success" role="alert" *ngIf="success == true">
-              Dívida Tecnica salvo/atualizado com sucesso!
-            </div>
-            <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
-              {{ erro }}
-            </div>
+
+          <div class="row">
+              <div class="col-md-12">
+                  <!-- Exibição de mensagens de sucesso ou erro -->
+                        <div class="alert alert-success" role="alert" *ngIf="success == true">
+                            Projeto salvo/atualizado com sucesso!
+                        </div>
+                        <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                            {{ erro }}
+                        </div>
+              </div>
           </div>
-        </div>
-  
-        <div class="row" *ngIf="dividaTecnica.id">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>ID:</label>
-              <input type="text" [ngModel]="dividaTecnica.id" name="id" class="form-control" disabled="true" />
-            </div>
+
+          <!-- Se a dívida técnica já possui um ID, exibir os campos de ID e data de cadastro -->
+          <div class="row" *ngIf="dividaTecnica.id">
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label>ID:</label>
+                      <input type="text" class="form-control" name="id" [(ngModel)]="dividaTecnica.id" disabled>
+                  </div>
+              </div>
+
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label>Data Cadastro:</label>
+                      <input type="text" class="form-control" name="diaDoCadastro" [(ngModel)]="dividaTecnica.diaDoCadastro" disabled>
+                  </div>
+              </div>
           </div>
-  
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Data Cadastro:</label>
-              <input type="text" class="form-control" name="diaDoCadastro" [ngModel]="dividaTecnica.diaDoCadastro"
-                disabled="true" />
+
+          <!-- Campos editáveis -->
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <label>Tipo de Dívida Técnica:</label>
+                      <select class="form-control" name="tipoDeDividaTecnica" [(ngModel)]="dividaTecnica.tipoDeDividaTecnica">
+                          <option *ngFor="let tipo of tipoDeDividaTecnicaValues" [value]="tipo">{{ tipo }}</option>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Descrição da DT: </label>
+                  <input type="text" class="form-control" [(ngModel)]="dividaTecnica.descricaoDaDT" name="Descrição" />
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Qual a possível causa que tenha levado ao surgimento dessa DT? </label>
+                  <input type="text" class="form-control" [(ngModel)]="dividaTecnica.causaDaDT" name="Causa da DT" />
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label>Projeto:</label>
+                    <select class="form-control" [(ngModel)]="dividaTecnica.projeto" name="projeto">
+                        <option *ngFor="let projeto of projetos" [value]="projeto">{{ projeto.nomeDoProjeto }}</option>
+                    </select>
+                </div>
+            </div>        
+    
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label>Status do Pagamento: </label>
+                    <select class="form-control" [(ngModel)]="dividaTecnica.statusDoPagamentoDT" name="statusDoPagamento">
+                        <option *ngFor="let status of statusDoPagamentoValues" [value]="status">{{ status }}</option>
+                    </select>
+                </div>
+    
             </div>
-          </div>
-        </div>
-  
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-                <label>Tipo de Dívida Técnica </label>
-                <select class="form-control" [(ngModel)]="dividaTecnica.tipoDeDividaTecnica" name="tipoDeDividaTecnica">
-                    <option *ngFor="let tipo of tipoDeDividaTecnicaValues" [value]="tipo">{{ tipo }}</option>
-                </select>
+      
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label>Status da Fase de Gerenciamento </label>
+                  <select class="form-control" [(ngModel)]="dividaTecnica.statusDaFaseDeGerenciamentoDT"  name="statusDaFaseDeGerenciamento">
+                      <option *ngFor="let sta of statusDaFaseDeGerenciamento" [value]="sta">{{ sta }}</option>
+                  </select>
+              </div>
             </div>
-        </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Descrição da DT: </label>
-              <input type="text" class="form-control" [(ngModel)]="dividaTecnica.descricaoDaDT" name="Descrição" />
+    
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Qual o esforço do pagamento dessa DT? </label>
+                <input type="text" class="form-control" [(ngModel)]="dividaTecnica.esforcoDoPagammento" name="Causa da DT" />
+              </div>
             </div>
           </div>
 
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Qual a possível causa que tenha levado ao surgimento dessa DT? </label>
-              <input type="text" class="form-control" [(ngModel)]="dividaTecnica.causaDaDT" name="Causa da DT" />
-            </div>
-          </div>
+          <div class="row">
+              <!-- Botões de salvar/atualizar e voltar -->
+              <div class="col-md-3">
+                  <button type="button" class="btn btn-primary ml-1 mr-2" (click)="voltarParaListagem()">
+                      <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+                  </button>
 
-          <div class="col-md-6">
-            <div class="form-group">
-                <label>Projeto:</label>
-                <select class="form-control" [(ngModel)]="dividaTecnica.projeto" name="projeto">
-                    <option *ngFor="let projeto of projetos" [value]="projeto">{{ projeto.nomeDoProjeto }}</option>
-                </select>
-            </div>
-        </div>        
+                  <button type="submit" class="btn btn-success mr-2" *ngIf="!dividaTecnica.id">
+                      <i class="fa fa-save"></i> Salvar
+                  </button>
 
-          <div class="col-md-6">
-            <div class="form-group">
-                <label>Status do Pagamento: </label>
-                <select class="form-control" [(ngModel)]="dividaTecnica.statusDoPagamentoDT" name="statusDoPagamento">
-                    <option *ngFor="let status of statusDoPagamentoValues" [value]="status">{{ status }}</option>
-                </select>
-            </div>
-
-        </div>
-  
-        <div class="col-md-6">
-          <div class="form-group">
-              <label>Status da Fase de Gerenciamento </label>
-              <select class="form-control" [(ngModel)]="dividaTecnica.statusDaFaseDeGerenciamentoDT"  name="statusDaFaseDeGerenciamento">
-                  <option *ngFor="let sta of statusDaFaseDeGerenciamento" [value]="sta">{{ sta }}</option>
-              </select>
+                  <button type="submit" class="btn btn-info" *ngIf="dividaTecnica.id">
+                      <i class="fa fa-sync-alt"></i> Atualizar
+                  </button>
+              </div>
           </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Qual o esforço do pagamento dessa DT? </label>
-            <input type="text" class="form-control" [(ngModel)]="dividaTecnica.esforcoDoPagammento" name="Causa da DT" />
-          </div>
-        </div>
-                
-  
-        </div>
-  
-        <div class="row">
-          <div class="col-md-3">
-            <button type="button" class="btn btn-primary ml-1 mr-2" (click)="voltarParaListagem()">
-              <i class="fa fa-arrow-alt-circle-left"></i> Voltar
-            </button>
-  
-            <button type="submit" class="btn btn-success mr-2" *ngIf="!dividaTecnica.id">
-              <i class="fa fa-save"></i> Salvar
-            </button>
-  
-            <button type="submit" class="btn btn-info" *ngIf="dividaTecnica.id">
-              <i class="fa fa-sync-alt"></i> Atualizar
-            </button>
-          </div>
-        </div>
       </form>
-    </div>
   </div>
+</div>
