@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  dt-app:
+    image: dt-app
+    build: .
+    ports:
+       - 8087:80
