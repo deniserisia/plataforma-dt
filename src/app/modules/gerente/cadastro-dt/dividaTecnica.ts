@@ -9,10 +9,12 @@ export class DividaTecnica {
     descricaoDaDT: string;
     causaDaDT: string;
     esforcoDoPagammento: number;
+    quantidadeDePessoas: number;
+    valorPorHoraDeTrabalho: number;
     tipoDeDividaTecnica: tipoDeDividaTecnica;
     statusDaFaseDeGerenciamentoDT: statusDaFaseDeGerenciamentoDT;
     statusDoPagamentoDT: statusDoPagamentoDT;
     diaDoCadastro: string;
-    projeto!: Projeto; // Relação muitos para um com Projeto
+    projeto: Projeto; // Relação muitos para um com Projeto
   }
   

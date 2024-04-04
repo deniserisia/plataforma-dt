@@ -24,6 +24,11 @@ export class DashboardComponent implements OnInit {
   numeroRelatorios: number = 0;
   numeroDePessoas: number = 0;
 
+  projetos: any[] = []; // Array para armazenar os projetos
+  dividasTecnicas: any[] = []; // Array para armazenar as dívidas técnicas associadas ao projeto selecionado
+  projetoSelecionado: any = null; // Projeto selecionado
+  dividaTecnicaSelecionada: any = null; // Dívida técnica selecionada
+
   @ViewChild('barChart', {static: true}) barChart!: ElementRef;
   @ViewChild('barChartTwo', {static: true}) barChartTwo!: ElementRef;
   @ViewChild('pieChart', {static: true}) pieChart!: ElementRef;
@@ -37,7 +42,8 @@ export class DashboardComponent implements OnInit {
   chartTwo: any;
   pieChartRef: any;
 
-
+   dividasTecnicasDoProjeto: any[] = [];
+   resultadoDoEsforco: number | undefined;
 
   constructor(
     private projetoService: ProjetoService,
@@ -47,6 +53,18 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.obterContagemDividasTecnicasPorMesNoAno();
     this.obterContagemProjetosPorMesNoAno();
+    this.carregarProjetos();
+
+
+    this.projetoService.getProjetos().subscribe(
+      (projetos: any[]) => {
+        this.projetos = projetos; // Preencha o array com os projetos obtidos
+      },
+      (error) => {
+        console.error('Erro ao obter a lista de projetos:', error);
+      }
+    );
+
 
     this.dividaTecnicaService.obterDadosEsforcoProjeto().subscribe(
       (dados: any) => {
@@ -135,24 +153,45 @@ export class DashboardComponent implements OnInit {
       );
   }
 
-  pesquisarEsforcoDoPagamentoPorProjeto() {
-    if (this.nomeDoProjeto) {
-      this.dividaTecnicaService.obterEsforcoDoPagamentoPorNomeDoProjeto(this.nomeDoProjeto).subscribe(
-        (esforco: any) => {
-          console.log('Esforço recebido:', esforco);
-          this.esforcoDoPagamento = esforco.esforcoDoPagamentoTotal;
 
-          // Abrir o modal
-          this.abrirModal();
+
+  carregarProjetos() {
+    this.projetoService.getProjetos().subscribe(
+      (projetos: any[]) => {
+        this.projetos = projetos;
+      },
+      (error) => {
+        console.error('Erro ao carregar projetos:', error);
+      }
+    );
+  }
+
+  onProjetoChange() {
+    if (this.projetoSelecionado) {
+      const id = this.projetoSelecionado.id;
+      this.dividaTecnicaService.obterDividasTecnicasDoProjeto(id).subscribe(
+        (dividasTecnicas: any[]) => {
+          this.dividasTecnicasDoProjeto = dividasTecnicas;
         },
         (error) => {
-          console.error('Erro ao obter o esforço do pagamento por projeto:', error);
+          console.error('Erro ao obter dívidas técnicas do projeto:', error);
         }
       );
     } else {
-      console.error('Nome do projeto não foi fornecido.');
+      this.dividasTecnicasDoProjeto = [];
     }
   }
+
+  onDividaTecnicaChange() {
+    if (this.dividaTecnicaSelecionada) {
+      this.resultadoDoEsforco = this.dividaTecnicaService.calcularResultadoDoEsforco(this.dividaTecnicaSelecionada);
+    } else {
+      this.resultadoDoEsforco = undefined;
+    }
+  }
+
+
+  
 
   // Método para abrir o modal
   abrirModal() {

@@ -41,48 +41,48 @@
                     <div class="form-group">
                         <label>Nome do Projeto: </label>
                         <input type="text" class="form-control" [(ngModel)]="projeto.nomeDoProjeto"
-                            name="NomeDoProjeto" />
+                            name="NomeDoProjeto" placeholder="Ex: Eolus Inspector, Big Data" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Descrição do Projeto: </label>
-                        <input type="text" class="form-control" [(ngModel)]="projeto.descricao" name="Descrição" />
+                        <input type="text" class="form-control" [(ngModel)]="projeto.descricao" name="Descrição" placeholder="Ex: Projeto voltado para energia eólica" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Setor de Atuação: </label>
-                        <input type="text" class="form-control" [(ngModel)]="projeto.setor" name="Setor" />
+                        <input type="text" class="form-control" [(ngModel)]="projeto.setor" name="Setor" placeholder="Ex: Automação" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Empresa: </label>
-                        <input type="text" class="form-control" [(ngModel)]="projeto.empresa" name="Empresa" />
+                        <input type="text" class="form-control" [(ngModel)]="projeto.empresa" name="Empresa" placeholder="Ex: Great, LM..." />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Número de Pessoas no Projeto: </label>
-                        <input type="number" class="form-control" [(ngModel)]="projeto.quantidadeDePessoasNoTimeDeDev" name="Número" />
+                        <input type="number" class="form-control" [(ngModel)]="projeto.quantidadeDePessoasNoTimeDeDev" name="Número" placeholder="Ex: 5, 10..." />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Nome do Líder do Projeto: </label>
                         <input type="text" class="form-control" [(ngModel)]="projeto.nomeDoLiderDoProjeto"
-                            name="Nome do lider" />
+                            name="Nome do lider" placeholder="Ex: Fábio Augusto, Denise Rísia..." />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                       <label>Status do Projeto:</label>
-                      <select class="form-control" [(ngModel)]="projeto.statusProjeto" name="statusProjeto">
+                      <select class="form-control" [(ngModel)]="projeto.statusProjeto" name="statusProjeto" placeholder="Selecione">
                         <option *ngFor="let status of statusProjetos" [value]="status">{{ status }}</option>
                       </select>
                     </div>
-                  </div>
+                  </div>                  
             </div>
 
             <div class="row">

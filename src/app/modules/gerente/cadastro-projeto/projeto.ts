@@ -5,9 +5,9 @@ export class Projeto {
     descricao!: string;
     setor!: string;
     empresa!: string;
-    quantidadeDePessoasNoTimeDeDev: number;
+    quantidadeDePessoasNoTimeDeDev?: number; // Declarado como opcional
     nomeDoLiderDoProjeto!: string;
-    statusProjeto!: string ; // Pode ser um enum em TypeScript, se necessário
+    statusProjeto!: string ; 
     idUser!: string;
     dataCadastro: string;
   }

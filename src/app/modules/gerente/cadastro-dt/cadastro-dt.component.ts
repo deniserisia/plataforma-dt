@@ -23,6 +23,7 @@ export class CadastroDtComponent implements OnInit {
   tipoDeDividaTecnicaValues = Object.values(tipoDeDividaTecnica);
   projetos: Projeto[] = [];
 
+
   constructor( 
    private service: DividaTecnicaService,
    private serviceProjetos: ProjetoService,
@@ -47,8 +48,11 @@ export class CadastroDtComponent implements OnInit {
   voltarParaListagem(): void {
      this.router.navigate(['/gerente/dividas-tecnicas']);
   }
+  
 
   onSubmit(): void {
+   
+
     if (this.id) {
       this.service.atualizar(this.dividaTecnica).subscribe(
         response => {
