@@ -14,7 +14,7 @@
               <div class="col-md-12">
                   <!-- Exibição de mensagens de sucesso ou erro -->
                         <div class="alert alert-success" role="alert" *ngIf="success == true">
-                            Projeto salvo/atualizado com sucesso!
+                            Dívida Técnica salvo/atualizado com sucesso!
                         </div>
                         <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
                             {{ erro }}
@@ -52,14 +52,14 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Descrição da DT: </label>
-                  <input type="text" class="form-control" [(ngModel)]="dividaTecnica.descricaoDaDT" name="Descrição" />
+                  <input type="text" class="form-control" [(ngModel)]="dividaTecnica.descricaoDaDT" name="Descrição" placeholder="Ex: DT de requisitos não funcinais" />
                 </div>
               </div>
     
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Qual a possível causa que tenha levado ao surgimento dessa DT? </label>
-                  <input type="text" class="form-control" [(ngModel)]="dividaTecnica.causaDaDT" name="Causa da DT" />
+                  <input type="text" class="form-control" [(ngModel)]="dividaTecnica.causaDaDT" name="Causa da DT" placeholder="Ex: Pouco tempo, poucas pessoas..." />
                 </div>
               </div>
     
@@ -70,7 +70,10 @@
                         <option *ngFor="let projeto of projetos" [value]="projeto">{{ projeto.nomeDoProjeto }}</option>
                     </select>
                 </div>
-            </div>        
+            </div>  
+              
+            
+
     
               <div class="col-md-6">
                 <div class="form-group">
@@ -93,10 +96,17 @@
     
             <div class="col-md-6">
               <div class="form-group">
-                <label>Qual o esforço do pagamento dessa DT? </label>
-                <input type="text" class="form-control" [(ngModel)]="dividaTecnica.esforcoDoPagammento" name="Causa da DT" />
+                <label>Quantidade de pessoas alocadas para o pagamento dessa DT? </label>
+                <input type="number" class="form-control" [(ngModel)]="dividaTecnica.quantidadeDePessoas" name="number" placeholder="Ex: 2, 5, 10" />
               </div>
             </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label>Qual o valor hora da pessoa alocada? </label>
+                  <input type="number" class="form-control" [(ngModel)]="dividaTecnica.valorPorHoraDeTrabalho" name="number" placeholder="R$00.00"/>
+                </div>
+              </div>
           </div>
 
           <div class="row">

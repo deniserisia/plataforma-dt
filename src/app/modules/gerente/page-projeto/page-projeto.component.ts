@@ -64,16 +64,34 @@ export class PageProjetoComponent implements OnInit {
       )
   }
 
- consultarProjeto(){
-   this.service
-     .buscarProjeto(this.nomeDoProjeto, this.empresa)
-     .subscribe(response => {
-      console.log("entrou");
-       this.listaDosProjetos = response;
-       if( this.listaDosProjetos.length <= 0 ){
-         this.message = "Nenhum Registro encontrado.";
-         console.log("no meio");
-       }
-     });
- }
+  consultarProjeto() {
+    // Verifica se pelo menos um dos parâmetros de busca foi fornecido
+    if (!this.nomeDoProjeto || !this.empresa || this.nomeDoProjeto.trim() === '' || this.empresa.trim() === '') {
+      this.message = "Por favor, digite o nome do projeto e da empresa.";
+      return; // Retorna sem enviar a solicitação
+    }
+  
+    this.service
+      .buscarProjeto(this.nomeDoProjeto, this.empresa)
+      .subscribe(response => {
+        console.log("entrou");
+        // Verifica se a resposta contém dados
+        if (response && response.length > 0) {
+          this.listaDosProjetos = response;
+          this.message = ""; // Limpa a mensagem, se houver
+        } else {
+          // Se a resposta estiver vazia, define a mensagem de nenhum registro encontrado
+          this.listaDosProjetos = []; // Limpa a lista de projetos
+          this.message = "Projeto não cadastrado ou não encontrado.";
+          console.log("no meio");
+        }
+      }, error => {
+        // Manipula erros aqui, se necessário
+        console.error('Ocorreu um erro ao consultar projetos:', error);
+      });
+  }
+  
+  
+  
+  
 }

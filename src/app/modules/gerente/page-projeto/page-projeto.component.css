@@ -262,22 +262,23 @@ h1 {
     border-radius: 5px;
 }
   
-.btn-custom-ver {
-    background-color: #fefefe;
-    color: #2D771E;
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight: bold;
-    border: none;
-}
 .btn-custom-editar {
-    background-color: #fefefe;
+    background-color: transparent;
     color: #004D7A;
     font-family: 'Nunito Sans', sans-serif;
     font-weight: bold;
     border: none;
 }
+.btn-custom-editar-buscar {
+  background-color: transparent;
+  color: #004D7A;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: bold;
+  border: none;
+  margin-bottom: 20px;
+}
 .btn-custom-deletar {
-  background-color: #fefefe;
+  background-color: transparent;
   color: #CC3939;
   font-family: 'Nunito Sans', sans-serif;
   font-weight: bold;

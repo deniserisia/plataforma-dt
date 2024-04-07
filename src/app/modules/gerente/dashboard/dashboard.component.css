@@ -149,3 +149,7 @@ button:hover {
   background-color: #0056b3;
 }
 
+.text-dt{
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 20px; 
+}

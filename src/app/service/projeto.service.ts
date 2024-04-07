@@ -36,6 +36,7 @@ export class ProjetoService {
     return this.http.get<any>(`${this.apiURL}/${id}`);
   }
 
+
   //getProjetosDoUsuario(userId: string): Observable<Projeto[]> {
   //  const url = `${this.apiURL}/${userId}`; // Ajuste a URL conforme necessário
   //  return this.http.get<Projeto[]>(url);
@@ -65,8 +66,9 @@ export class ProjetoService {
     const httpParams = new HttpParams()
       .set("nomeDoProjeto", nomeDoProjeto)
       .set("empresa", empresa);
-
+  
     const url = this.apiURL + "?" + httpParams.toString();
     return this.http.get<any>(url);
   }
+  
 }

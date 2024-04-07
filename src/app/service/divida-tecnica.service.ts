@@ -24,7 +24,7 @@ export class DividaTecnicaService {
   }
 
   getDividaTecnica() : Observable<DividaTecnica[]> {
-    const url = `${this.apiURL}/todas`; // Concatena "/todos" à URL base
+    const url = `${this.apiURL}/todas`;
     return this.http.get<DividaTecnica[]>(url);
   }
   
@@ -48,13 +48,27 @@ export class DividaTecnicaService {
     return this.http.get<{ [key: string]: number }>(`${this.apiURL}/status-pagamento`);
   }
 
- 
-  obterEsforcoDoPagamentoPorNomeDoProjeto(nomeDoProjeto: string): Observable<number> {
-    return this.http.get<number>(`${this.apiURL}/esforco-do-pagamento-por-projeto?nomeDoProjeto=${nomeDoProjeto}`);
-  }
 
   obterContagemDividasPorTipo(): Observable<{ [key: string]: number }> {
     return this.http.get<{ [key: string]: number }>(`${this.apiURL}/contagem-por-tipo`);
+  }
+
+  obterCustoQuitacaoPorProjeto(): Observable<{ projeto: string, custoQuitação: number }[]> {
+    return this.http.get<{ projeto: string, custoQuitação: number }[]>(`${this.apiURL}/custo-quitação-por-projeto`);
+  }
+
+  obterDividasTecnicasDoProjeto(id: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiURL}/dividas-tecnicas/projeto/${id}`);
+  }
+
+  obterEsforcoDoPagamentoPorDivida(id: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiURL}/esforco-do-pagamento-por-divida?id=${id}`);
+  }
+
+  calcularResultadoDoEsforco(dividaTecnica: any): number {
+    const horasDeTrabalho = dividaTecnica.quantidadeDePessoas * dividaTecnica.valorPorHoraDeTrabalho;
+    const resultadoDoEsforco = dividaTecnica.resultadoDoesforcoDoPagammento * horasDeTrabalho;
+    return resultadoDoEsforco;
   }
 
   obterDadosEsforcoProjeto(): Observable<{ projetos: string[], esforcos: number[] }> {

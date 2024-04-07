@@ -25,9 +25,7 @@
                         <input type="text" [(ngModel)]="empresa" name="empresa" class="form-control" id="inputEmpresa">
                     </div>
                     <div class="col-md-4 text-center">
-                        <!-- Adicionamos a classe "text-center" para centralizar o conteúdo -->
                         <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
-                            <!-- Adicionamos o estilo "margin-top" -->
                             <i class="fa fa-search"></i> Consultar
                         </button>
                     </div>
@@ -53,12 +51,7 @@
                                 <td>{{ c.nomeDoProjeto }} </td>
                                 <td>{{ c.empresa }} </td>
                                 <td>
-                                    <button class="btn btn-primary btn-custom-ver" routerLink="/gerente/cadastro-projeto/{{ c.nomeDoProjeto }}">
-                                        <img src="assets/icones/eye.svg" alt="Ícone de Ver" class="icon">
-                                        Ver detalhes 
-                                    </button>
-        
-                                    <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-projeto/{{ c.nomeDoProjeto }}">
+                                    <button class="btn btn-primary btn-custom-editar-buscar" routerLink="/gerente/cadastro-projeto/{{ c.id }}">
                                         <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
                                         Editar 
                                     </button>
