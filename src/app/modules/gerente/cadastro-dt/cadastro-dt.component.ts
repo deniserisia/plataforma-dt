@@ -7,6 +7,7 @@ import { ProjetoService } from 'src/app/service/projeto.service';
 import { statusDoPagamentoDT } from './statusDoPagamentoDT';
 import { statusDaFaseDeGerenciamentoDT } from './statusDaFaseDeGerenciamentoDT';
 import { tipoDeDividaTecnica } from './tipoDeDividaTecnica';
+import { Type } from 'class-transformer';
 
 @Component({
   selector: 'app-cadastro-dt',
@@ -21,20 +22,35 @@ export class CadastroDtComponent implements OnInit {
   statusDoPagamentoValues = Object.values(statusDoPagamentoDT);
   statusDaFaseDeGerenciamento = Object.values(statusDaFaseDeGerenciamentoDT);
   tipoDeDividaTecnicaValues = Object.values(tipoDeDividaTecnica);
-  projetos: Projeto[] = [];
 
 
-  constructor( 
+  projeto: Projeto;
+  projetos: Projeto[]=[];
+  usuario:any;
+  userId:string;
+
+  constructor(
    private service: DividaTecnicaService,
    private serviceProjetos: ProjetoService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
-    this.serviceProjetos.getProjetos().subscribe(
+  ngOnInit(): void
+  {
+    this.userId=localStorage.getItem("idUser")
+    this.serviceProjetos.getProjetos(this.userId).subscribe(
       projetos => this.projetos = projetos,
+
       error => console.error('Erro ao carregar projetos:', error)
+    );
+
+    this.usuario=this.service.obterPerfilUsuario().subscribe(
+      response =>{
+        this.usuario=response;
+        this.dividaTecnica.idUser=this.usuario.id;
+        console.log(JSON.stringify(this.usuario));
+      }
     );
 
     this.activatedRoute.params.subscribe(params => {
@@ -48,12 +64,15 @@ export class CadastroDtComponent implements OnInit {
   voltarParaListagem(): void {
      this.router.navigate(['/gerente/dividas-tecnicas']);
   }
-  
+
 
   onSubmit(): void {
-   
+
+
 
     if (this.id) {
+
+
       this.service.atualizar(this.dividaTecnica).subscribe(
         response => {
           this.success = true;
@@ -64,7 +83,9 @@ export class CadastroDtComponent implements OnInit {
         }
       );
     } else {
+
       this.service.salvar(this.dividaTecnica).subscribe(
+
         response => {
           this.success = true;
           this.errors = [];

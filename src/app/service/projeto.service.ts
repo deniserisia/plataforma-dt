@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { ContagemPorMes } from '../modules/gerente/dashboard/contagemPorMes';
 import { ContagemPorMesNoAno } from '../modules/gerente/cadastro-projeto/contagemPorMesNoAno ';
+import { Usuario } from '../login/usuario';
 
 
 @Injectable({
@@ -16,7 +17,7 @@ import { ContagemPorMesNoAno } from '../modules/gerente/cadastro-projeto/contage
 export class ProjetoService {
 
   apiURL: string = environment.apiURLBase + '/gerente/projeto';
-
+  apiURLperfil: string = environment.apiURLBase + '/api/usuarios';
   constructor( private http: HttpClient ) {}
 
   salvar( projeto: Projeto ) : Observable<Projeto> {
@@ -27,31 +28,36 @@ export class ProjetoService {
     return this.http.put<Projeto>(`${this.apiURL}/${projeto.id}` , projeto);
   }
 
- getProjetos(): Observable<Projeto[]> {
-    const url = `${this.apiURL}/todos`; // Concatena "/todos" à URL base
+ getProjetos(userId: string): Observable<Projeto[]> {
+    const url = `${this.apiURL}/todos/${userId}`; // Concatena "/todos" à URL base
     return this.http.get<Projeto[]>(url);
-  }  
-  
- getProjetoById(id: number) : Observable<Projeto> {
+  }
+
+  getTodosProjetosUser(idUser:string):Observable<Projeto[]>{
+    const url = `${this.apiURL}/todosprojetos/${idUser}`; // Concatena "/todos" à URL base
+    return this.http.get<Projeto[]>(url);
+  }
+
+  getProjetoById(id: number) : Observable<Projeto> {
     return this.http.get<any>(`${this.apiURL}/${id}`);
   }
 
 
-  //getProjetosDoUsuario(userId: string): Observable<Projeto[]> {
-  //  const url = `${this.apiURL}/${userId}`; // Ajuste a URL conforme necessário
-  //  return this.http.get<Projeto[]>(url);
-  //}
-
-  obterNumeroDeProjetos(): Observable<number> {
-    return this.http.get<number>(`${this.apiURL}/count`);
+  getProjetosDoUsuario(userId: string): Observable<Projeto[]> {
+   const url = `${this.apiURL}/${userId}`; // Ajuste a URL conforme necessário
+   return this.http.get<Projeto[]>(url);
   }
 
-  obterContagemProjetosPorMes(): Observable<ContagemPorMes[]> {
-    return this.http.get<ContagemPorMes[]>(`${this.apiURL}/contagem-projetos-por-mes`);
+  obterNumeroDeProjetos(userId:string): Observable<number> {
+    return this.http.get<number>(`${this.apiURL}/count/${userId}`);
   }
 
-  obterContagemProjetosPorMesNoAno(ano: number): Observable<Map<string, number>> {
-    return this.http.get<Map<string, number>>(`${this.apiURL}/contagem-projetos-por-mes-no-ano?ano=${ano}`);
+  obterContagemProjetosPorMes(userId: string): Observable<ContagemPorMes[]> {
+    return this.http.get<ContagemPorMes[]>(`${this.apiURL}/contagem-projetos-por-mes/${userId}`);
+  }
+
+  obterContagemProjetosPorMesNoAno(ano: number,userid: string): Observable<Map<string, number>> {
+    return this.http.get<Map<string, number>>(`${this.apiURL}/contagem-projetos-por-mes-no-ano/${ano}/${userid}`);
   }
 
   deletar(projeto: Projeto) : Observable<any> {
@@ -66,9 +72,14 @@ export class ProjetoService {
     const httpParams = new HttpParams()
       .set("nomeDoProjeto", nomeDoProjeto)
       .set("empresa", empresa);
-  
+
     const url = this.apiURL + "?" + httpParams.toString();
     return this.http.get<any>(url);
   }
-  
+
+  obterPerfilUsuario():Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(`${this.apiURLperfil}/perfil`);
+  }
+
+
 }

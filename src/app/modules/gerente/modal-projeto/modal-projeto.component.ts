@@ -16,16 +16,16 @@ import { ModalComponent } from '../modal/modal.component';
 })
 export class ModalProjetoComponent implements OnInit {
 
-  @Input() projetoSelecionado: Projeto;
+ @Input() projetoSelecionado: Projeto;
 
-  nomeDoProjeto: string;
+ omeDoProjeto: string;
  empresa: string;
  listaDosProjetos!: projetoBusca[];
  //listaDeDT!: dTBusca[];
  message!: string;
  userId: string; // Certifique-se de obter e definir este valor após o login
 
- projetos: Projeto[] = [];
+ projetos: Projeto[];
  dividasTecnicas: DividaTecnica[] = [];
  dividaSelecionada!: DividaTecnica;
  mensagemSucesso!: string;
@@ -43,14 +43,17 @@ export class ModalProjetoComponent implements OnInit {
       this.projetoSelecionado = data.projetoSelecionado;
     }
 
-    
+
     ngOnInit(): void {
+     this.userId=localStorage.getItem("idUser")
      this.service
-       .getProjetos()
+       .getProjetos(this.userId)
        .subscribe( resposta => this.projetos = resposta )
        this.serviceD
-       .getDividaTecnica()
+       .getDividaTecnica(this.userId)
        .subscribe( resposta => this.dividasTecnicas = resposta);
+
+
    }
 
   confirmarDelecao(): void {
@@ -58,15 +61,15 @@ export class ModalProjetoComponent implements OnInit {
       console.error("Projeto selecionado não está definido.");
       return;
     }
-  
+
     this.service
       .deletar(this.projetoSelecionado)
-      .subscribe( 
+      .subscribe(
         response => {
           this.mensagemSucesso = 'Projeto deletado com sucesso!'
           this.ngOnInit();
         },
-        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'  
+        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'
       )
   }
 
@@ -75,15 +78,15 @@ export class ModalProjetoComponent implements OnInit {
       console.error("Projeto selecionado não está definido.");
       return;
     }
-  
+
     this.service
       .deletar(this.projetoSelecionado)
-      .subscribe( 
+      .subscribe(
         response => {
           this.mensagemSucesso = 'Projeto deletado com sucesso!'
           this.ngOnInit();
         },
-        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'  
+        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'
       )
   }
   preparaDelecao(projeto: Projeto) {

@@ -55,26 +55,26 @@
                   <input type="text" class="form-control" [(ngModel)]="dividaTecnica.descricaoDaDT" name="Descrição" placeholder="Ex: DT de requisitos não funcinais" />
                 </div>
               </div>
-    
+
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Qual a possível causa que tenha levado ao surgimento dessa DT? </label>
                   <input type="text" class="form-control" [(ngModel)]="dividaTecnica.causaDaDT" name="Causa da DT" placeholder="Ex: Pouco tempo, poucas pessoas..." />
                 </div>
               </div>
-    
+
               <div class="col-md-6">
                 <div class="form-group">
                     <label>Projeto:</label>
-                    <select class="form-control" [(ngModel)]="dividaTecnica.projeto" name="projeto">
-                        <option *ngFor="let projeto of projetos" [value]="projeto">{{ projeto.nomeDoProjeto }}</option>
+                    <select class="form-control" type="number" [(ngModel)]="dividaTecnica.id_projeto" name="projeto">
+                        <option *ngFor="let projeto of projetos" [value]="projeto.id">{{ projeto.nomeDoProjeto}}</option>
                     </select>
                 </div>
-            </div>  
-              
-            
+              </div>
 
-    
+
+
+
               <div class="col-md-6">
                 <div class="form-group">
                     <label>Status do Pagamento: </label>
@@ -82,9 +82,9 @@
                         <option *ngFor="let status of statusDoPagamentoValues" [value]="status">{{ status }}</option>
                     </select>
                 </div>
-    
+
             </div>
-      
+
             <div class="col-md-6">
               <div class="form-group">
                   <label>Status da Fase de Gerenciamento </label>
@@ -93,7 +93,7 @@
                   </select>
               </div>
             </div>
-    
+
             <div class="col-md-6">
               <div class="form-group">
                 <label>Quantidade de pessoas alocadas para o pagamento dessa DT? </label>

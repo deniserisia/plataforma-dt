@@ -21,16 +21,18 @@ export class PageDtComponent implements OnInit {
   mensagemErro: string;
   page = 1;
   pageSize = 5;
+  userId:string;
 
   constructor(
     private serviceD: DividaTecnicaService,
     private router: Router,
     public dialog: MatDialog
   ) {}
- 
+
   ngOnInit(): void {
+    this.userId=localStorage.getItem("idUser")
       this.serviceD
-      .getDividaTecnica()
+      .getDividaTecnica(this.userId)
       .subscribe( resposta => this.dividasTecnicas = resposta);
   }
 
@@ -41,12 +43,12 @@ export class PageDtComponent implements OnInit {
   deletarDT(){
    this.serviceD
      .deletar(this.dividaSelecionada)
-     .subscribe( 
+     .subscribe(
        response => {
          this.mensagemSucesso = 'DT deletado com sucesso!'
          this.ngOnInit();
        },
-       erro => this.mensagemErro = 'Ocorreu um erro ao deletar o DT.'  
+       erro => this.mensagemErro = 'Ocorreu um erro ao deletar o DT.'
      )
   }
 

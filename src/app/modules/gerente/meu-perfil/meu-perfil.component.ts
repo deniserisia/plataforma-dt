@@ -17,6 +17,7 @@ export class MeuPerfilComponent implements OnInit {
     this.authService.obterUsuarioAutenticadoDoBackend().subscribe(
       (usuario: Usuario) => {
         this.usuario = usuario;
+      
       },
       (error) => {
         console.error('Erro ao obter dados do usuário:', error);
