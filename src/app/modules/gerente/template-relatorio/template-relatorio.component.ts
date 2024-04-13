@@ -15,24 +15,25 @@ export class TemplateRelatorioComponent implements OnInit {
 
   projetos: Projeto[] = [];
   dividasTecnicas: DividaTecnica[] = [];
-
+  userId:string;
   constructor(
     private projetoService: ProjetoService,
     private dividaTecnicaService: DividaTecnicaService
   ) { }
 
   ngOnInit(): void {
+    this.userId=localStorage.getItem("idUser")
     this.obterProjetos();
     this.obterDividasTecnicas();
   }
 
   obterProjetos(): void {
-    this.projetoService.getProjetos()
+    this.projetoService.getProjetos(this.userId)
       .subscribe(projetos => this.projetos = projetos);
   }
 
   obterDividasTecnicas(): void {
-    this.dividaTecnicaService.getDividaTecnica()
+    this.dividaTecnicaService.getDividaTecnica(this.userId)
       .subscribe(dividasTecnicas => this.dividasTecnicas = dividasTecnicas);
   }
 

@@ -46,8 +46,9 @@ export class RelatorioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.service.getProjetos().subscribe(resposta => this.projetos = resposta);
-    this.serviceD.getDividaTecnica().subscribe(resposta => this.dividasTecnicas = resposta);
+    this.userId=localStorage.getItem("idUser")
+    this.service.getProjetos(this.userId).subscribe(resposta => this.projetos = resposta);
+    this.serviceD.getDividaTecnica(this.userId).subscribe(resposta => this.dividasTecnicas = resposta);
   }
 
 }

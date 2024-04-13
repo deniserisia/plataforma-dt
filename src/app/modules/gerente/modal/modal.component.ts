@@ -15,16 +15,16 @@ import { projetoBusca } from '../cadastro-projeto/projetoBusca';
 })
 export class ModalComponent implements OnInit {
 
-  @Input() dividaTecnicaSelecionada: DividaTecnica;
+@Input() dividaTecnicaSelecionada: DividaTecnica;
 
-  nomeDoProjeto: string;
+ nomeDoProjeto: string;
  empresa: string;
  listaDosProjetos!: projetoBusca[];
  //listaDeDT!: dTBusca[];
  message!: string;
  userId: string; // Certifique-se de obter e definir este valor após o login
 
- projetos: Projeto[] = [];
+ projetos: Projeto[];
  dividasTecnicas: DividaTecnica[] = [];
  dividaSelecionada!: DividaTecnica;
  projetoSelecionado!: Projeto;
@@ -43,25 +43,26 @@ export class ModalComponent implements OnInit {
       this.dividaTecnicaSelecionada = data.dividaTecnicaSelecionada;
     }
 
-    
+
     ngOnInit(): void {
+    this.userId=localStorage.getItem("idUser")
      this.service
-       .getProjetos()
+       .getProjetos(this.userId)
        .subscribe( resposta => this.projetos = resposta )
        this.serviceD
-       .getDividaTecnica()
+       .getDividaTecnica(this.userId)
        .subscribe( resposta => this.dividasTecnicas = resposta);
    }
 
   confirmarDelecao(): void {
     this.serviceD
     .deletar(this.dividaSelecionada)
-    .subscribe( 
+    .subscribe(
       response => {
         this.mensagemSucesso = 'DT deletado com sucesso!'
         this.ngOnInit();
       },
-      erro => this.mensagemErro = 'Ocorreu um erro ao deletar o DT.'  
+      erro => this.mensagemErro = 'Ocorreu um erro ao deletar o DT.'
     )
   }
 
@@ -81,12 +82,12 @@ export class ModalComponent implements OnInit {
  deletarProjeto(){
   this.service
     .deletar(this.projetoSelecionado)
-    .subscribe( 
+    .subscribe(
       response => {
         this.mensagemSucesso = 'Projeto deletado com sucesso!'
         this.ngOnInit();
       },
-      erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'  
+      erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'
     )
 }
 
@@ -94,12 +95,12 @@ export class ModalComponent implements OnInit {
  deletarDT(){
    this.serviceD
      .deletar(this.dividaSelecionada)
-     .subscribe( 
+     .subscribe(
        response => {
          this.mensagemSucesso = 'DT deletado com sucesso!'
          this.ngOnInit();
        },
-       erro => this.mensagemErro = 'Ocorreu um erro ao deletar o DT.'  
+       erro => this.mensagemErro = 'Ocorreu um erro ao deletar o DT.'
      )
  }
 

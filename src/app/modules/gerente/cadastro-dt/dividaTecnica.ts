@@ -2,12 +2,12 @@ import { Projeto } from "../cadastro-projeto/projeto";
 import { statusDaFaseDeGerenciamentoDT } from './statusDaFaseDeGerenciamentoDT';
 import { statusDoPagamentoDT } from './statusDoPagamentoDT';
 import { tipoDeDividaTecnica } from "./tipoDeDividaTecnica";
-
 export class DividaTecnica {
     id: string;
     nomeDaDividaTecnica: string;
     descricaoDaDT: string;
     causaDaDT: string;
+    idUser:number;
     esforcoDoPagammento: number;
     quantidadeDePessoas: number;
     valorPorHoraDeTrabalho: number;
@@ -15,6 +15,8 @@ export class DividaTecnica {
     statusDaFaseDeGerenciamentoDT: statusDaFaseDeGerenciamentoDT;
     statusDoPagamentoDT: statusDoPagamentoDT;
     diaDoCadastro: string;
-    projeto: Projeto; // Relação muitos para um com Projeto
+    id_projeto:number;
+    projeto:string;
+
+
   }
-  

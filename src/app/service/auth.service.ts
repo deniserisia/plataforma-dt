@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 
-import { JwtHelperService } from '@auth0/angular-jwt'  
+import { JwtHelperService } from '@auth0/angular-jwt'
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../login/usuario';
 
@@ -37,7 +37,7 @@ export class AuthService {
 
 
   obterUsuarioAutenticadoDoBackend(): Observable<Usuario> {
-  return this.http.get<Usuario>(`${this.apiURL}/perfil`);
+     return this.http.get<Usuario>(`${this.apiURL}/perfil`);
   }
 
   getUsuarioAutenticado(){
@@ -48,6 +48,8 @@ export class AuthService {
     }
     return null;
   }
+
+
 
   getUserIdFromToken(): string | null {
     const token = localStorage.getItem('access_token');
@@ -62,7 +64,7 @@ export class AuthService {
     const token = this.obterToken();
     if (token) {
       const userId = this.getUserIdFromToken();
-      localStorage.setItem('userId', userId);
+
     }
   }
 
@@ -70,6 +72,7 @@ export class AuthService {
     const token = this.obterToken();
     if(token){
       const expired = this.jwtHelper.isTokenExpired(token)
+
       return !expired;
     }
     return false;
@@ -89,7 +92,7 @@ export class AuthService {
       'Authorization': 'Basic ' + btoa(`${this.clientID}:${this.clientSecret}`),
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-    
+
     return this.http.post( this.tokenURL, params.toString(), { headers });
   }
 }

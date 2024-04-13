@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild('resultadoModal') resultadoModal: any; // Referência ao seu modal
 
-  nomeDoProjeto: string; 
+  nomeDoProjeto: string;
   esforcoDoPagamento: number;
   numeroDeProjetos: number = 0;
   numeroDeDT: number = 0;
@@ -35,12 +35,14 @@ export class DashboardComponent implements OnInit {
   @ViewChild('pieChartTwo', {static: true}) pieChartTwo!: ElementRef;
   @ViewChild('lineChart') private lineChart: ElementRef;
   @ViewChild('lineChartTwo', { static: true }) lineChartTwo: ElementRef;
-  
+
 
   chartOne: any;
   chart: any;
   chartTwo: any;
   pieChartRef: any;
+  usuario:any;
+  userId:string;
 
    dividasTecnicasDoProjeto: any[] = [];
    resultadoDoEsforco: number | undefined;
@@ -48,25 +50,29 @@ export class DashboardComponent implements OnInit {
   constructor(
     private projetoService: ProjetoService,
     private dividaTecnicaService: DividaTecnicaService
-    ) {}
+    ) {
+
+
+    }
 
   ngOnInit(): void {
+    this.userId=localStorage.getItem("idUser");
     this.obterContagemDividasTecnicasPorMesNoAno();
     this.obterContagemProjetosPorMesNoAno();
     this.carregarProjetos();
 
 
-    this.projetoService.getProjetos().subscribe(
-      (projetos: any[]) => {
-        this.projetos = projetos; // Preencha o array com os projetos obtidos
-      },
-      (error) => {
-        console.error('Erro ao obter a lista de projetos:', error);
-      }
-    );
+    // this.projetoService.getProjetos(this.usuario).subscribe(
+    //   (projetos: any[]) => {
+    //     this.projetos = projetos; // Preencha o array com os projetos obtidos
+    //   },
+    //   (error) => {
+    //     console.error('Erro ao obter a lista de projetos:', error);
+    //   }
+    // );
 
 
-    this.dividaTecnicaService.obterDadosEsforcoProjeto().subscribe(
+    this.dividaTecnicaService.obterDadosEsforcoProjeto(this.userId).subscribe(
       (dados: any) => {
         const projetos = dados.projetos;
         const esforcos = dados.esforcos;
@@ -78,10 +84,10 @@ export class DashboardComponent implements OnInit {
         console.error('Erro ao obter os dados dos esforços versus os projetos:', error);
       }
     );
-    
+
 
     // Chame seu serviço para obter o número de projetos do usuário
-    this.projetoService.obterNumeroDeProjetos().subscribe(
+    this.projetoService.obterNumeroDeProjetos(this.userId).subscribe(
       (numero: number) => {
         this.numeroDeProjetos = numero;
       },
@@ -100,7 +106,7 @@ export class DashboardComponent implements OnInit {
     );
 
     // Chame seu serviço para obter o número de DT do usuário
-    this.dividaTecnicaService.obterNumeroDeDT().subscribe(
+    this.dividaTecnicaService.obterNumeroDeDT(this.userId).subscribe(
       (numero: number) => {
         this.numeroDeDT = numero;
       },
@@ -109,8 +115,8 @@ export class DashboardComponent implements OnInit {
       }
     );
 
-    
-    this.projetoService.obterContagemProjetosPorMes().subscribe(
+
+    this.projetoService.obterContagemProjetosPorMes(this.userId).subscribe(
       (contagemPorMes) => {
         // Adaptar os dados recebidos para o formato necessário para o gráfico
         const labels = contagemPorMes.map(item => item.mes);
@@ -125,7 +131,7 @@ export class DashboardComponent implements OnInit {
     );
 
     // servico de dt por tipo
-    this.dividaTecnicaService.obterContagemDividasPorTipo().subscribe(
+    this.dividaTecnicaService.obterContagemDividasPorTipo(this.userId).subscribe(
       (contagemPorTipo) => {
         const labels = Object.keys(contagemPorTipo);
         const data = Object.values(contagemPorTipo);
@@ -139,11 +145,11 @@ export class DashboardComponent implements OnInit {
     );
 
       // servico de status da DT
-      this.dividaTecnicaService.obterStatusPagamento().subscribe(
+      this.dividaTecnicaService.obterStatusPagamento(this.userId).subscribe(
         (statusDaDT) => {
           const labels = Object.keys(statusDaDT);
           const data = Object.values(statusDaDT);
-  
+
           // Chamar a função para criar o gráfico de pizza com os dados atualizados
           this.createPieChartTwo(labels, data);
         },
@@ -156,13 +162,13 @@ export class DashboardComponent implements OnInit {
 
 
   carregarProjetos() {
-    this.projetoService.getProjetos().subscribe(
-      (projetos: any[]) => {
+
+  this.projetoService.getProjetos(this.userId).subscribe( (projetos: any[]) => {
         this.projetos = projetos;
       },
       (error) => {
         console.error('Erro ao carregar projetos:', error);
-      }
+     }
     );
   }
 
@@ -191,7 +197,6 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  
 
   // Método para abrir o modal
   abrirModal() {
@@ -226,18 +231,19 @@ export class DashboardComponent implements OnInit {
               beginAtZero: true
             }
           }]
-        }        
+        }
       }
     });
   }
-  
-  
-  
+
+
+
 
 
   obterContagemProjetosPorMesNoAno() {
     const ano = new Date().getFullYear();
-    this.projetoService.obterContagemProjetosPorMesNoAno(ano).subscribe(
+    let usrid=localStorage.getItem("idUser")
+    this.projetoService.obterContagemProjetosPorMesNoAno(ano,usrid).subscribe(
       (contagemPorMesNoAno: Map<string, number>) => {
         const meses = Object.keys(contagemPorMesNoAno);
         const quantidades = Object.values(contagemPorMesNoAno);
@@ -248,7 +254,7 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  
+
 
   createBarChart(labels: string[], data: number[]) {
     const ctx = this.barChart.nativeElement.getContext('2d');
@@ -274,11 +280,12 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-  
+
 
   obterContagemDividasTecnicasPorMesNoAno() {
     const ano = new Date().getFullYear();
-    this.dividaTecnicaService.obterContagemDividasTecnicasPorMesNoAno(ano).subscribe(
+    let iduser=localStorage.getItem("idUser");
+    this.dividaTecnicaService.obterContagemDividasTecnicasPorMesNoAno(ano,iduser).subscribe(
       (contagemPorMesNoAno: Map<string, number>) => {
         const meses = Object.keys(contagemPorMesNoAno);
         const quantidades = Object.values(contagemPorMesNoAno);
@@ -377,5 +384,5 @@ createPieChartTwo(labels: string[], data: number[]) {
 }
 
 
-  
+
 }
