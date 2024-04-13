@@ -45,6 +45,7 @@ export class DividaTecnicaService {
     return this.http.get<ContagemPorMesDTO[]>(`${this.apiURL}/contagem-por-mes/${userId}`);
   }
 
+
   obterContagemDividasTecnicasPorMesNoAno(ano: number,idUser:string): Observable<Map<string, number>> {
     return this.http.get<Map<string, number>>(`${this.apiURL}/contagem-dividas-tecnicas-por-mes-no-ano/${ano}/${idUser}`);
   }

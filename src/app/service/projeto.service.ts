@@ -52,6 +52,7 @@ export class ProjetoService {
     return this.http.get<number>(`${this.apiURL}/count/${userId}`);
   }
 
+
   obterContagemProjetosPorMes(userId: string): Observable<ContagemPorMes[]> {
     return this.http.get<ContagemPorMes[]>(`${this.apiURL}/contagem-projetos-por-mes/${userId}`);
   }
