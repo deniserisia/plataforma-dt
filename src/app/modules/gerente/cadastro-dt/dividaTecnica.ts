@@ -16,6 +16,7 @@ export class DividaTecnica {
     statusDoPagamentoDT: statusDoPagamentoDT;
     diaDoCadastro: string;
     id_projeto:number;
- 
+    projeto:string;
+
 
   }
