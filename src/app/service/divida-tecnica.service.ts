@@ -42,7 +42,7 @@ export class DividaTecnicaService {
   }
 
   obterStatusFaseGerenciamento(userId: string): Observable<{ [key: string]: number }> {
-    return this.http.get<{ [key: string]: number }>(`/gerente/divida-tecnica/status-gerenciamento/${userId}`);
+    return this.http.get<{ [key: string]: number }>(`${this.apiURL}/status-gerenciamento/${userId}`);
   }
 
   obterStatusPagamento(userId:string): Observable<{ [key: string]: number }> {
