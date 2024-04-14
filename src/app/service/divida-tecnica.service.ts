@@ -41,19 +41,21 @@ export class DividaTecnicaService {
     return this.http.get<number>(`${this.apiURL}/count/${userId}`);
   }
 
-  obterContagemProjetosPorMes(userId: string): Observable<ContagemPorMesDTO[]> {
-    return this.http.get<ContagemPorMesDTO[]>(`${this.apiURL}/contagem-por-mes/${userId}`);
-  }
-
-
-  obterContagemDividasTecnicasPorMesNoAno(ano: number,idUser:string): Observable<Map<string, number>> {
-    return this.http.get<Map<string, number>>(`${this.apiURL}/contagem-dividas-tecnicas-por-mes-no-ano/${ano}/${idUser}`);
+  obterStatusFaseGerenciamento(userId: string): Observable<{ [key: string]: number }> {
+    return this.http.get<{ [key: string]: number }>(`/gerente/divida-tecnica/status-gerenciamento/${userId}`);
   }
 
   obterStatusPagamento(userId:string): Observable<{ [key: string]: number }> {
     return this.http.get<{ [key: string]: number }>(`${this.apiURL}/status-pagamento/${userId}`);
   }
 
+  obterContagemProjetosPorMes(userId: string): Observable<ContagemPorMesDTO[]> {
+    return this.http.get<ContagemPorMesDTO[]>(`${this.apiURL}/contagem-por-mes/${userId}`);
+  }
+
+  obterContagemDividasTecnicasPorMesNoAno(ano: number,idUser:string): Observable<Map<string, number>> {
+    return this.http.get<Map<string, number>>(`${this.apiURL}/contagem-dividas-tecnicas-por-mes-no-ano/${ano}/${idUser}`);
+  }
 
   obterContagemDividasPorTipo(userId: string): Observable<{ [key: string]: number }> {
     return this.http.get<{ [key: string]: number }>(`${this.apiURL}/contagem-por-tipo/${userId}`);
