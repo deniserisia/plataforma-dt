@@ -35,12 +35,10 @@ export class CadastroDtComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void
-  {
+  ngOnInit(): void{
     this.userId=localStorage.getItem("idUser")
     this.serviceProjetos.getProjetos(this.userId).subscribe(
       projetos => this.projetos = projetos,
-
       error => console.error('Erro ao carregar projetos:', error)
     );
 
