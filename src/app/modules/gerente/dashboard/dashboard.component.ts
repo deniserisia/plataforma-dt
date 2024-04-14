@@ -33,19 +33,22 @@ export class DashboardComponent implements OnInit {
   @ViewChild('barChartTwo', {static: true}) barChartTwo!: ElementRef;
   @ViewChild('pieChart', {static: true}) pieChart!: ElementRef;
   @ViewChild('pieChartTwo', {static: true}) pieChartTwo!: ElementRef;
+  @ViewChild('pieChartTres', {static: true}) pieChartTres!: ElementRef;
   @ViewChild('lineChart') private lineChart: ElementRef;
   @ViewChild('lineChartTwo', { static: true }) lineChartTwo: ElementRef;
-
+  @ViewChild('pieChartStatus') pieChartStatus!: ElementRef;
+  pieChartStatusRef: any;
 
   chartOne: any;
   chart: any;
   chartTwo: any;
+  chartTres: any;
   pieChartRef: any;
   usuario:any;
   userId:string;
 
-   dividasTecnicasDoProjeto: any[] = [];
-   resultadoDoEsforco: number | undefined;
+  dividasTecnicasDoProjeto: any[] = [];
+  resultadoDoEsforco: number | undefined;
 
   constructor(
     private projetoService: ProjetoService,
@@ -60,16 +63,22 @@ export class DashboardComponent implements OnInit {
     this.obterContagemDividasTecnicasPorMesNoAno();
     this.obterContagemProjetosPorMesNoAno();
     this.carregarProjetos();
+    
 
 
-    // this.projetoService.getProjetos(this.usuario).subscribe(
-    //   (projetos: any[]) => {
-    //     this.projetos = projetos; // Preencha o array com os projetos obtidos
-    //   },
-    //   (error) => {
-    //     console.error('Erro ao obter a lista de projetos:', error);
-    //   }
-    // );
+      this.projetoService.obterStatusDoProjeto(this.userId).subscribe(
+          (statusProjetos: any) => {
+            const labels = Object.keys(statusProjetos);
+            const data = Object.values(statusProjetos).map((value: any) => Number(value)); // Convertendo para number[]
+    
+  
+            this.createPieChartStatus(labels, data);
+          },
+        (error) => {
+          console.error('Erro ao obter o status dos projetos:', error);
+        }
+      );
+
 
 
     this.dividaTecnicaService.obterDadosEsforcoProjeto(this.userId).subscribe(
@@ -144,6 +153,18 @@ export class DashboardComponent implements OnInit {
       }
     );
 
+    
+      this.dividaTecnicaService.obterStatusFaseGerenciamento(this.userId).subscribe(data => {
+        const labels = Object.keys(data);
+        const values = Object.values(data);
+
+        this.criarGraficoStatusFaseGerenciamento(labels, values); 
+      },
+      (erro) => {
+        console.error('Erro ao obter a contagem de dívidas por tipo:', erro);
+      });
+    
+
       // servico de status da DT
       this.dividaTecnicaService.obterStatusPagamento(this.userId).subscribe(
         (statusDaDT) => {
@@ -159,10 +180,71 @@ export class DashboardComponent implements OnInit {
       );
   }
 
+  createPieChartStatus(labels: string[], data: number[]) {
+    const ctx = this.pieChartStatus.nativeElement.getContext('2d');
+    this.pieChartStatusRef = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: data,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+          ],
+        }],
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Status dos Projetos',
+        },
+      },
+    });
+  }
+
+
+  criarGraficoStatusFaseGerenciamento(labels: string[], values: number[]) {
+    const ctx = this.pieChartTres.nativeElement.getContext('2d');
+    this.chartTres = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: values,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  }
+  
+
 
 
   carregarProjetos() {
-
   this.projetoService.getProjetos(this.userId).subscribe( (projetos: any[]) => {
         this.projetos = projetos;
       },

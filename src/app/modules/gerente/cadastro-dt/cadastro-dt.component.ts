@@ -7,7 +7,6 @@ import { ProjetoService } from 'src/app/service/projeto.service';
 import { statusDoPagamentoDT } from './statusDoPagamentoDT';
 import { statusDaFaseDeGerenciamentoDT } from './statusDaFaseDeGerenciamentoDT';
 import { tipoDeDividaTecnica } from './tipoDeDividaTecnica';
-import { Type } from 'class-transformer';
 
 @Component({
   selector: 'app-cadastro-dt',

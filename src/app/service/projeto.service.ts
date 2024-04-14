@@ -82,5 +82,9 @@ export class ProjetoService {
     return this.http.get<Usuario[]>(`${this.apiURLperfil}/perfil`);
   }
 
+   // Método para obter o status do projeto
+   obterStatusDoProjeto(userId: string): Observable<{ [key: string]: number }> {
+    return this.http.get<{ [key: string]: number }>(`${this.apiURL}/status/${userId}`);
+  }
 
 }
