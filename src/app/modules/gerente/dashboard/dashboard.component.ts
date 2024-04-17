@@ -79,23 +79,7 @@ export class DashboardComponent implements OnInit {
         (error) => {
           console.error('Erro ao obter o status dos projetos:', error);
         }
-      );
-
-
-
-    this.dividaTecnicaService.obterDadosEsforcoProjeto(this.userId).subscribe(
-      (dados: any) => {
-        const projetos = dados.projetos;
-        const esforcos = dados.esforcos;
-
-        // Chame a função para criar o gráfico de linha com os dados obtidos
-        this.createLineChartTwo(projetos, esforcos);
-      },
-      (error) => {
-        console.error('Erro ao obter os dados dos esforços versus os projetos:', error);
-      }
     );
-
 
     // Chame seu serviço para obter o número de projetos do usuário
     this.projetoService.obterNumeroDeProjetos(this.userId).subscribe(
@@ -182,6 +166,7 @@ export class DashboardComponent implements OnInit {
       );
   }
 
+  // GRAFICO DO STATUS DOS PROJETOS
   createPieChartStatus(labels: string[], data: number[]) {
     const ctx = this.pieChartStatus.nativeElement.getContext('2d');
     this.pieChartStatusRef = new Chart(ctx, {
@@ -208,38 +193,32 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-
-  criarGraficoStatusFaseGerenciamento(labels: string[], values: number[]) {
+  // GRAFICO DA FASE DE GERECIAMENTO DA DT
+  criarGraficoStatusFaseGerenciamento(labels: string[], data: number[]) {
     const ctx = this.pieChartTres.nativeElement.getContext('2d');
     this.chartTres = new Chart(ctx, {
       type: 'pie',
       data: {
         labels: labels,
-        datasets: [{
-          data: values,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
+        datasets: [
+          {
+            data: data,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+            ],
+          },
+        ],
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
+        title: {
+          display: true,
+          text: 'Fases dos Gereciamento dos Pagamentos',
+        },
+      },
     });
   }
 
@@ -296,38 +275,7 @@ export class DashboardComponent implements OnInit {
     this.resultadoModal.nativeElement.showModal();
   }
 
-  createLineChartTwo(projetos: string[], esforcos: number[]) {
-    const ctx = this.lineChartTwo.nativeElement.getContext('2d');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: projetos,
-        datasets: [{
-          label: 'Esforço por Projeto',
-          data: esforcos,
-          borderColor: 'blue',
-          backgroundColor: 'rgba(0, 0, 255, 0.1)',
-          fill: true
-        }]
-      },
-      options: {
-        scales: {
-          xAxes: [{
-            ticks: {
-              autoSkip: false, // Impede que os rótulos sejam cortados
-              maxRotation: 90, // Rotaciona os rótulos para melhorar a legibilidade
-              minRotation: 90 // Rotaciona os rótulos para melhorar a legibilidade
-            }
-          }],
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
-  }
+
 
 
 
@@ -348,7 +296,7 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-
+  // GRAFICO DE PROJETOS POR MES - LINHA
   createBarChart(labels: string[], data: number[]) {
     const ctx = this.barChart.nativeElement.getContext('2d');
     this.chart = new Chart(ctx, {
@@ -390,6 +338,7 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  // GRAFICO DE DT POR MES - LINHA
   createLineChart(labels: string[], data: number[]) {
     const ctx = this.lineChart.nativeElement.getContext('2d');
     this.chartOne = new Chart(ctx, {
@@ -418,10 +367,9 @@ export class DashboardComponent implements OnInit {
   }
 
 
-// grafico pizza
+// GRAFICO - TOTAL DE DT
 createPieChart(labels: string[], data: number[]) {
   const ctx = this.pieChart.nativeElement.getContext('2d');
-
   this.chart = new Chart(ctx, {
     type: 'pie',
     data: {
@@ -448,6 +396,7 @@ createPieChart(labels: string[], data: number[]) {
   });
 }
 
+// STATUS DO PAGAMENTO
 createPieChartTwo(labels: string[], data: number[]) {
   const ctx = this.pieChartTwo.nativeElement.getContext('2d');
   this.chartTwo = new Chart(ctx, {
@@ -470,7 +419,7 @@ createPieChartTwo(labels: string[], data: number[]) {
     options: {
       title: {
         display: true,
-        text: 'Panorama do Status do Pagamento',
+        text: 'Status do Pagamento da Dívida Técnica',
       },
     },
   });
