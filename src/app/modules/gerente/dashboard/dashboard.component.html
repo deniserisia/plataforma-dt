@@ -48,9 +48,11 @@
     <div class="resultado-esforco card-azul" *ngIf="resultadoDoEsforco !== undefined">
       <div class="card-content">
           <p>A previsão do esforço de pagamento é:</p>
-          <p> {{ resultadoDoEsforco | currency:'BRL':'symbol':'1.2-2' }}</p>
+          <p>{{ resultadoDoEsforco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}</p>
       </div>
-    </div>
+  </div>
+  
+  
 
       <!-- Cartões lado a lado na horizontal -->
       <div class="row">

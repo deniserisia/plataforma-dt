@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild('resultadoModal') resultadoModal: any; // Referência ao seu modal
 
   nomeDoProjeto: string;
-  esforcoDoPagamento: number;
+  esforcoDoPagamento: number = 0;
   numeroDeProjetos: number = 0;
   numeroDeDT: number = 0;
   numeroRelatorios: number = 0;
@@ -66,14 +66,10 @@ export class DashboardComponent implements OnInit {
     this.obterContagemProjetosPorMesNoAno();
     this.carregarProjetos();
 
-
-
       this.projetoService.obterStatusDoProjeto(this.userId).subscribe(
           (statusProjetos: any) => {
             const labels = Object.keys(statusProjetos);
             const data = Object.values(statusProjetos).map((value: any) => Number(value)); // Convertendo para number[]
-
-
             this.createPieChartStatus(labels, data);
           },
         (error) => {
