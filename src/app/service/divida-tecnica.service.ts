@@ -66,7 +66,7 @@ export class DividaTecnicaService {
   }
 
   obterDividasTecnicasDoProjeto(id: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiURL}/dividas-tecnicas/projeto/${id}`);
+    return this.http.get<any[]>(`${this.apiURL}/dividas-tecnicas-do-projeto/${id}`);
   }
 
   obterEsforcoDoPagamentoPorDivida(id: string): Observable<any[]> {

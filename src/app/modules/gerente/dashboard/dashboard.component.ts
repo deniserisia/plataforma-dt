@@ -63,15 +63,15 @@ export class DashboardComponent implements OnInit {
     this.obterContagemDividasTecnicasPorMesNoAno();
     this.obterContagemProjetosPorMesNoAno();
     this.carregarProjetos();
-    
+
 
 
       this.projetoService.obterStatusDoProjeto(this.userId).subscribe(
           (statusProjetos: any) => {
             const labels = Object.keys(statusProjetos);
             const data = Object.values(statusProjetos).map((value: any) => Number(value)); // Convertendo para number[]
-    
-  
+
+
             this.createPieChartStatus(labels, data);
           },
         (error) => {
@@ -153,17 +153,17 @@ export class DashboardComponent implements OnInit {
       }
     );
 
-    
+
       this.dividaTecnicaService.obterStatusFaseGerenciamento(this.userId).subscribe(data => {
         const labels = Object.keys(data);
         const values = Object.values(data);
 
-        this.criarGraficoStatusFaseGerenciamento(labels, values); 
+        this.criarGraficoStatusFaseGerenciamento(labels, values);
       },
       (erro) => {
         console.error('Erro ao obter a contagem de dívidas por tipo:', erro);
       });
-    
+
 
       // servico de status da DT
       this.dividaTecnicaService.obterStatusPagamento(this.userId).subscribe(
@@ -240,7 +240,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-  
+
 
 
 
@@ -257,6 +257,7 @@ export class DashboardComponent implements OnInit {
   onProjetoChange() {
     if (this.projetoSelecionado) {
       const id = this.projetoSelecionado.id;
+      console.log("",JSON.s
       this.dividaTecnicaService.obterDividasTecnicasDoProjeto(id).subscribe(
         (dividasTecnicas: any[]) => {
           this.dividasTecnicasDoProjeto = dividasTecnicas;
