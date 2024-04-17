@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
   numeroDePessoas: number = 0;
 
   projetos: any[] = []; // Array para armazenar os projetos
-  dividasTecnicas: any[] = []; // Array para armazenar as dívidas técnicas associadas ao projeto selecionado
+  dividasTecnicas: any[]; // Array para armazenar as dívidas técnicas associadas ao projeto selecionado
   projetoSelecionado: any = null; // Projeto selecionado
   dividaTecnicaSelecionada:any; // Dívida técnica selecionada
 
@@ -258,11 +258,16 @@ export class DashboardComponent implements OnInit {
         (dividatecnica: any)=> {
 
             this.dividaTecnica=dividatecnica;
+            this.resultadoDoEsforco = this.dividaTecnicaService.calcularResultadoDoEsforco(this.dividaTecnica);
+
+        },
+         (error) => {
+          console.error('Erro ao obter dívidas técnicas do projeto:', error);
         }
 
       )
 
-      this.resultadoDoEsforco = this.dividaTecnicaService.calcularResultadoDoEsforco(this.dividaTecnica);
+     // this.resultadoDoEsforco = this.dividaTecnicaService.calcularResultadoDoEsforco(this.dividaTecnica);
     } else {
       this.resultadoDoEsforco = undefined;
     }
