@@ -74,7 +74,7 @@ export class ProjetoService {
       .set("nomeDoProjeto", nomeDoProjeto)
       .set("empresa", empresa);
 
-    const url = this.apiURL + "?" + httpParams.toString();
+    const url = this.apiURL + "/pesquisar?=" + httpParams.toString();
     return this.http.get<any>(url);
   }
 
