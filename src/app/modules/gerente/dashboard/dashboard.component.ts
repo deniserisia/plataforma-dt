@@ -259,7 +259,6 @@ export class DashboardComponent implements OnInit {
 
             this.dividaTecnica=dividatecnica;
             this.resultadoDoEsforco = this.dividaTecnicaService.calcularResultadoDoEsforco(this.dividaTecnica);
-
         },
          (error) => {
           console.error('Erro ao obter dívidas técnicas do projeto:', error);
