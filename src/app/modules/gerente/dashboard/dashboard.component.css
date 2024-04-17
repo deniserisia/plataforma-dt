@@ -27,6 +27,21 @@ h1 {
     padding: 20px;
   }
 
+  .card-azul {
+    background-color: #CDDAEF;
+    color: #fff; 
+    border-radius: 5px; 
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    max-width: 220px;
+}
+
+.card-azul .card-content {
+    text-align: center; /* Centralizar o texto */
+}
+
+
   .card {
     flex: 1;
     max-width: 250px;
@@ -119,6 +134,19 @@ h1 {
   border-radius: 5px; /* Adiciona cantos arredondados */
   margin-top: 10px;
 }  
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px;
+}
+
+.icon-dt {
+  width: 30px; 
+  height: 30px; 
+  margin-right: 8px;
+}
 
 
 

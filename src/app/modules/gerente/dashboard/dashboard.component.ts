@@ -425,6 +425,4 @@ createPieChartTwo(labels: string[], data: number[]) {
   });
 }
 
-
-
 }
