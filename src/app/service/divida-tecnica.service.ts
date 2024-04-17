@@ -74,6 +74,7 @@ export class DividaTecnicaService {
   }
 
   calcularResultadoDoEsforco(dividaTecnica: any): number {
+
     const horasDeTrabalho = dividaTecnica.quantidadeDePessoas * dividaTecnica.valorPorHoraDeTrabalho;
     const resultadoDoEsforco = dividaTecnica.resultadoDoesforcoDoPagammento * horasDeTrabalho;
     return resultadoDoEsforco;

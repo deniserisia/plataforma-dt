@@ -5,6 +5,7 @@ import { ProjetoService } from 'src/app/service/projeto.service';
 import { ContagemPorMes } from './contagemPorMes';
 import { ContagemPorMesNoAno } from '../cadastro-projeto/contagemPorMesNoAno ';
 import * as $ from 'jquery';
+import { DividaTecnica } from '../cadastro-dt/dividaTecnica';
 
 
 
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit {
   projetos: any[] = []; // Array para armazenar os projetos
   dividasTecnicas: any[] = []; // Array para armazenar as dívidas técnicas associadas ao projeto selecionado
   projetoSelecionado: any = null; // Projeto selecionado
-  dividaTecnicaSelecionada: any = null; // Dívida técnica selecionada
+  dividaTecnicaSelecionada:any; // Dívida técnica selecionada
 
   @ViewChild('barChart', {static: true}) barChart!: ElementRef;
   @ViewChild('barChartTwo', {static: true}) barChartTwo!: ElementRef;
@@ -49,6 +50,7 @@ export class DashboardComponent implements OnInit {
 
   dividasTecnicasDoProjeto: any[] = [];
   resultadoDoEsforco: number | undefined;
+  dividaTecnica:any;
 
   constructor(
     private projetoService: ProjetoService,
@@ -256,8 +258,7 @@ export class DashboardComponent implements OnInit {
 
   onProjetoChange() {
     if (this.projetoSelecionado) {
-      const id = this.projetoSelecionado.id;
-      console.log("",JSON.s
+      const id = this.projetoSelecionado
       this.dividaTecnicaService.obterDividasTecnicasDoProjeto(id).subscribe(
         (dividasTecnicas: any[]) => {
           this.dividasTecnicasDoProjeto = dividasTecnicas;
@@ -273,7 +274,16 @@ export class DashboardComponent implements OnInit {
 
   onDividaTecnicaChange() {
     if (this.dividaTecnicaSelecionada) {
-      this.resultadoDoEsforco = this.dividaTecnicaService.calcularResultadoDoEsforco(this.dividaTecnicaSelecionada);
+
+      this.dividaTecnicaService.getDividaTecnicaById(this.dividaTecnicaSelecionada).subscribe(
+        (dividatecnica: any)=> {
+
+            this.dividaTecnica=dividatecnica;
+        }
+
+      )
+
+      this.resultadoDoEsforco = this.dividaTecnicaService.calcularResultadoDoEsforco(this.dividaTecnica);
     } else {
       this.resultadoDoEsforco = undefined;
     }

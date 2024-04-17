@@ -1,7 +1,7 @@
 <div class="container pt-5">
     <h1 class="mt-4"> Painel de controle</h1>
 
-    
+
     <div class="container">
       <div class="row">
 
@@ -24,31 +24,31 @@
     </div>
     </div>
     </div>
-    
+
 
     <div class="container-esforco">
       <div class="busca-card">
         <label class="text-dt" for="nomeDoProjeto">Previsão do Custo de Pagamento:</label>
         <select class="form-control" [(ngModel)]="projetoSelecionado" (change)="onProjetoChange()">
           <option value="">Selecione o projeto</option>
-          <option *ngFor="let projeto of projetos" [value]="projeto">{{ projeto.nomeDoProjeto }}</option>
+          <option *ngFor="let projeto of projetos" [value]="projeto.id">{{ projeto.nomeDoProjeto }}</option>
         </select>
-    
+
         <select class="form-control mt-2" [(ngModel)]="dividaTecnicaSelecionada" (change)="onDividaTecnicaChange()" *ngIf="projetoSelecionado">
           <option value="">Selecione a dívida técnica</option>
-          <option *ngFor="let dividaTecnica of dividasTecnicasDoProjeto" [value]="dividaTecnica">{{ dividaTecnica.nomeDaDividaTecnica }}</option>
+          <option *ngFor="let dividaTecnica of dividasTecnicasDoProjeto" [value]="dividaTecnica.id">{{ dividaTecnica.descricaoDaDT}}</option>
         </select>
       </div>
-    
+
       <div class="resultado-esforco" *ngIf="resultadoDoEsforco !== undefined">
         <p>O resultado do esforço de pagamento é: {{ resultadoDoEsforco | currency:'BRL':'symbol':'1.2-2' }}</p>
       </div>
 
-    
-    
 
-      
-  
+
+
+
+
       <!-- Cartões lado a lado na horizontal -->
       <div class="row">
         <div class="col-md-4">
@@ -59,7 +59,7 @@
             </div>
           </div>
         </div>
-    
+
         <div class="col-md-4">
           <div class="card">
             <img src="assets/icones/coin.svg" alt="Ícone de Inspeções" class="icon">
@@ -68,7 +68,7 @@
             </div>
           </div>
         </div>
-    
+
         <div class="col-md-4">
           <div class="card">
             <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
@@ -79,8 +79,8 @@
         </div>
       </div>
     </div>
-    
-    
+
+
 
     <div class="container">
       <div class="row">
@@ -102,5 +102,5 @@
       </div>
   </div>
 
-  
+
 
