@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   @ViewChild('sidenav') sidenav!: MatSidenav;
-  
+
   usuarioLogado: string;
 
   constructor(
@@ -22,6 +22,7 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     this.usuarioLogado = this.authService.getUsuarioAutenticado();
+    localStorage.setItem("usuarioLogado",this.usuarioLogado);
   }
 
   logout(){

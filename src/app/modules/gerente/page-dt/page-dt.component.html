@@ -11,8 +11,8 @@
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Consulta e Listagem das Dívidas Técnicas</li>
     </ol>
-       
-        
+
+
     <div class="container-mensagens">
         <div class="row">
             <div class="col-md-12">
@@ -36,7 +36,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                      
+
                         <th>Projeto</th>
                         <th>Nome da DT</th>
                         <th>Status do Pagamento </th>
@@ -47,22 +47,22 @@
                 </thead>
                 <tbody>
                     <tr  *ngFor="let dt of dividasTecnicas  | paginate: { itemsPerPage: pageSize, currentPage: page } ">
-                      
-                        <td>{{ dt.nomeDoProjeto }}</td>
-                        <td>{{ dt.tipoDeDividaTecnica }}</td>
-                        <td>{{ dt.statusDoPagamentoDT }}</td>
+
+                        <td>{{ dt.projeto.nomeDoProjeto }}</td>
+                        <td>{{ dt.nomeDaDividaTecnica }}</td>
+                        <td>{{ dt.statusDoPagamento }}</td>
                         <td>{{ dt.statusDaFaseDeGerenciamentoDT }}</td>
                         <td>
-                     
+
                             <button class="btn btn-primary btn-custom-editar" routerLink="/gerente/cadastro-divida-tecnica/{{ dt.id }}">
                                 <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
-                                Editar 
+                                Editar
                             </button>
-                            
+
                             <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecaoDT(dt)" data-toggle="modal" data-target="#modalDelecaoDT">
                                 <img src="assets/icones/delete.svg" alt="Ícone de Deletar" class="icon">
-                                Deletar 
-                            </button>             
+                                Deletar
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -71,20 +71,20 @@
                 <pagination-controls  [previousLabel]="'Anterior'"  [nextLabel]="'Próximo'" (pageChange)="page = $event"></pagination-controls>
             </div>
         </div>
-        
-        
-    
+
+
+
         <div id="modalDelecaoDT" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4>Confirmação</h4>
                     </div>
-    
+
                     <div class="modal-body" *ngIf="dividaSelecionada">
                         Deseja realmente exlcuir a Dívida Técnica de {{ dividaSelecionada.tipoDeDividaTecnica }}?
                     </div>
-    
+
                     <div class="modal-footer">
                         <button class="btn btn-success" (click)="deletarDT()" data-dismiss="modal">Confirmar</button>
                         <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>

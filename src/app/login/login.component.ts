@@ -18,25 +18,30 @@ export class LoginComponent {
   cadastrando!: boolean;
   mensagemSucesso!: string;
   errors!: String[];
+  usuario: any;
 
   constructor(
     private router: Router,
     private authService: AuthService
-  ) { }
+  ) {}
 
   // ...
 
 onSubmit() {
   this.authService.tentarLogar(this.username, this.password).subscribe(
     (response: any) => {
+
+      
       const access_token = JSON.stringify(response);
       localStorage.setItem('access_token', access_token);
-      
+
       // Obtenha o ID do usuário e armazene localmente
       const userId = this.authService.getUserIdFromToken();
-      localStorage.setItem('user_id', userId || '');
 
-      this.router.navigate(['/gerente/dashboard']);
+      localStorage.setItem('user_id', userId || '');
+      this.salvaUserLocal();
+
+     // this.router.navigate(['/gerente/dashboard']);
     },
     errorResponse => {
       this.errors = ['Usuário e/ou senha incorreto(s).'];
@@ -71,4 +76,20 @@ onSubmit() {
             this.errors = errorResponse.error.errors;
         })
   }
+
+  salvaUserLocal(){
+    this.authService.obterUsuarioAutenticadoDoBackend().subscribe(
+      (usuario: Usuario) => {
+        this.usuario = usuario;
+        localStorage.setItem("idUser",usuario.id);
+        this.router.navigate(['/gerente/dashboard']);
+        //localStorage.setItem("usuario",usuario.username);
+      },
+      (error) => {
+        console.error('Erro ao obter dados do usuário:', error);
+      }
+    );
+
+  }
+
 }

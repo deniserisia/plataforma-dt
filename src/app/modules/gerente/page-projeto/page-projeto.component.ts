@@ -21,7 +21,7 @@ export class PageProjetoComponent implements OnInit {
   empresa: string;
   listaDosProjetos!: projetoBusca[];
   message!: string;
-  userId: string; 
+  userId: string;
 
   projetos: Projeto[] = [];
   dividasTecnicas: DividaTecnica[] = [];
@@ -40,10 +40,11 @@ export class PageProjetoComponent implements OnInit {
    private dialog: MatDialog,
    private router: Router) {}
 
-   
+
    ngOnInit(): void {
+    this.userId=localStorage.getItem("idUser")
     this.service
-      .getProjetos()
+      .getProjetos(this.userId)
       .subscribe( resposta => this.projetos = resposta )
   }
 
@@ -55,12 +56,12 @@ export class PageProjetoComponent implements OnInit {
   deletarProjeto(){
     this.service
       .deletar(this.projetoSelecionado)
-      .subscribe( 
+      .subscribe(
         response => {
           this.mensagemSucesso = 'Projeto deletado com sucesso!'
           this.ngOnInit();
         },
-        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'  
+        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o projeto.'
       )
   }
 
@@ -70,7 +71,7 @@ export class PageProjetoComponent implements OnInit {
       this.message = "Por favor, digite o nome do projeto e da empresa.";
       return; // Retorna sem enviar a solicitação
     }
-  
+
     this.service
       .buscarProjeto(this.nomeDoProjeto, this.empresa)
       .subscribe(response => {
@@ -90,8 +91,8 @@ export class PageProjetoComponent implements OnInit {
         console.error('Ocorreu um erro ao consultar projetos:', error);
       });
   }
-  
-  
-  
-  
+
+
+
+
 }
