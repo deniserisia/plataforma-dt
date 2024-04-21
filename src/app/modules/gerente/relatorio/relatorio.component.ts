@@ -55,13 +55,13 @@ export class RelatorioComponent implements OnInit {
   }
 
   printpdf() {
-    const content = document.getElementById('teste');
+    const content = document.getElementById('relatorio');
 
     if (content) {
       const pdf = new jsPDF('p', 'pt', 'a4');
       pdf.html(content, {
         callback: (pdf) => {
-          pdf.save('teste.pdf');
+          pdf.save('relatorio.pdf');
         },
       });
     } else {

@@ -17,8 +17,10 @@ h1 {
   align-items: center; /* Centraliza o ícone verticalmente */
 }
 
-.emitir-relatorio .icon {
-  margin-left: 5px; /* Adiciona um pequeno espaço entre o texto e o ícone */
+
+.icon{
+  height: 20px;
+  margin-left: 10px;
 }
 
 .table-responsive {
