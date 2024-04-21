@@ -1,45 +1,58 @@
 <div class="container pt-5">
-    <h1 class="mt-4">  Emissão de Relatórios</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">
-            Emita relatórios detalhados sobre o estado de 
-            saúde dos projetos e das dívidas técnicas de sua empresa, fornecendo uma análise abrangente e atualizada.
-           </li>
-    </ol>
+  <h1 class="mt-4">Emissão de Relatórios</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">
+      Emita relatórios detalhados sobre o estado de saúde dos projetos e das
+      dívidas técnicas de sua empresa, fornecendo uma análise abrangente e
+      atualizada.
+    </li>
+  </ol>
 
-     <!-- TABELA DE CRUD -->
-     <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Projeto</th>
-                    <th>Empresa</th>
-                    <th>Status do Projeto</th>
-                    <th>Ações</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let projeto of projetos | paginate: { itemsPerPage: pageSize, currentPage: page } ">
-                    <td>{{ projeto.nomeDoProjeto }}</td>
-                    <td>{{ projeto.empresa }}</td>
-                    <td>{{ projeto.statusProjeto }}</td>
-                    <td>
-                        <button class="btn btn-primary emitir-relatorio">
-                            Emitir Relatório
-                            <img src="assets/icones/Download.svg" alt="Ícone de Baixar" class="icon">
-                        </button>    
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="page" style="text-align: center; margin-top: 10px;">
-            <pagination-controls   [previousLabel]="'Anterior'"  [nextLabel]="'Próximo'" (pageChange)="page = $event"></pagination-controls>
-        </div>
+  <!-- TABELA DE CRUD -->
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Projeto</th>
+          <th>Empresa</th>
+          <th>Status do Projeto</th>
+          <th>Ações</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let projeto of projetos
+              | paginate : { itemsPerPage: pageSize, currentPage: page }
+          "
+        >
+          <td>{{ projeto.nomeDoProjeto }}</td>
+          <td>{{ projeto.empresa }}</td>
+          <td>{{ projeto.statusProjeto }}</td>
+          <td>
+            <button
+              class="btn btn-primary emitir-relatorio"
+              (click)="printpdf()"
+            >
+              Emitir Relatório
+              <img
+                src="assets/icones/down.svg"
+                alt="Ícone de Baixar"
+                class="icon"
+              />
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="page" style="text-align: center; margin-top: 10px">
+      <pagination-controls
+        [previousLabel]="'Anterior'"
+        [nextLabel]="'Próximo'"
+        (pageChange)="page = $event"
+      ></pagination-controls>
     </div>
+  </div>
 </div>
-
-
-
-
-
+<app-template-relatorio class="inv"></app-template-relatorio>

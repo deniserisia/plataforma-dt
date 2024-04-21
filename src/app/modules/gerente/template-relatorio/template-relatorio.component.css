@@ -1,28 +1,23 @@
-.container {
-    max-width: 800px;
-    margin: 0 auto;
+@media print {
+  .container {
+    width: 210mm; /* Largura da página A4 */
+    height: 297mm; /* Altura da página A4 */
+    margin: 0; /* Remover margens padrão */
+    padding: 20px; /* Adicionar margem interna para evitar que o conteúdo toque nas bordas */
+    box-sizing: border-box; /* Garantir que o padding seja contabilizado no tamanho total */
   }
-  
+  .h1{
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
   .section {
-    margin-bottom: 40px;
+    width: 100%; /* Tamanho total para uma única coluna */
+    margin-bottom: 20px; /* Espaçamento entre as seções */
   }
-  
+
   .table {
-    width: 100%;
-    border-collapse: collapse;
+    margin-bottom: 10px; /* Espaçamento entre as tabelas */
   }
-  
-  .table th, .table td {
-    border: 1px solid #dddddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .table th {
-    background-color: #f2f2f2;
-  }
-  
-  #projetoStatusChart {
-    width: 100%;
-  }
-  
+}
