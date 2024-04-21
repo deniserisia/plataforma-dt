@@ -6,19 +6,18 @@ import { DividaTecnicaService } from 'src/app/service/divida-tecnica.service';
 import { ProjetoService } from 'src/app/service/projeto.service';
 import { DividaTecnica } from '../cadastro-dt/dividaTecnica';
 import { Projeto } from '../cadastro-projeto/projeto';
-import jsPDF from 'jspdf';
+import { jsPDF } from 'jspdf';
 import { TemplateRelatorioComponent } from '../template-relatorio/template-relatorio.component';
 import { TemplateService } from 'src/app/service/template.service';
 
 @Component({
   selector: 'app-relatorio',
   templateUrl: './relatorio.component.html',
-  styleUrls: ['./relatorio.component.css']
+  styleUrls: ['./relatorio.component.css'],
 })
 export class RelatorioComponent implements OnInit {
-
-  @ViewChild(TemplateRelatorioComponent) templateRelatorioComponent!: TemplateRelatorioComponent;
-
+  @ViewChild(TemplateRelatorioComponent)
+  templateRelatorioComponent!: TemplateRelatorioComponent;
 
   nomeDoProjeto: string;
   empresa: string;
@@ -46,9 +45,27 @@ export class RelatorioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userId=localStorage.getItem("idUser")
-    this.service.getProjetos(this.userId).subscribe(resposta => this.projetos = resposta);
-    this.serviceD.getDividaTecnica(this.userId).subscribe(resposta => this.dividasTecnicas = resposta);
+    this.userId = localStorage.getItem('idUser');
+    this.service
+      .getProjetos(this.userId)
+      .subscribe((resposta) => (this.projetos = resposta));
+    this.serviceD
+      .getDividaTecnica(this.userId)
+      .subscribe((resposta) => (this.dividasTecnicas = resposta));
   }
 
+  printpdf() {
+    const content = document.getElementById('teste');
+
+    if (content) {
+      const pdf = new jsPDF('p', 'pt', 'a4');
+      pdf.html(content, {
+        callback: (pdf) => {
+          pdf.save('teste.pdf');
+        },
+      });
+    } else {
+      console.warn('Conteúdo do relatório não encontrado');
+    }
+  }
 }

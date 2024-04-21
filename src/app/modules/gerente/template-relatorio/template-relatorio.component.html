@@ -1,56 +1,56 @@
-<div class="container">
-    <h1>Relatório de Projetos e Dívidas Técnicas</h1>
-  
-    <div class="section">
-      <h2>Projetos</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome do Projeto</th>
-            <th>Data de Início</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let projeto of projetos">
-            <td>{{ projeto.id }}</td>
-            <td>{{ projeto.nome }}</td>
-            <td>{{ projeto.dataInicio | date }}</td>
-            <td>{{ projeto.status }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-    <div class="section">
-      <h2>Dívidas Técnicas</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Descrição</th>
-            <th>Gravidade</th>
-            <th>Prioridade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let dividaTecnica of dividasTecnicas">
-            <td>{{ dividaTecnica.id }}</td>
-            <td>{{ dividaTecnica.descricao }}</td>
-            <td>{{ dividaTecnica.gravidade }}</td>
-            <td>{{ dividaTecnica.prioridade }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-    <div class="section">
-      <h2>Gráfico de Projeto por Status</h2>
-      <canvas id="projetoStatusChart" width="400" height="200"></canvas>
-    </div>
+<div class="container" id="teste" #teste>
+  <h1>Relatório de Projetos e Dívidas Técnicas</h1>
+
+  <div class="section">
+    <h2>Projetos</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome do Projeto</th>
+          <th>Data de Início</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let projeto of projetos">
+          <td>{{ projeto.id }}</td>
+          <td>{{ projeto.nome }}</td>
+          <td>{{ projeto.dataInicio | date }}</td>
+          <td>{{ projeto.status }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
-  <footer class="footer">
-    &copy; Empresa XYZ. Todos os direitos reservados.
-  </footer>
+
+  <div class="section">
+    <h2>Dívidas Técnicas</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Descrição</th>
+          <th>Gravidade</th>
+          <th>Prioridade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dividaTecnica of dividasTecnicas">
+          <td>{{ dividaTecnica.id }}</td>
+          <td>{{ dividaTecnica.descricao }}</td>
+          <td>{{ dividaTecnica.gravidade }}</td>
+          <td>{{ dividaTecnica.prioridade }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Gráfico de Projeto por Status</h2>
+    <canvas id="projetoStatusChart" width="400" height="200"></canvas>
+  </div>
+</div>
+
+<footer class="footer">
+  &copy; Empresa XYZ. Todos os direitos reservados.
+</footer>
