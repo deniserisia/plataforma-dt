@@ -16,6 +16,17 @@
     max-width: 400px;
 }
 
+@media (max-width: 767px) {
+    .btn-lg {
+        padding: 10px 20px; /* Ajuste o padding conforme necessário */
+        font-size: 17px;
+        width: 370px;
+        max-width: 370px;
+        align-items: center;
+        text-align: center;
+    }
+}
+
 
 .row.justify-content-center {
     display: flex;

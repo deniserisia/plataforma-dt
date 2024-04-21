@@ -169,9 +169,10 @@
         justify-content: space-between;
         align-items: center;
     }
-
-    .navbar-brand {
-        order: 2;
+    .navbar-brand{
+        display: flex;
+        align-items: center; /* Centraliza verticalmente */
+        margin-right: 200px;
     }
 
     .btn-link {
@@ -187,5 +188,8 @@
     .navbar-brand img {
         width: 190px;
         height: auto;
+        align-items: center; 
     }
 }
+
+

@@ -1,13 +1,12 @@
-<mat-toolbar class="mat-toolbar-fixed">
+<mat-toolbar class="mat-toolbar-fixed d-flex justify-content-between">
     <button mat-icon-button class="btn" (click)="toggleSidenav()">
-        <mat-icon class="button-menu">{{ sidenav.opened? 'close' : 'menu' }}</mat-icon>
+        <mat-icon class="button-menu">{{ sidenav.opened ? 'close' : 'menu' }}</mat-icon>
     </button>
 
-    <a class="navbar-brand mx-auto">
-        <img  routerLink="/gerente/inicio" src="assets/imagens/logo-dt-rm.png" alt="" class="d-inline-block align-text-top">
+    <a class="navbar-brand mx-auto" routerLink="/gerente/inicio">
+        <img src="assets/imagens/logo-dt-rm.png" alt="" class="d-inline-block align-text-top">
     </a>
 
-  
     <a class="nav-link collapsed" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false"
         aria-controls="collapseLayouts">
         <div class="sb-nav-link-icon">
@@ -17,6 +16,7 @@
         </div>
     </a>
 </mat-toolbar>
+
 
 <mat-drawer-container>
     <mat-drawer #sidenav [mode]="getSidenavMode()" [opened]="isSidenavOpen()" class="mat-drawer-sidenav">
