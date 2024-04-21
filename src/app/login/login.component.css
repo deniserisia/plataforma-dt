@@ -1,8 +1,22 @@
-#layoutAuthentication #layoutAuthentication_content{
-    background-color: #0D356A;
+#layoutAuthentication #layoutAuthentication_content {
+    background-image: url('src/assets/imagens/fundo-dt-2.png'); 
+    background-size: cover;
+    background-position: center; 
 }
 
-/* Centralizando o formulário horizontalmente */
+.btn-primary {
+    color: #fff;
+    background-color:#113462;
+    border-color:#113462;
+}
+.btn-lg {
+    padding: 10px 20px; /* Ajuste o padding conforme necessário */
+    font-size: 17px;
+    width: 400px;
+    max-width: 400px;
+}
+
+
 .row.justify-content-center {
     display: flex;
     justify-content: center;
@@ -10,7 +24,6 @@
     min-height: 100vh; /* Ocupa pelo menos a altura da viewport */
 }
 
-/* Adicionando algum espaçamento no topo e no rodapé do card para melhor visualização */
 .card {
     margin-top: 20px;
     margin-bottom: 20px;

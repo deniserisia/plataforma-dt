@@ -28,62 +28,61 @@
 
 
     <div class="container-esforco">
-      <div class="busca-card">
-        <label class="icon-text">
-            <img src="assets/icones/dt-file.svg" alt="Icone da DT" class="icon-dt">
-            Custo de Pagamento:
-        </label>
-        <select class="form-control" [(ngModel)]="projetoSelecionado" (change)="onProjetoChange()">
-            <option value="">Selecione o projeto</option>
-            <option *ngFor="let projeto of projetos" [value]="projeto.id">{{ projeto.nomeDoProjeto }}</option>
-        </select>
     
-        <select class="form-control mt-2" [(ngModel)]="dividaTecnicaSelecionada" (change)="onDividaTecnicaChange()" *ngIf="projetoSelecionado">
-            <option value="">Selecione a dívida técnica</option>
-            <option *ngFor="let dividaTecnica of dividasTecnicasDoProjeto" [value]="dividaTecnica.id">{{ dividaTecnica.descricaoDaDT}}</option>
-        </select>
-    </div>
-
+      <div class="row">
+        <div class="col-md-3 ">
+          <div class="busca-card">
+            <label class="icon-text">
+                <img src="assets/icones/dt-file.svg" alt="Icone da DT" class="icon-dt">
+                Custo de Pagamento:
+            </label>
+            <select class="form-control" [(ngModel)]="projetoSelecionado" (change)="onProjetoChange()">
+                
+                <option *ngFor="let projeto of projetos" [value]="projeto.id">{{ projeto.nomeDoProjeto }}</option>
+            </select>
     
-    <div class="resultado-esforco card-azul" *ngIf="resultadoDoEsforco !== undefined">
-      <div class="card-content">
-          <p>A previsão do esforço de pagamento é:</p>
-          <p>{{ resultadoDoEsforco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}</p>
+            <select class="form-control mt-2" [(ngModel)]="dividaTecnicaSelecionada" (change)="onDividaTecnicaChange()" *ngIf="projetoSelecionado">
+        
+                <option *ngFor="let dividaTecnica of dividasTecnicasDoProjeto" [value]="dividaTecnica.id">{{ dividaTecnica.descricaoDaDT}}</option>
+            </select>
+        </div>
+        
+        <div class="resultado-esforco card-azul" *ngIf="resultadoDoEsforco !== undefined">
+            <div class="card-content">
+                <p>A previsão do esforço de pagamento é:</p>
+                <p>{{ resultadoDoEsforco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}</p>
+            </div>
+        </div>
+        </div>
+          <div class="col-md-3 ">
+              <div class="card">
+                  <img src="assets/icones/folder-plus.svg" alt="Ícone de Usuários" class="icon">
+                  <div class="card-content">
+                      <p>Você possui {{ numeroDeProjetos }} projeto(s) cadastrados.</p>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="col-md-3 ">
+              <div class="card">
+                  <img src="assets/icones/coin.svg" alt="Ícone de Inspeções" class="icon">
+                  <div class="card-content">
+                      <p>Você possui {{ numeroDeDT }} Dívida(s) Técnica(s) cadastradas.</p>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="col-md-3">
+              <div class="card">
+                  <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
+                  <div class="card-content">
+                      <p>Você emitiu {{ numeroRelatorios }} Relatório(s).</p>
+                  </div>
+              </div>
+          </div>
       </div>
   </div>
   
-  
-
-      <!-- Cartões lado a lado na horizontal -->
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <img src="assets/icones/folder-plus.svg" alt="Ícone de Usuários" class="icon">
-            <div class="card-content">
-              <p>Você possui {{ numeroDeProjetos }} projeto(s) cadastrados.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card">
-            <img src="assets/icones/coin.svg" alt="Ícone de Inspeções" class="icon">
-            <div class="card-content">
-              <p>Você possui {{ numeroDeDT }} Dívida(s) Técnica(s) cadastradas.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card">
-            <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
-            <div class="card-content">
-              <p>Você emitiu {{ numeroRelatorios }} Relatório(s).</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
 
 

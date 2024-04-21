@@ -7,16 +7,13 @@
           <img src="assets/icones/user.svg" alt="Ícone de Usuário" class="icon">
           Meu Perfil
         </h1>
-        <ol class="breadcrumb mb-4">
-          <li class="breadcrumb-item active"> Dados do seu perfil de usuário</li>
-        </ol>
       </div>
     </div>
 
     <div class="informacao-usuario">
      <div *ngIf="usuario">
         <p><strong>Username:</strong> {{ usuario.username }}</p>
-        <p><strong>Email:</strong> {{ usuario.email }}</p>
+        <p><strong>E-mail:</strong> {{ usuario.email }}</p>
         <p><strong>Nome da Empresa:</strong> {{ usuario.nomeDaEmpresa }}</p>
         <p><strong>Setor da Empresa:</strong> {{ usuario.setorDaEmpresa }}</p>
       </div>

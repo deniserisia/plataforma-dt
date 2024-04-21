@@ -23,6 +23,8 @@ export class PageDtComponent implements OnInit {
   pageSize = 5;
   userId:string;
 
+ 
+
   constructor(
     private serviceD: DividaTecnicaService,
     private router: Router,
@@ -39,6 +41,7 @@ export class PageDtComponent implements OnInit {
   preparaDelecaoDT(dividasTecnicas: DividaTecnica){
     this.dividaSelecionada = dividasTecnicas;
   }
+
 
   deletarDT(){
    this.serviceD
