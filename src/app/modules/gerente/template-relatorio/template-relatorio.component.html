@@ -41,6 +41,24 @@
     <div class="section">
       <h2>Dívidas Técnicas</h2>
       <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome da Divida</th>
+            <th>Tipo de Divida Tecnica</th>
+            <th>Status da Divida</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dividasTecnicas">
+            <td>{{ item.id }}</td>
+            <td>{{ item.descricaoDaDT }}</td>
+            <td>{{ item.tipoDeDividaTecnica}}</td>
+            <td>{{ item.statusDaFaseDeGerenciamentoDT }}</td>
+          </tr>
+        </tbody>
+
+
 
       </table>
     </div>

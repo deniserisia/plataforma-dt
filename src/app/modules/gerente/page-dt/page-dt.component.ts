@@ -23,7 +23,7 @@ export class PageDtComponent implements OnInit {
   pageSize = 5;
   userId:string;
 
- 
+
 
   constructor(
     private serviceD: DividaTecnicaService,
@@ -34,7 +34,7 @@ export class PageDtComponent implements OnInit {
   ngOnInit(): void {
     this.userId=localStorage.getItem("idUser")
       this.serviceD
-      .getDividaTecnica(this.userId)
+      .getDividaTecnicas(this.userId)
       .subscribe( resposta => this.dividasTecnicas = resposta);
   }
 

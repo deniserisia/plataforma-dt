@@ -32,9 +32,10 @@ export class TemplateRelatorioComponent implements OnInit {
   ngOnInit(): void {
    this.userId=localStorage.getItem("idUser");
    this.obterProjeto();
-   this.obterDividasTecnicas();
+   //this.obterDividasTecnicas();
   }
 
+  
 
   obterProjeto(): void {
 
@@ -47,13 +48,15 @@ export class TemplateRelatorioComponent implements OnInit {
       this.nomeDoProjeto=this.projeto.nomeDoProjeto;
       this.dataCadastro1=this.projeto.dataCdastro;
       this.statusProjeto=this.projeto.statusProjeto;
+      this.obterDividasTecnicas();
 
 
   }
 
 
   obterDividasTecnicas(): void {
-    this.dividaTecnicaService.getDividaTecnica(this.userId)
+    this.idProjeto=localStorage.getItem("idProjeto");
+    this.dividaTecnicaService.getDividaTecnica(this.idProjeto)
       .subscribe(dividasTecnicas => this.dividasTecnicas = dividasTecnicas);
   }
 

@@ -70,6 +70,7 @@ export class RelatorioComponent implements OnInit {
     let content_rel=null;
     content_rel = document.getElementById('relatorio');
     this.templateRelatorioComponent.obterProjeto();
+    //this.templateRelatorioComponent.obterDividasTecnicas();
 
     var opt = {
       margin:       1,
