@@ -1,7 +1,7 @@
 
 import { Component, Inject, OnInit,ViewEncapsulation } from '@angular/core';
 //import jsPDF from 'jspdf';
-import * as html2pdf from 'html2pdf.js';
+//import * as html2pdf from 'html2pdf.js';
 import { DividaTecnicaService } from 'src/app/service/divida-tecnica.service';
 import { ProjetoService } from 'src/app/service/projeto.service';
 import { DividaTecnica } from '../cadastro-dt/dividaTecnica';
