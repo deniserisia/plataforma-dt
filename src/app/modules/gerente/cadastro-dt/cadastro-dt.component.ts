@@ -59,7 +59,7 @@ export class CadastroDtComponent implements OnInit {
   }
 
   voltarParaListagem(): void {
-     this.router.navigate(['/gerente/dividas-tecnicas']);
+     this.router.navigate(['/usuario/dividas-tecnicas']);
   }
 
 

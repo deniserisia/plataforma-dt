@@ -55,7 +55,7 @@ export class CadastroProjetoComponent implements OnInit {
 
 
   voltarParaListagem(){
-    this.router.navigate(['/gerente/projetos'])
+    this.router.navigate(['/usuario/projetos'])
   }
 
   onSubmit(){
