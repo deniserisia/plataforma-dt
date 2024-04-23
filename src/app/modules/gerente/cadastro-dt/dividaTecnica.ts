@@ -17,6 +17,4 @@ export class DividaTecnica {
     diaDoCadastro: string;
     id_projeto:number;
     projeto:string;
-
-
   }

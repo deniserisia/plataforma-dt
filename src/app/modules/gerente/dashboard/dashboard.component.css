@@ -40,11 +40,8 @@ h1 {
 .card-azul .card-content {
     text-align: center; /* Centralizar o texto */
 }
-
-
   .card {
     flex: 1;
-    max-width: 250px;
     background-color: #eef1f6;
     border-radius: 8px;
     overflow: hidden;

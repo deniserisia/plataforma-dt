@@ -20,11 +20,12 @@
                                     {{ erro }}
                                     </div>
 
-                                    <!-- Mensagem de Atenção -->
+                                    <!-- Mensagem de Atenção 
                                     <div class="alert alert-warning">
                                         Nosso sistema encontra-se com instabilidade ao logar/cadastrar e está demorando alguns segundos devido ao alto número de requisições. 
                                         Agradeçemos a compreensão.💙
                                     </div>
+                                    -->
   
                                     <form #loginForm="ngForm" (submit)="onSubmit();">
                                         <div class="form-group">
@@ -68,11 +69,12 @@
                                         </div>
   
                                         <div class="form-group align-items-center justify-content-between mt-4 mb-0">
-                                            <button type="submit" class="btn btn-primary btn-lg" *ngIf="!cadastrando">
-                                                Entrar
-                                            </button>
-                                            
-  
+                                            <div class="col-sm-12 col-md-6"> <!-- Controla o tamanho da coluna em dispositivos pequenos e médios -->
+                                                <button type="submit" class="btn btn-primary btn-lg" *ngIf="!cadastrando">
+                                                    Entrar
+                                                </button>
+                                            </div>
+                                         
                                             <button type="button" class="btn btn-success" 
                                                     (click)="cadastrar()"
                                                     *ngIf="cadastrando">

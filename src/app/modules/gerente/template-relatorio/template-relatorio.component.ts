@@ -35,24 +35,17 @@ export class TemplateRelatorioComponent implements OnInit {
    //this.obterDividasTecnicas();
   }
 
-  
-
   obterProjeto(): void {
-
-     this.idProjeto=localStorage.getItem("idProjeto");
-
+    this.idProjeto=localStorage.getItem("idProjeto");
     this.projetoService.getProjetoById(Number(this.idProjeto))
       .subscribe(projeto => this.projeto = projeto);
       console.log(this.projeto)
       this.projetoid=this.projeto.id;
       this.nomeDoProjeto=this.projeto.nomeDoProjeto;
-      this.dataCadastro1=this.projeto.dataCdastro;
+      this.dataCadastro1=this.projeto.dataCadastro;
       this.statusProjeto=this.projeto.statusProjeto;
       this.obterDividasTecnicas();
-
-
   }
-
 
   obterDividasTecnicas(): void {
     this.idProjeto=localStorage.getItem("idProjeto");

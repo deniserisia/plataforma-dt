@@ -1,67 +1,64 @@
 <div class="container" id="relatorio" #relatorio>
-  <h1 class="#h1">Relatório de Projetos e Dívidas Técnicas</h1>
-
-  <!-- Logo centralizada -->
-  <div class="logo-container">
-    <img src="assets/imagens/logo-dt-rm.png" alt="Logo da empresa">
+  <div class="header" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">
+    <img src="assets/imagens/logo-dt-rm.png" alt="Logo da empresa" class="logo" style="width: 180px; margin-bottom: 10px;">
+    <h1 style="font-size: 22px; margin: 0; color: #000000; text-align: center;">Relatório de Projetos e Dívidas Técnicas</h1>
   </div>
+  
 
-  <!-- Data e horário de emissão do relatório
-  <div class="info-container">
-    <p>Data de Emissão: {{ dataEmissao }}</p>
-    <p>Horário de Emissão: {{ horarioEmissao }}</p>
-  </div>
-  -->
 
-  <div class="table-container">
+  <div class="table-container" style="margin-top: 30px;">
     <!-- Tabela do Projeto -->
-    <div class="section">
-      <h2>Projeto Selecionado</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome do Projeto</th>
-            <th>Data do seu Cadastro</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ projetoid }}</td>
-            <td>{{ nomeDoProjeto }}</td>
-            <td>{{ dataCadastro1}}</td>
-            <td>{{ statusProjeto }}</td>
-          </tr>
-        </tbody>
+    <div class="section" style="margin-top: 30px;">
+      <h2 style="font-size: 20px;  color: #004D7A; margin-bottom: 10px;">Projeto</h2>
+      <p style="color: #333;">Informações sobre o projeto selecionado.</p>
+      <table class="table" style="width: 100%; border-collapse: collapse; border: 1px solid #ccc;">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome do Projeto</th>
+              <th>Data do Cadastro</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ projetoid }}</td>
+              <td>{{ nomeDoProjeto }}</td>
+              <td>{{ dataCadastro1 }}</td>
+              <td>{{ statusProjeto }}</td>
+            </tr>
+          </tbody>
       </table>
     </div>
+  </div>
 
-    <!-- Tabela de Dívidas Técnicas relacionadas ao PROJETO -->
-    <div class="section">
-      <h2>Dívidas Técnicas</h2>
-      <table class="table">
+
+     <!-- Tabela de Dívidas Técnicas -->
+     <div class="section" style="margin-top: 30px;">
+      <h2 style="font-size: 20px;  color: #004D7A; margin-bottom: 10px;">Dívidas Técnicas</h2>
+      <p style="color: #333;">Dívidas Técnicas relacionadas ao projeto selecionado.</p>
+      <table class="table" style="width: 100%; border-collapse: collapse; border: 1px solid #ccc;">
         <thead>
           <tr>
             <th>ID</th>
-            <th>Nome da Divida</th>
-            <th>Tipo de Divida Tecnica</th>
-            <th>Status da Divida</th>
+           
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Fase de Gerenciamento</th>
+            <th>Status do Pagamento</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of dividasTecnicas">
             <td>{{ item.id }}</td>
+            
             <td>{{ item.descricaoDaDT }}</td>
             <td>{{ item.tipoDeDividaTecnica}}</td>
             <td>{{ item.statusDaFaseDeGerenciamentoDT }}</td>
+            <td>{{ item.statusDoPagamentoDT }}</td>
           </tr>
         </tbody>
-
-
-
       </table>
     </div>
-  </div>
 
 </div>
