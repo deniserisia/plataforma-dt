@@ -14,7 +14,7 @@ import { TemplateRelatorioComponent } from './template-relatorio/template-relato
 
 
 const routes: Routes = [
-  {path:'gerente', component: LayoutComponent,  canActivate: [AuthGuard], children:[
+  {path:'usuario', component: LayoutComponent,  canActivate: [AuthGuard], children:[
     {path:'dashboard', component: DashboardComponent},
     {path:'projetos', component: PageProjetoComponent},
     {path:'dividas-tecnicas', component:PageDtComponent},

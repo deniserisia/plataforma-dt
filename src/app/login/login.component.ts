@@ -82,7 +82,7 @@ onSubmit() {
       (usuario: Usuario) => {
         this.usuario = usuario;
         localStorage.setItem("idUser",usuario.id);
-        this.router.navigate(['/gerente/dashboard']);
+        this.router.navigate(['/usuario/dashboard']);
         //localStorage.setItem("usuario",usuario.username);
       },
       (error) => {
