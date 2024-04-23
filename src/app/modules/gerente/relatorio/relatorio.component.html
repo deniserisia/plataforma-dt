@@ -27,13 +27,14 @@
               | paginate : { itemsPerPage: pageSize, currentPage: page }
           "
         >
+          <td>{{ projeto.id }}</td>
           <td>{{ projeto.nomeDoProjeto }}</td>
           <td>{{ projeto.empresa }}</td>
           <td>{{ projeto.statusProjeto }}</td>
           <td>
             <button
               class="btn btn-primary emitir-relatorio"
-              (click)="printpdf()"
+              (click)="printpdf(projeto.id)"
             >
               Emitir Relatório
               <img

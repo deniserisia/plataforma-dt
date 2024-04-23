@@ -25,6 +25,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.9.4",
     "class-transformer": "^0.5.1",
+    "html2pdf.js": "^0.10.1",
     "jquery": "^3.5.0",
     "jspdf": "^2.5.1",
     "ng2-charts": "^2.4.0",

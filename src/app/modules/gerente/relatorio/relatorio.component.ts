@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild,ViewEncapsulation } from '@angular/core';
 import { projetoBusca } from '../cadastro-projeto/projetoBusca';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
@@ -9,22 +9,25 @@ import { Projeto } from '../cadastro-projeto/projeto';
 import { jsPDF } from 'jspdf';
 import { TemplateRelatorioComponent } from '../template-relatorio/template-relatorio.component';
 import { TemplateService } from 'src/app/service/template.service';
-
+import * as html2pdf from 'html2pdf.js';
 @Component({
   selector: 'app-relatorio',
   templateUrl: './relatorio.component.html',
   styleUrls: ['./relatorio.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
+
+
 })
 export class RelatorioComponent implements OnInit {
   @ViewChild(TemplateRelatorioComponent)
   templateRelatorioComponent!: TemplateRelatorioComponent;
 
+  projeto2:any;
   nomeDoProjeto: string;
   empresa: string;
   listaDosProjetos!: projetoBusca[];
   message!: string;
   userId: string; // Certifique-se de obter e definir este valor após o login
-
   projetos: Projeto[] = [];
   dividasTecnicas: DividaTecnica[] = [];
   dividaSelecionada!: DividaTecnica;
@@ -35,18 +38,19 @@ export class RelatorioComponent implements OnInit {
   // Propriedades de configuração de paginação
   page = 1;
   pageSize = 5;
-
+  idInicial=1;
   constructor(
     private service: ProjetoService,
     private serviceD: DividaTecnicaService,
     private authService: AuthService,
     private templateService: TemplateService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('idUser');
-    this.service
+
+   this.service
       .getProjetos(this.userId)
       .subscribe((resposta) => (this.projetos = resposta));
     this.serviceD
@@ -54,18 +58,31 @@ export class RelatorioComponent implements OnInit {
       .subscribe((resposta) => (this.dividasTecnicas = resposta));
   }
 
-  printpdf() {
-    const content = document.getElementById('relatorio');
+  printpdf(id:string) {
 
-    if (content) {
-      const pdf = new jsPDF('p', 'pt', 'a4');
-      pdf.html(content, {
-        callback: (pdf) => {
-          pdf.save('relatorio.pdf');
-        },
-      });
-    } else {
-      console.warn('Conteúdo do relatório não encontrado');
-    }
+
+
+
+   localStorage.setItem("idProjeto",id);
+
+   // this.templateRelatorioComponent.obterProjeto();
+
+    let content_rel=null;
+    content_rel = document.getElementById('relatorio');
+    this.templateRelatorioComponent.obterProjeto();
+
+    var opt = {
+      margin:       1,
+      filename:     'relatorio.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
+      pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+
+
+    html2pdf().set(opt).from(content_rel).save();
+
+
   }
 }
