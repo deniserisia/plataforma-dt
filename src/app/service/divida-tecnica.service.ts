@@ -25,13 +25,23 @@ export class DividaTecnicaService {
     return this.http.put<DividaTecnica>(`${this.apiURL}/${dividaTecnica.id}` , dividaTecnica);
   }
 
-  getDividaTecnica(userId: string) : Observable<DividaTecnica[]> {
-     if (!userId) {
+  getDividaTecnica(idProjeto: string) : Observable<DividaTecnica[]> {
+     if (!idProjeto) {
+        throw new Error('userId is required for getDividaTecnica function');
+    }
+    const url = `${this.apiURL}/dividas-tecnicas-do-projeto/${idProjeto}`;
+    return this.http.get<DividaTecnica[]>(url);
+  }
+
+  getDividaTecnicas(userId: string) : Observable<DividaTecnica[]> {
+    if (!userId) {
         throw new Error('userId is required for getDividaTecnica function');
     }
     const url = `${this.apiURL}/todas/${userId}`;
     return this.http.get<DividaTecnica[]>(url);
+
   }
+
 
   getDividaTecnicaById(id: number) : Observable<DividaTecnica> {
     return this.http.get<any>(`${this.apiURL}/${id}`);

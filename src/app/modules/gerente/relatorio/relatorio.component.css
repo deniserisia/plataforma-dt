@@ -33,3 +33,31 @@ h1 {
 .inv {
   display: none;
 }
+
+@media print {
+  .container {
+    width: 210mm; /* Largura da página A4 */
+    height: 297mm; /* Altura da página A4 */
+    margin: 0; /* Remover margens padrão */
+    padding: 20px; /* Adicionar margem interna para evitar que o conteúdo toque nas bordas */
+    box-sizing: border-box; /* Garantir que o padding seja contabilizado no tamanho total */
+  }
+  .h1{
+    font-size: 10px;
+    align-items: center;
+    text-align: center;
+    background-color: aqua;
+    color: brown;
+  }
+
+
+  .section {
+    width: 100%; /* Tamanho total para uma única coluna */
+    margin-bottom: 20px; /* Espaçamento entre as seções */
+  }
+
+  .table {
+    margin-bottom: 10px; /* Espaçamento entre as tabelas */
+  }
+}
+
