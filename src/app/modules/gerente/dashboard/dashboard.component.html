@@ -1,113 +1,112 @@
 <div class="container pt-5">
-    <h1 class="mt-4"> Painel de controle</h1>
+  <h1 class="mt-4"> Painel de controle</h1>
 
 
-    <div class="container">
-      <div class="row">
-
-        <div class="col-md-4">
-          <div class="grafico-pizza chart-container">
-              <canvas #pieChart width="200" height="100"></canvas>
-          </div>
-      </div>
-
-        <div class="col-md-4">
-          <div class="grafico-pizza chart-container">
-              <canvas #pieChartTwo width="200" height="100"></canvas>
-          </div>
-      </div>
+  <div class="container">
+    <div class="row">
 
       <div class="col-md-4">
         <div class="grafico-pizza chart-container">
-          <canvas #pieChartTres width="200" height="100"></canvas>
+            <canvas #pieChart width="200" height="100"></canvas>
         </div>
+    </div>
+
+      <div class="col-md-4">
+        <div class="grafico-pizza chart-container">
+            <canvas #pieChartTwo width="200" height="100"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="grafico-pizza chart-container">
+        <canvas #pieChartTres width="200" height="100"></canvas>
       </div>
-
-    </div>
     </div>
 
+  </div>
+  </div>
 
-    <div class="container-esforco">
-    
-      <div class="row">
+
+  <div class="container-esforco">
+  
+    <div class="row">
+      <div class="col-md-3 ">
+        <div class="busca-card">
+          <label class="icon-text">
+              <img src="assets/icones/dt-file.svg" alt="Icone da DT" class="icon-dt">
+              Custo de Pagamento:
+          </label>
+          <select class="form-control" [(ngModel)]="projetoSelecionado" (change)="onProjetoChange()">
+              
+              <option *ngFor="let projeto of projetos" [value]="projeto.id">{{ projeto.nomeDoProjeto }}</option>
+          </select>
+  
+          <select class="form-control mt-2" [(ngModel)]="dividaTecnicaSelecionada" (change)="onDividaTecnicaChange()" *ngIf="projetoSelecionado">
+      
+              <option *ngFor="let dividaTecnica of dividasTecnicasDoProjeto" [value]="dividaTecnica.id">{{ dividaTecnica.descricaoDaDT}}</option>
+          </select>
+      </div>
+      
+      <div class="resultado-esforco card-azul" *ngIf="resultadoDoEsforco !== undefined">
+          <div class="card-content">
+              <p>A previsão do esforço de pagamento é:</p>
+              <p>{{ resultadoDoEsforco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}</p>
+          </div>
+      </div>
+      </div>
         <div class="col-md-3 ">
-          <div class="busca-card">
-            <label class="icon-text">
-                <img src="assets/icones/dt-file.svg" alt="Icone da DT" class="icon-dt">
-                Custo de Pagamento:
-            </label>
-            <select class="form-control" [(ngModel)]="projetoSelecionado" (change)="onProjetoChange()">
-                
-                <option *ngFor="let projeto of projetos" [value]="projeto.id">{{ projeto.nomeDoProjeto }}</option>
-            </select>
-    
-            <select class="form-control mt-2" [(ngModel)]="dividaTecnicaSelecionada" (change)="onDividaTecnicaChange()" *ngIf="projetoSelecionado">
-        
-                <option *ngFor="let dividaTecnica of dividasTecnicasDoProjeto" [value]="dividaTecnica.id">{{ dividaTecnica.descricaoDaDT}}</option>
-            </select>
+            <div class="card">
+                <img src="assets/icones/folder-plus.svg" alt="Ícone de Usuários" class="icon">
+                <div class="card-content">
+                    <p>Você possui {{ numeroDeProjetos }} projeto(s) cadastrados.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 ">
+            <div class="card">
+                <img src="assets/icones/coin.svg" alt="Ícone de Inspeções" class="icon">
+                <div class="card-content">
+                    <p>Você possui {{ numeroDeDT }} Dívida(s) Técnica(s) cadastradas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
+                <div class="card-content">
+                    <p>Você emitiu {{ numeroRelatorios }} Relatório(s).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="grafico-barra chart-container">
+                <canvas #barChart width="200" height="100"></canvas>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="grafico-pizza-status chart-container">
+            <canvas #pieChartStatus width="200" height="100"></canvas>
+          </div>
+        </div>
+       
+        <div class="col-md-4">
+          <div class="grafico-linha chart-container">
+            <canvas #lineChart width="200" height="100"></canvas>
+          </div>
         </div>
         
-        <div class="resultado-esforco card-azul" *ngIf="resultadoDoEsforco !== undefined">
-            <div class="card-content">
-                <p>A previsão do esforço de pagamento é:</p>
-                <p>{{ resultadoDoEsforco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }}</p>
-            </div>
-        </div>
-        </div>
-          <div class="col-md-3 ">
-              <div class="card">
-                  <img src="assets/icones/folder-plus.svg" alt="Ícone de Usuários" class="icon">
-                  <div class="card-content">
-                      <p>Você possui {{ numeroDeProjetos }} projeto(s) cadastrados.</p>
-                  </div>
-              </div>
-          </div>
-  
-          <div class="col-md-3 ">
-              <div class="card">
-                  <img src="assets/icones/coin.svg" alt="Ícone de Inspeções" class="icon">
-                  <div class="card-content">
-                      <p>Você possui {{ numeroDeDT }} Dívida(s) Técnica(s) cadastradas.</p>
-                  </div>
-              </div>
-          </div>
-  
-          <div class="col-md-3">
-              <div class="card">
-                  <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
-                  <div class="card-content">
-                      <p>Você emitiu {{ numeroRelatorios }} Relatório(s).</p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  
-
-
-
-    <div class="container">
-      <div class="row">
-          <div class="col-md-4">
-              <div class="grafico-barra chart-container">
-                  <canvas #barChart width="200" height="100"></canvas>
-              </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="grafico-pizza-status chart-container">
-              <canvas #pieChartStatus width="200" height="100"></canvas>
-            </div>
-          </div>
-         
-          <div class="col-md-4">
-            <div class="grafico-linha chart-container">
-              <canvas #lineChart width="200" height="100"></canvas>
-            </div>
-          </div>
-          
-      </div>
-  </div>
-
+    </div>
+</div>
 
 

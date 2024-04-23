@@ -1,79 +1,79 @@
 .container {
-    max-width: 1300px;
-    margin: 30px auto;
-    margin-top: 5px;
+  max-width: 1300px;
+  margin: 30px auto;
+  margin-top: 5px;
 }
 .container-painel .mt-4{
-    margin-left: 28px;
+  margin-left: 28px;
 }
 h1 {
-    margin: 0; /* Remove a margem padrão do h1 */
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 30px;
+  margin: 0; /* Remove a margem padrão do h1 */
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 30px;
 }
 
 .card .icon {
-    width: 30px; /* Ajuste conforme necessário */
-    height: 30px; /* Ajuste conforme necessário */
-    margin-top: 18px;
-    margin-left: 20px;
+  width: 30px; /* Ajuste conforme necessário */
+  height: 30px; /* Ajuste conforme necessário */
+  margin-top: 18px;
+  margin-left: 20px;
 }
 
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: 20px;
-    padding: 20px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+  padding: 20px;
+}
 
-  .card-azul {
-    background-color: #CDDAEF;
-    color: #fff; 
-    border-radius: 5px; 
-    margin-top: 20px;
-    margin-right: 10px;
-    margin-left: 10px;
-    max-width: 220px;
+.card-azul {
+  background-color: #CDDAEF;
+  color: #fff; 
+  border-radius: 5px; 
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  max-width: 220px;
 }
 
 .card-azul .card-content {
-    text-align: center; /* Centralizar o texto */
+  text-align: center; /* Centralizar o texto */
 }
 
 
-  .card {
-    flex: 1;
-    max-width: 250px;
-    background-color: #eef1f6;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    height: 130px;
-  }
+.card {
+  flex: 1;
+  
+  background-color: #eef1f6;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  height: 130px;
+}
 
-  .card:hover {
-    transform: scale(1.05);
-  }
+.card:hover {
+  transform: scale(1.05);
+}
 
-  .card img {
-    width: 100%;
-    height: auto;
-   
-  }
+.card img {
+  width: 100%;
+  height: auto;
+ 
+}
 
-  .card-content {
-    padding: 20px;
-  }
+.card-content {
+  padding: 20px;
+}
 
-  h2,
-  p {
-    margin: 0;
-    color: #333;
-    font-size: 15px;
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight: bold;
+h2,
+p {
+  margin: 0;
+  color: #333;
+  font-size: 15px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: bold;
 }
 
 
@@ -82,140 +82,139 @@ h1 {
 
 
 h1 {
-    font-size: 26px;
-    color: black;
-    padding: 10px;
-    border-radius: 5px;
+  font-size: 26px;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
 } 
 
 .grafico-barra.chart-container {
+border: 3px solid #ddd; /* Adiciona uma borda com cor cinza */
+background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
+padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
+border-radius: 5px; /* Adiciona cantos arredondados */
+margin-top: 10px;
+}
+.grafico-barra-2.chart-container {
   border: 3px solid #ddd; /* Adiciona uma borda com cor cinza */
   background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
   padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
   border-radius: 5px; /* Adiciona cantos arredondados */
   margin-top: 10px;
-}
-.grafico-barra-2.chart-container {
-    border: 3px solid #ddd; /* Adiciona uma borda com cor cinza */
-    background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
-    padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
-    border-radius: 5px; /* Adiciona cantos arredondados */
-    margin-top: 10px;
-    margin: 20px;
+  margin: 20px;
 }
 
 .grafico-barra-3.chart-container {
-    border: 3px solid #ddd; /* Adiciona uma borda com cor cinza */
-    background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
-    padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
-    border-radius: 5px; /* Adiciona cantos arredondados */
-    margin-top: 10px;
-    margin: 20px;
+  border: 3px solid #ddd; /* Adiciona uma borda com cor cinza */
+  background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
+  padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
+  border-radius: 5px; /* Adiciona cantos arredondados */
+  margin-top: 10px;
+  margin: 20px;
 }
 
 .grafico-pizza.chart-container {
-    border: 3px solid #ddd; /* Adiciona uma borda com cor cinza */
-    background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
-    padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
-    border-radius: 5px; /* Adiciona cantos arredondados */
-    margin-top: 10px;
+  border: 3px solid #ddd; /* Adiciona uma borda com cor cinza */
+  background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
+  padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
+  border-radius: 5px; /* Adiciona cantos arredondados */
+  margin-top: 10px;
 }  
 
 .grafico-linha.chart-container {
-  border: 3px solid #ddd; /* Adiciona uma borda com cor cinza */
-  background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
-  padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
-  border-radius: 5px; /* Adiciona cantos arredondados */
-  margin-top: 10px;
+border: 3px solid #ddd; /* Adiciona uma borda com cor cinza */
+background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
+padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
+border-radius: 5px; /* Adiciona cantos arredondados */
+margin-top: 10px;
 }  
 .grafico-pizza-status.chart-container {
-  border: 3px solid #ddd; /* Adiciona uma borda com cor cinza */
-  background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
-  padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
-  border-radius: 5px; /* Adiciona cantos arredondados */
-  margin-top: 10px;
+border: 3px solid #ddd; /* Adiciona uma borda com cor cinza */
+background-color: #f5f5f5; /* Define um plano de fundo com cor cinza claro */
+padding: 10px; /* Adiciona um espaço interno para melhorar a aparência */
+border-radius: 5px; /* Adiciona cantos arredondados */
+margin-top: 10px;
 }  
 
 .icon-text {
-  display: flex;
-  align-items: center;
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 15px;
+display: flex;
+align-items: center;
+font-family: 'Nunito Sans', sans-serif;
+font-size: 15px;
 }
 
 .icon-dt {
-  width: 30px; 
-  height: 30px; 
-  margin-right: 8px;
+width: 30px; 
+height: 30px; 
+margin-right: 8px;
 }
 
 
 
 .container-esforco {
-  padding: 20px;
-  border: 3px solid #ddd; 
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  max-width: 1240px;
-  margin-left: 14px;
+padding: 20px;
+border: 3px solid #ddd; 
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+display: flex;
+justify-content: space-between;
+max-width: 1240px;
+margin-left: 14px;
 }
 
 label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
+display: block;
+margin-bottom: 10px;
+font-weight: bold;
 }
 
 input[type="text"] {
-  width: calc(100% - 100px);
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
+width: calc(100% - 100px);
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 5px;
+margin-bottom: 10px;
 }
 
 button {
-  padding: 8px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+padding: 8px 20px;
+background-color: #007bff;
+color: #fff;
+border: none;
+border-radius: 5px;
+cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+background-color: #0056b3;
 }
 
 
 .text-dt{
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 20px; 
+font-family: 'Nunito Sans', sans-serif;
+font-size: 20px; 
 }
 
 @media (max-width: 767px) {
-  .card,
-  .busca-card {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .card-content {
-    padding: 10px;
-    text-align: center; /* Centraliza o conteúdo dentro dos cartões */
-  }
-  
-  .col-md-3 {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Centraliza as colunas na horizontal */
-  }
-  
-  .card-azul .card-content {
-    margin-bottom: 10px;
-  }
+.card,
+.busca-card {
+  width: 100%;
+  margin-bottom: 20px;
 }
 
+.card-content {
+  padding: 10px;
+  text-align: center; /* Centraliza o conteúdo dentro dos cartões */
+}
+
+.col-md-3 {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centraliza as colunas na horizontal */
+}
+
+.card-azul .card-content {
+  margin-bottom: 10px;
+}
+}
 
