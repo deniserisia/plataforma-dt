@@ -11,7 +11,7 @@ import { ContagemPorMesDTO } from '../modules/gerente/cadastro-dt/contagemPorMes
 export class DividaTecnicaService {
 
 
-  apiURL: string = environment.apiURLBase + '/usuario/divida-tecnica';
+  apiURL: string = environment.apiURLBase + '/gerente/divida-tecnica';
   apiURLperfil: string = environment.apiURLBase + '/api/usuarios';
 
   constructor( private http: HttpClient ) {}
