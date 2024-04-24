@@ -9,8 +9,8 @@ import { DashboardComponent } from './modules/gerente/dashboard/dashboard.compon
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: LayoutComponent, children: [
-    { path : 'gerente/dashboard', component: DashboardComponent, canActivate : [AuthGuard] },
-    { path: '' , redirectTo: 'gerente/inicio', pathMatch: 'full' }
+    { path : 'usuario/dashboard', component: DashboardComponent, canActivate : [AuthGuard] },
+    { path: '' , redirectTo: 'usuario/inicio', pathMatch: 'full' }
   ]}
 ];
 

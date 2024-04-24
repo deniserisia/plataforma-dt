@@ -26,7 +26,7 @@ const routes: Routes = [
     {path:'teste', component:TemplateRelatorioComponent},
     {path:'meu-perfil-de-usuario', component: MeuPerfilComponent},
     {path:'meu-perfil-de-usuario/:id', component: MeuPerfilComponent},
-    { path: '', redirectTo : '/gerente/inicio', pathMatch: 'full' }
+    { path: '', redirectTo : '/usuario/inicio', pathMatch: 'full' }
   ]}
 ];
 

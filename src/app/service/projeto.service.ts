@@ -16,7 +16,7 @@ import { Usuario } from '../login/usuario';
 })
 export class ProjetoService {
 
-  apiURL: string = environment.apiURLBase + '/gerente/projeto';
+  apiURL: string = environment.apiURLBase + '/usuario/projeto';
   apiURLperfil: string = environment.apiURLBase + '/api/usuarios';
   constructor( private http: HttpClient ) {}
 
