@@ -17,6 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class PageProjetoComponent implements OnInit {
 
+  modalAberto: boolean = false;
   nomeDoProjeto: string;
   empresa: string;
   listaDosProjetos!: projetoBusca[];
@@ -51,6 +52,11 @@ export class PageProjetoComponent implements OnInit {
 
   preparaDelecao(projeto: Projeto) {
     this.projetoSelecionado = projeto;
+    this.modalAberto = true; // Abre o modal
+  }
+
+  fecharModal() {
+    this.modalAberto = false; // Fecha o modal
   }
 
   deletarProjeto(){

@@ -133,6 +133,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4>Confirmação</h4>
+                        <button type="button"  (click)="fecharModal()" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
     
                     <div class="modal-body" *ngIf="projetoSelecionado">
@@ -141,9 +144,11 @@
     
                     <div class="modal-footer">
                         <button class="btn btn-success" (click)="deletarProjeto()" data-dismiss="modal">Confirmar</button>
-                        <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-danger" (click)="fecharModal()" data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
       </div>
+
+      <div class="overlay" *ngIf="modalAberto"></div>
 </div>

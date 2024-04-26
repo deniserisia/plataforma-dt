@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class PageDtComponent implements OnInit {
 
+  modalAberto: boolean = false;
   dividaTecnicaSelecionada: DividaTecnica;
   nomeDoProjeto: string;
   empresa: string;
@@ -38,9 +39,17 @@ export class PageDtComponent implements OnInit {
       .subscribe( resposta => this.dividasTecnicas = resposta);
   }
 
-  preparaDelecaoDT(dividasTecnicas: DividaTecnica){
+
+  preparaDelecaoDT(dividasTecnicas: DividaTecnica) {
     this.dividaSelecionada = dividasTecnicas;
-  }
+    this.modalAberto = true; // Abre o modal
+}
+
+fecharModal() {
+    this.modalAberto = false; // Fecha o modal
+}
+
+
 
 
   deletarDT(){
