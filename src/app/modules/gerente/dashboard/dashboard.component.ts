@@ -76,14 +76,10 @@ export class DashboardComponent implements OnInit {
     );
 
     // chame seu serviço para obter o número de relatorios emitidos
-    this.relatorioservice.obterNumerodeRelatorios(this.userId).subscribe(
-      (numero: number) => {
-        this.numeroRelatorios = numero;
-      },
-      (erro) => {
-        console.error('error ao obter o número de relatórios: ', erro);
-      }
-    );
+    this.relatorioservice.contador$.subscribe((valor) => {
+      this.numeroRelatorios = valor;
+    });
+
     // Chame seu serviço para obter o número de projetos do usuário
     this.projetoService.obterNumeroDeProjetos(this.userId).subscribe(
       (numero: number) => {
