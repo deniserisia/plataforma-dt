@@ -280,7 +280,7 @@ export class DashboardComponent implements OnInit {
   abrirModal() {
     this.resultadoModal.nativeElement.showModal();
   }
-
+ //teste
   obterContagemProjetosPorMesNoAno() {
     const ano = new Date().getFullYear();
     let usrid = localStorage.getItem('idUser');
