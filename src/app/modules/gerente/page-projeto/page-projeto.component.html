@@ -1,154 +1,240 @@
 <div class="container pt-5">
-      <div class="d-flex align-items-center justify-content-between">
-        <h1 class="mt-4 mr-3">Projetos</h1>
-        <div class="button-container">
-            <button class="btn-cadastro-cliente" routerLink="/usuario/cadastro-projeto">
-                Cadastrar Projeto
-                <img src="assets/icones/PlusCircle.svg" alt="Ícone de Plus" class="icon">
-            </button>
-        </div>
+  <div class="d-flex align-items-center justify-content-between">
+    <h1 class="mt-4 mr-3">Projetos</h1>
+    <div class="button-container">
+      <button
+        class="btn-cadastro-cliente"
+        routerLink="/usuario/cadastro-projeto"
+      >
+        Cadastrar Projeto
+        <img
+          src="assets/icones/PlusCircle.svg"
+          alt="Ícone de Plus"
+          class="icon"
+        />
+      </button>
     </div>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Consulta e Listagem de Projetos</li>
-    </ol>
-        <!-- Tabela de Consultar/Buscar -->
-        <div class="container-buscar">
-            <form #consultaForm="ngForm" (submit)="consultarProjeto()">
-                <div class="row">
-                    <div class="col-md-4">
-                        <label for="inputNome">Nome do Projeto:</label>
-                        <input type="text" [(ngModel)]="nomeDoProjeto" name="nomeDoProjeto" class="form-control"
-                            id="inputNome">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="inputEmpresa">Nome da Empresa:</label>
-                        <input type="text" [(ngModel)]="empresa" name="empresa" class="form-control" id="inputEmpresa">
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
-                            <i class="fa fa-search"></i> Consultar
-                        </button>
-                    </div>
-                </div>
-            </form>
-
-            <div class="alert alert-warning" style="margin-top: 15px;" role="alert" *ngIf="message">
-                {{ message }}   
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Nome do Projeto</th>
-                                <th>Empresa</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let c of listaDosProjetos" >
-                                <td>{{ c.nomeDoProjeto }} </td>
-                                <td>{{ c.empresa }} </td>
-                                <td>
-                                    <button class="btn btn-primary btn-custom-editar-buscar" routerLink="/usuario/cadastro-projeto/{{ c.id }}">
-                                        <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
-                                        Editar 
-                                    </button>
-                                    
-                                    <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecao(c)" data-toggle="modal" data-target="#modalDelecaoProjeto">
-                                        <img src="assets/icones/delete.svg" alt="Ícone de Deletar" class="icon">
-                                        Deletar 
-                                    </button>             
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                </div>
-            </div>
-
+  </div>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Consulta e Listagem de Projetos</li>
+  </ol>
+  <!-- Tabela de Consultar/Buscar -->
+  <div class="container-buscar">
+    <form #consultaForm="ngForm" (submit)="consultarProjeto()">
+      <div class="row">
+        <div class="col-md-4">
+          <label for="inputNome">Nome do Projeto:</label>
+          <input
+            type="text"
+            [(ngModel)]="nomeDoProjeto"
+            name="nomeDoProjeto"
+            class="form-control"
+            id="inputNome"
+          />
         </div>
-
-
-        
-    <div class="container-mensagens">
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
-                    {{ mensagemSucesso }}
-                </div>
-
-                <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
-                    {{ mensagemErro }}
-                </div>
-            </div>
+        <div class="col-md-4">
+          <label for="inputEmpresa">Nome da Empresa:</label>
+          <input
+            type="text"
+            [(ngModel)]="empresa"
+            name="empresa"
+            class="form-control"
+            id="inputEmpresa"
+          />
         </div>
-        <br />
-    </div>
-
-        <!-- TABELA DE CRUD -->
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Projeto</th>
-                        <th>Setor</th>
-                        <th>Empresa</th>
-                        <th>Status do Projeto</th>
-                        <th>Ações</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let projeto of projetos | paginate: { itemsPerPage: pageSize, currentPage: page } ">
-                     
-                        <td>{{ projeto.nomeDoProjeto }}</td>
-                        <td>{{ projeto.setor }}</td>
-                        <td>{{ projeto.empresa }}</td>
-                        <td>{{ projeto.statusProjeto }}</td>
-                        <td>
-                            <button class="btn btn-primary btn-custom-editar" routerLink="/usuario/cadastro-projeto/{{ projeto.id }}">
-                                <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
-                                Editar 
-                            </button>
-
-                            <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecao(projeto)" data-toggle="modal" data-target="#modalDelecaoProjeto">
-                                <img src="assets/icones/delete.svg" alt="Ícone de Deletar" class="icon">
-                                Deletar 
-                              </button>           
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="page" style="text-align: center; margin-top: 10px;">
-                <pagination-controls   [previousLabel]="'Anterior'"  [nextLabel]="'Próximo'" (pageChange)="page = $event"></pagination-controls>
-            </div>
+        <div class="col-md-4 text-center">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="margin-top: 10px"
+          >
+            <i class="fa fa-search"></i> Consultar
+          </button>
         </div>
-
-
-        <div id="modalDelecaoProjeto" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Confirmação</h4>
-                        <button type="button"  (click)="fecharModal()" class="close" data-dismiss="modal" aria-label="Fechar">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-    
-                    <div class="modal-body" *ngIf="projetoSelecionado">
-                        Deseja realmente excluir o projeto {{ projetoSelecionado.nomeDoProjeto }}?
-                    </div>
-    
-                    <div class="modal-footer">
-                        <button class="btn btn-success" (click)="deletarProjeto()" data-dismiss="modal">Confirmar</button>
-                        <button class="btn btn-danger" (click)="fecharModal()" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </div>
-            </div>
       </div>
+    </form>
 
-      <div class="overlay" *ngIf="modalAberto"></div>
+    <div
+      class="alert alert-warning"
+      style="margin-top: 15px"
+      role="alert"
+      *ngIf="message"
+    >
+      {{ message }}
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome do Projeto</th>
+              <th>Empresa</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of listaDosProjetos">
+              <td>{{ c.nomeDoProjeto }}</td>
+              <td>{{ c.empresa }}</td>
+              <td>
+                <button
+                  class="btn btn-primary btn-custom-editar-buscar"
+                  routerLink="/usuario/cadastro-projeto/{{ c.id }}"
+                >
+                  <img
+                    src="assets/icones/edit-2.svg"
+                    alt="Ícone de Editar"
+                    class="icon"
+                  />
+                  Editar
+                </button>
+
+                <button
+                  class="btn btn-danger btn-custom-deletar"
+                  (click)="preparaDelecao(c)"
+                  data-toggle="modal"
+                  data-target="#modalDelecaoProjeto"
+                >
+                  <img
+                    src="assets/icones/delete.svg"
+                    alt="Ícone de Deletar"
+                    class="icon"
+                  />
+                  Deletar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-mensagens">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+          {{ mensagemSucesso }}
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+          {{ mensagemErro }}
+        </div>
+      </div>
+    </div>
+    <br />
+  </div>
+
+  <!-- TABELA DE CRUD -->
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Projeto</th>
+          <th>Setor</th>
+          <th>Empresa</th>
+          <th>Status do Projeto</th>
+          <th>Ações</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let projeto of projetos
+              | paginate : { itemsPerPage: pageSize, currentPage: page }
+          "
+        >
+          <td>{{ projeto.nomeDoProjeto }}</td>
+          <td>{{ projeto.setor }}</td>
+          <td>{{ projeto.empresa }}</td>
+          <td>{{ projeto.statusProjeto }}</td>
+          <td>
+            <button
+              class="btn btn-primary btn-custom-editar"
+              routerLink="/usuario/cadastro-projeto/{{ projeto.id }}"
+            >
+              <img
+                src="assets/icones/edit-2.svg"
+                alt="Ícone de Editar"
+                class="icon"
+              />
+              Editar
+            </button>
+
+            <button
+              class="btn btn-danger btn-custom-deletar"
+              (click)="preparaDelecao(projeto)"
+              data-toggle="modal"
+              data-target="#modalDelecaoProjeto"
+            >
+              <img
+                src="assets/icones/delete.svg"
+                alt="Ícone de Deletar"
+                class="icon"
+              />
+              Deletar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="page" style="text-align: center; margin-top: 10px">
+      <pagination-controls
+        [previousLabel]="'Anterior'"
+        [nextLabel]="'Próximo'"
+        (pageChange)="page = $event"
+      ></pagination-controls>
+    </div>
+  </div>
+
+  <div
+    id="modalDelecaoProjeto"
+    class="modal fade"
+    role="dialog"
+    data-backdrop="static"
+    data-keyboard="false"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Confirmação</h4>
+          <button
+            type="button"
+            (click)="fecharModal()"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Fechar"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body" *ngIf="projetoSelecionado">
+          Deseja realmente excluir o projeto
+          {{ projetoSelecionado.nomeDoProjeto }}?
+        </div>
+
+        <div class="modal-footer">
+          <button
+            class="btn btn-success"
+            (click)="deletarProjeto()"
+            data-dismiss="modal"
+          >
+            Confirmar
+          </button>
+          <button
+            class="btn btn-danger"
+            (click)="fecharModal()"
+            data-dismiss="modal"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" *ngIf="modalAberto"></div>
 </div>
