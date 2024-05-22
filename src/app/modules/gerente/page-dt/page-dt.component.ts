@@ -8,10 +8,9 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-page-dt',
   templateUrl: './page-dt.component.html',
-  styleUrls: ['./page-dt.component.css']
+  styleUrls: ['./page-dt.component.css'],
 })
 export class PageDtComponent implements OnInit {
-
   modalAberto: boolean = false;
   dividaTecnicaSelecionada: DividaTecnica;
   nomeDoProjeto: string;
@@ -22,9 +21,7 @@ export class PageDtComponent implements OnInit {
   mensagemErro: string;
   page = 1;
   pageSize = 5;
-  userId:string;
-
-
+  userId: string;
 
   constructor(
     private serviceD: DividaTecnicaService,
@@ -33,35 +30,29 @@ export class PageDtComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userId=localStorage.getItem("idUser")
-      this.serviceD
+    this.userId = localStorage.getItem('idUser');
+    this.serviceD
       .getDividaTecnicas(this.userId)
-      .subscribe( resposta => this.dividasTecnicas = resposta);
+      .subscribe((resposta) => (this.dividasTecnicas = resposta));
   }
-
 
   preparaDelecaoDT(dividasTecnicas: DividaTecnica) {
     this.dividaSelecionada = dividasTecnicas;
     this.modalAberto = true; // Abre o modal
-}
-
-fecharModal() {
-    this.modalAberto = false; // Fecha o modal
-}
-
-
-
-
-  deletarDT(){
-   this.serviceD
-     .deletar(this.dividaSelecionada)
-     .subscribe(
-       response => {
-         this.mensagemSucesso = 'DT deletado com sucesso!'
-         this.ngOnInit();
-       },
-       erro => this.mensagemErro = 'Ocorreu um erro ao deletar o DT.'
-     )
   }
 
+  fecharModal() {
+    this.modalAberto = false; // Fecha o modal
+  }
+
+  deletarDT() {
+    this.serviceD.deletar(this.dividaSelecionada).subscribe(
+      (response) => {
+        this.mensagemSucesso = 'DT deletado com sucesso!';
+        this.ngOnInit();
+        this.fecharModal();
+      },
+      (erro) => (this.mensagemErro = 'Ocorreu um erro ao deletar o DT.')
+    );
+  }
 }

@@ -1,102 +1,148 @@
-<div class="container pt-5 ">
-    <div class="d-flex align-items-center justify-content-between">
-        <h1 class="mt-4 mr-3">Dívidas Técnicas</h1>
-        <div class="button-container">
-            <button class="btn-cadastro-cliente" routerLink="/usuario/cadastro-divida-tecnica">
-                Cadastrar Dívida Técnica
-                <img src="assets/icones/PlusCircle.svg" alt="Ícone de Plus" class="icon">
+<div class="container pt-5">
+  <div class="d-flex align-items-center justify-content-between">
+    <h1 class="mt-4 mr-3">Dívidas Técnicas</h1>
+    <div class="button-container">
+      <button
+        class="btn-cadastro-cliente"
+        routerLink="/usuario/cadastro-divida-tecnica"
+      >
+        Cadastrar Dívida Técnica
+        <img
+          src="assets/icones/PlusCircle.svg"
+          alt="Ícone de Plus"
+          class="icon"
+        />
+      </button>
+    </div>
+  </div>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Listagem das Dívidas Técnicas</li>
+  </ol>
+
+  <div class="container-mensagens">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+          {{ mensagemSucesso }}
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+          {{ mensagemErro }}
+        </div>
+      </div>
+    </div>
+    <br />
+  </div>
+
+  <!-- TABELA DE CRUD -->
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Projeto</th>
+          <th>Nome da DT</th>
+          <th>Status do Pagamento</th>
+          <th>Status da Fase de Gerenciamento</th>
+          <th>Ações</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let dt of dividasTecnicas
+              | paginate : { itemsPerPage: pageSize, currentPage: page }
+          "
+        >
+          <td>{{ dt.projeto.nomeDoProjeto }}</td>
+          <td>{{ dt.nomeDaDividaTecnica }}</td>
+          <td>{{ dt.statusDoPagamento }}</td>
+          <td>{{ dt.statusDaFaseDeGerenciamentoDT }}</td>
+          <td>
+            <button
+              class="btn btn-primary btn-custom-editar"
+              routerLink="/usuario/cadastro-divida-tecnica/{{ dt.id }}"
+            >
+              <img
+                src="assets/icones/edit-2.svg"
+                alt="Ícone de Editar"
+                class="icon"
+              />
+              Editar
             </button>
-        </div>
+
+            <button
+              class="btn btn-danger btn-custom-deletar"
+              (click)="preparaDelecaoDT(dt)"
+              data-toggle="modal"
+              data-target="#modalDelecaoDT"
+            >
+              <img
+                src="assets/icones/delete.svg"
+                alt="Ícone de Deletar"
+                class="icon"
+              />
+              Deletar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="page" style="text-align: center; margin-top: 10px">
+      <pagination-controls
+        [previousLabel]="'Anterior'"
+        [nextLabel]="'Próximo'"
+        (pageChange)="page = $event"
+      ></pagination-controls>
     </div>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Listagem das Dívidas Técnicas</li>
-    </ol>
+  </div>
 
-
-    <div class="container-mensagens">
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
-                    {{ mensagemSucesso }}
-                </div>
-
-                <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
-                    {{ mensagemErro }}
-                </div>
-            </div>
+  <div
+    id="modalDelecaoDT"
+    class="modal fade"
+    role="dialog"
+    data-backdrop="static"
+    data-keyboard="false"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Confirmação</h4>
+          <button
+            type="button"
+            (click)="fecharModal()"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Fechar"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <br />
+
+        <div class="modal-body" *ngIf="dividaSelecionada">
+          Deseja realmente excluir a Dívida Técnica de
+          {{ dividaSelecionada.nomeDaDividaTecnica }}?
+        </div>
+
+        <div class="modal-footer">
+          <button
+            class="btn btn-success"
+            (click)="deletarDT()"
+            data-dismiss="modal"
+          >
+            Confirmar
+          </button>
+          <button
+            class="btn btn-danger"
+            (click)="fecharModal()"
+            data-dismiss="modal"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 
-
-
-        <!-- TABELA DE CRUD -->
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-
-                        <th>Projeto</th>
-                        <th>Nome da DT</th>
-                        <th>Status do Pagamento </th>
-                        <th>Status da Fase de Gerenciamento </th>
-                        <th>Ações</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr  *ngFor="let dt of dividasTecnicas  | paginate: { itemsPerPage: pageSize, currentPage: page } ">
-
-                        <td>{{ dt.projeto.nomeDoProjeto }}</td>
-                        <td>{{ dt.nomeDaDividaTecnica }}</td>
-                        <td>{{ dt.statusDoPagamento }}</td>
-                        <td>{{ dt.statusDaFaseDeGerenciamentoDT }}</td>
-                        <td>
-
-                            <button class="btn btn-primary btn-custom-editar" routerLink="/usuario/cadastro-divida-tecnica/{{ dt.id }}">
-                                <img src="assets/icones/edit-2.svg" alt="Ícone de Editar" class="icon">
-                                Editar
-                            </button>
-
-                            <button class="btn btn-danger btn-custom-deletar" (click)="preparaDelecaoDT(dt)" data-toggle="modal" data-target="#modalDelecaoDT">
-                                <img src="assets/icones/delete.svg" alt="Ícone de Deletar" class="icon">
-                                Deletar
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="page" style="text-align: center; margin-top: 10px;">
-                <pagination-controls  [previousLabel]="'Anterior'"  [nextLabel]="'Próximo'" (pageChange)="page = $event"></pagination-controls>
-            </div>
-        </div>
-
-
-
-        <div id="modalDelecaoDT" class="modal fade" role="dialog" >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Confirmação</h4>
-                        <button type="button"  (click)="fecharModal()" class="close" data-dismiss="modal" aria-label="Fechar">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body" *ngIf="dividaSelecionada">
-                        Deseja realmente excluir a Dívida Técnica de {{ dividaSelecionada.nomeDaDividaTecnica }}?
-                    </div>
-
-                    <div class="modal-footer">
-                        <button class="btn btn-success" (click)="deletarDT()" data-dismiss="modal">Confirmar</button>
-                        <button class="btn btn-danger" (click)="fecharModal()" data-dismiss="modal">Cancelar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <div class="overlay" *ngIf="modalAberto"></div>
-
-
+  <div class="overlay" *ngIf="modalAberto"></div>
 </div>
