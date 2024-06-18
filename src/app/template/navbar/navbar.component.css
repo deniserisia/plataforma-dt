@@ -7,7 +7,17 @@
     background-color: #eef1f6;
     padding: 30px;
     font-family: 'Nunito Sans', sans-serif;
-  }
+}
+
+.active-link {
+    font-weight: bold;
+    color: #0D356A; /* Cor do texto quando ativo */
+    background-color: #CDDAEF; 
+}
+  
+.active-link .icon {
+    filter: brightness(1.2); /* Torna o ícone um pouco mais brilhante */
+}  
 
 .button-menu{
   vertical-align: middle;

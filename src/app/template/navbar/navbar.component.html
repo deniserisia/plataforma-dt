@@ -17,33 +17,31 @@
     </a>
 </mat-toolbar>
 
-
 <mat-drawer-container>
     <mat-drawer #sidenav [mode]="getSidenavMode()" [opened]="isSidenavOpen()" class="mat-drawer-sidenav">
         <mat-nav-list class="pt-5">
-           
-            
             <div class="heading-home">Home</div>
-            <a mat-list-item routerLink="/usuario/dashboard">
+            <a mat-list-item routerLink="/usuario/dashboard" routerLinkActive="active-link">
                 <img src="assets/icones/dash.svg" alt="Ícone de Empresa de Engenharia" class="icon">
                 <span class="ml-2">Painel de Controle</span>
             </a>
             
             <div class="heading-home">Serviços</div>
-            <a mat-list-item routerLink="/usuario/projetos">
+            <a mat-list-item routerLink="/usuario/projetos" routerLinkActive="active-link">
                 <img src="assets/icones/folder-plus.svg" alt="Ícone de Usuários" class="icon">
                 <span class="ml-2">Projetos</span>
             </a>         
-            <a mat-list-item routerLink="/usuario/dividas-tecnicas">
+            <a mat-list-item routerLink="/usuario/dividas-tecnicas" routerLinkActive="active-link">
                 <img src="assets/icones/coin.svg" alt="Ícone de Inspeções" class="icon">
                 <span class="ml-2">Dívidas Técnicas</span>
             </a>
-            <a mat-list-item routerLink="/usuario/emitir-relatorio">
+            <a mat-list-item routerLink="/usuario/emitir-relatorio" routerLinkActive="active-link">
                 <img src="assets/icones/doc.svg" alt="Ícone de Inspeções" class="icon">
                 <span class="ml-2">Relatórios</span>
             </a>
+            
             <div class="heading-home">Configurações</div>
-            <a mat-list-item routerLink="/usuario/meu-perfil-de-usuario">
+            <a mat-list-item routerLink="/usuario/meu-perfil-de-usuario" routerLinkActive="active-link">
                 <img src="assets/icones/myperson.svg" alt="Ícone de Inspeções" class="icon">
                 <span class="ml-2">Meu Perfil</span>
             </a>
@@ -51,13 +49,12 @@
             <div class="mat-drawer-footer" mat-list-item>
                 <div class="small">
                     <img src="assets/icones/user.svg" alt="Ícone do Usuário" class="icon">
-                    <span class="ml-2" style="font-weight:500;  font-weight: bold; margin: 0 auto;">Usuário Logado: </span>
+                    <span class="ml-2" style="font-weight: bold; margin: 0 auto;">Usuário Logado: </span>
                     {{ usuarioLogado }}
                 </div>
             </div>
 
         </mat-nav-list>
-
     </mat-drawer>
     <mat-drawer-content>
         <div class="mat-drawer-content">

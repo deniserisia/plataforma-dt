@@ -2,10 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { DividaTecnicaService } from 'src/app/service/divida-tecnica.service';
 import { ProjetoService } from 'src/app/service/projeto.service';
-import { ContagemPorMes } from './contagemPorMes';
-import { ContagemPorMesNoAno } from '../cadastro-projeto/contagemPorMesNoAno ';
-import * as $ from 'jquery';
-import { DividaTecnica } from '../cadastro-dt/dividaTecnica';
 import { RelatorioService } from 'src/app/service/relatorio.service';
 
 @Component({
@@ -14,7 +10,13 @@ import { RelatorioService } from 'src/app/service/relatorio.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  @ViewChild('resultadoModal') resultadoModal: any; // Referência ao seu modal
+  @ViewChild('resultadoModal') resultadoModal: any;
+  @ViewChild('barChart', { static: true }) barChart!: ElementRef;
+  @ViewChild('lineChart', { static: true }) lineChart!: ElementRef;
+  @ViewChild('pieChart', { static: true }) pieChart!: ElementRef;
+  @ViewChild('pieChartTwo', { static: true }) pieChartTwo!: ElementRef;
+  @ViewChild('pieChartTres', { static: true }) pieChartTres!: ElementRef;
+  @ViewChild('pieChartStatus', { static: true }) pieChartStatus!: ElementRef;
 
   nomeDoProjeto: string;
   esforcoDoPagamento: number = 0;
@@ -22,22 +24,11 @@ export class DashboardComponent implements OnInit {
   numeroDeDT: number = 0;
   numeroRelatorios: number = 0;
   numeroDePessoas: number = 0;
-
-  projetos: any[] = []; // Array para armazenar os projetos
-  dividasTecnicas: any[]; // Array para armazenar as dívidas técnicas associadas ao projeto selecionado
-  projetoSelecionado: any = null; // Projeto selecionado
-  dividaTecnicaSelecionada: any; // Dívida técnica selecionada
-
-  @ViewChild('barChart', { static: true }) barChart!: ElementRef;
-  @ViewChild('barChartTwo', { static: true }) barChartTwo!: ElementRef;
-  @ViewChild('pieChart', { static: true }) pieChart!: ElementRef;
-  @ViewChild('pieChartTwo', { static: true }) pieChartTwo!: ElementRef;
-  @ViewChild('pieChartTres', { static: true }) pieChartTres!: ElementRef;
-  @ViewChild('lineChart') private lineChart: ElementRef;
-  @ViewChild('lineChartTwo', { static: true }) lineChartTwo: ElementRef;
-  @ViewChild('pieChartStatus') pieChartStatus!: ElementRef;
+  projetos: any[] = [];
+  dividasTecnicas: any[];
+  projetoSelecionado: any = null;
+  dividaTecnicaSelecionada: any;
   pieChartStatusRef: any;
-
   chartOne: any;
   chart: any;
   chartTwo: any;
@@ -45,7 +36,6 @@ export class DashboardComponent implements OnInit {
   pieChartRef: any;
   usuario: any;
   userId: string;
-
   dividasTecnicasDoProjeto: any[] = [];
   resultadoDoEsforco: number | undefined;
   dividaTecnica: any;
@@ -67,7 +57,7 @@ export class DashboardComponent implements OnInit {
         const labels = Object.keys(statusProjetos);
         const data = Object.values(statusProjetos).map((value: any) =>
           Number(value)
-        ); // Convertendo para number[]
+        );
         this.createPieChartStatus(labels, data);
       },
       (error) => {
@@ -75,12 +65,10 @@ export class DashboardComponent implements OnInit {
       }
     );
 
-    // chame seu serviço para obter o número de relatorios emitidos
     this.relatorioservice.contador$.subscribe((valor) => {
       this.numeroRelatorios = valor;
     });
 
-    // Chame seu serviço para obter o número de projetos do usuário
     this.projetoService.obterNumeroDeProjetos(this.userId).subscribe(
       (numero: number) => {
         this.numeroDeProjetos = numero;
@@ -99,7 +87,6 @@ export class DashboardComponent implements OnInit {
       }
     );
 
-    // Chame seu serviço para obter o número de DT do usuário
     this.dividaTecnicaService.obterNumeroDeDT(this.userId).subscribe(
       (numero: number) => {
         this.numeroDeDT = numero;
@@ -111,11 +98,8 @@ export class DashboardComponent implements OnInit {
 
     this.projetoService.obterContagemProjetosPorMes(this.userId).subscribe(
       (contagemPorMes) => {
-        // Adaptar os dados recebidos para o formato necessário para o gráfico
         const labels = contagemPorMes.map((item) => item.mes);
         const data = contagemPorMes.map((item) => item.quantidade);
-
-        // Chamar a função para criar o gráfico com os dados atualizados
         this.createBarChart(labels, data);
       },
       (erro) => {
@@ -123,49 +107,55 @@ export class DashboardComponent implements OnInit {
       }
     );
 
-    // servico de dt por tipo
-    this.dividaTecnicaService
-      .obterContagemDividasPorTipo(this.userId)
-      .subscribe(
-        (contagemPorTipo) => {
-          const labels = Object.keys(contagemPorTipo);
-          const data = Object.values(contagemPorTipo);
+    this.dividaTecnicaService.obterContagemDividasPorTipo(this.userId).subscribe(
+      (contagemPorTipo) => {
+        const labels = Object.keys(contagemPorTipo);
+        const data = Object.values(contagemPorTipo);
+        this.createPieChart(labels, data);
+      },
+      (erro) => {
+        console.error('Erro ao obter a contagem de dívidas por tipo:', erro);
+      }
+    );
 
-          // Chamar a função para criar o gráfico de pizza com os dados atualizados
-          this.createPieChart(labels, data);
-        },
-        (erro) => {
-          console.error('Erro ao obter a contagem de dívidas por tipo:', erro);
-        }
-      );
+    this.dividaTecnicaService.obterStatusFaseGerenciamento(this.userId).subscribe(
+      (data) => {
+        const labels = Object.keys(data);
+        const values = Object.values(data);
+        this.criarGraficoStatusFaseGerenciamento(labels, values);
+      },
+      (erro) => {
+        console.error('Erro ao obter a contagem de dívidas por tipo:', erro);
+      }
+    );
 
-    this.dividaTecnicaService
-      .obterStatusFaseGerenciamento(this.userId)
-      .subscribe(
-        (data) => {
-          const labels = Object.keys(data);
-          const values = Object.values(data);
-
-          this.criarGraficoStatusFaseGerenciamento(labels, values);
-        },
-        (erro) => {
-          console.error('Erro ao obter a contagem de dívidas por tipo:', erro);
-        }
-      );
-
-    // servico de status da DT
     this.dividaTecnicaService.obterStatusPagamento(this.userId).subscribe(
       (statusDaDT) => {
         const labels = Object.keys(statusDaDT);
         const data = Object.values(statusDaDT);
-
-        // Chamar a função para criar o gráfico de pizza com os dados atualizados
         this.createPieChartTwo(labels, data);
       },
       (erro) => {
         console.error('Erro ao obter a contagem de dívidas por tipo:', erro);
       }
     );
+  }
+
+  ordenarMeses(labels: string[], data: number[]) {
+    const mesesDoAno = [
+      'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+      'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+    ];
+
+    const mesQuantidadeMap = labels.reduce((acc, label, index) => {
+      acc[label] = data[index];
+      return acc;
+    }, {});
+
+    const labelsOrdenados = mesesDoAno.filter(mes => mesQuantidadeMap[mes] !== undefined);
+    const dataOrdenada = labelsOrdenados.map(mes => mesQuantidadeMap[mes]);
+
+    return { labelsOrdenados, dataOrdenada };
   }
 
   // GRAFICO DO STATUS DOS PROJETOS
@@ -299,22 +289,62 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  // GRAFICO DE PROJETOS POR MES - LINHA
   createBarChart(labels: string[], data: number[]) {
+    const { labelsOrdenados, dataOrdenada } = this.ordenarMeses(labels, data);
     const ctx = this.barChart.nativeElement.getContext('2d');
     this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: labels,
+        labels: labelsOrdenados,
         datasets: [
           {
             label: 'Projetos Cadastrados Por Mês',
-            data: data,
+            data: dataOrdenada,
             backgroundColor: 'rgba(75, 192, 192, 0.6)',
           },
         ],
       },
       options: {
+        title: {
+          display: false,
+          text: 'Contagem de Projetos por Mês'
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                stepSize: 1,
+              },
+            },
+          ],
+        },
+      },
+    });
+  }
+
+  createLineChart(labels: string[], data: number[]) {
+    const { labelsOrdenados, dataOrdenada } = this.ordenarMeses(labels, data);
+    const ctx = this.lineChart.nativeElement.getContext('2d');
+    this.chartOne = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labelsOrdenados,
+        datasets: [
+          {
+            label: 'Dívidas Técnicas Cadastradas Por Mês',
+            data: dataOrdenada,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            fill: false,
+          },
+        ],
+      },
+      options: {
+        title: {
+          display: false,
+          text: 'Contagem de Dívidas Técnicas por Mês'
+        },
         scales: {
           yAxes: [
             {
@@ -349,37 +379,7 @@ export class DashboardComponent implements OnInit {
       );
   }
 
-  // GRAFICO DE DT POR MES - LINHA
-  createLineChart(labels: string[], data: number[]) {
-    const ctx = this.lineChart.nativeElement.getContext('2d');
-    this.chartOne = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Dívidas Técnicas Cadastradas Por Mês',
-            data: data,
-            borderColor: 'rgba(255, 99, 132, 1)',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            fill: false,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-                stepSize: 1,
-              },
-            },
-          ],
-        },
-      },
-    });
-  }
+  
 
   // GRAFICO - TOTAL DE DT
   createPieChart(labels: string[], data: number[]) {

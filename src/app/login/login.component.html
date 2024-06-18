@@ -68,24 +68,24 @@
                                                 placeholder="Digite o setor de atuação de sua empresa" />
                                         </div>
   
-                                        <div class="form-group align-items-center justify-content-between mt-4 mb-0">
-                                            <div class="col-sm-12 col-md-6"> <!-- Controla o tamanho da coluna em dispositivos pequenos e médios -->
-                                                <button type="submit" class="btn btn-primary btn-lg" *ngIf="!cadastrando">
-                                                    Entrar
-                                                </button>
-                                            </div>
-                                         
-                                            <button type="button" class="btn btn-success" 
-                                                    (click)="cadastrar()"
-                                                    *ngIf="cadastrando">
+                                        <div class="form-group d-flex justify-content-center align-items-center mt-4 mb-0">
+                                            <button type="submit" class="btn btn-primary btn-lg" *ngIf="!cadastrando">
+                                              Entrar
+                                            </button>
+                                          
+                                            <div *ngIf="cadastrando" class="d-flex">
+
+                                              <button type="button" (click)="cancelaCadastro()" class="btn btn-primary mr-2">
+                                                Voltar
+                                              </button>
+
+                                              <button type="button" class="btn btn-success mr-2" (click)="cadastrar()">
                                                 Cadastrar
-                                            </button>
-  
-                                            <button type="button" (click)="cancelaCadastro()"
-                                                    class="btn btn-danger ml-1" *ngIf="cadastrando">
-                                                Cancelar
-                                            </button>
-                                        </div>
+                                              </button>
+
+                                            </div>
+                                          </div>
+                                          
                                     </form>
                                 </div>
   
