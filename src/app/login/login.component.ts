@@ -63,6 +63,9 @@ onSubmit() {
     const usuario: Usuario = new Usuario();
     usuario.username = this.username;
     usuario.password = this.password;
+    usuario.email = this.email;
+    usuario.nomeDaEmpresa = this.nomeDaEmpresa;
+    usuario.setorDaEmpresa = this.setorDaEmpresa;
     this.authService
         .salvar(usuario)
         .subscribe( response => {
@@ -70,12 +73,16 @@ onSubmit() {
             this.cadastrando = false;
             this.username = '';
             this.password = '';
+            this.email = '';
+            this.nomeDaEmpresa = '';
+            this.setorDaEmpresa = '';
             this.errors = []
         }, errorResponse => {
             this.mensagemSucesso = "Cadastro realizado com sucesso! Efetue o login.";
             this.errors = errorResponse.error.errors;
         })
   }
+
 
   salvaUserLocal(){
     this.authService.obterUsuarioAutenticadoDoBackend().subscribe(
